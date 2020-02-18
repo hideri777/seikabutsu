@@ -46,7 +46,7 @@ switch($mode) {
       // err_check = false ->エラーがありますよ！
       // err_check = true ->エラーがないですよ！
       // エラーなければconfirm.tpl あるとregist.tpl
-      $template = ($err_check === true) ? 'confirm.html.twig' : 'regist.html.twig';
+      $template = ($err_check === true) ? 'confirm.twig' : 'regist.twig';
 
     break;
   
@@ -60,7 +60,7 @@ switch($mode) {
         $errArr[$key] = '';
       }
 
-      $template = 'regist.html.twig';
+      $template = 'regist.twig';
     break;
   
   case 'complete': // 登録完了
@@ -68,18 +68,18 @@ switch($mode) {
       // ↓この情報はいらないので外しておく
       unset($dataArr['complete']);
 
-      // TODO: DBのテーブル名決める
-      $db->insert('seikabutsu', $dataArr);
+      $res = $db->insert('users', $dataArr, 'regist_date');
 
       if($res === true) {
         // 登録成功時はトップページへ
-        header('Location: ' . Bootstrap::APP_URL . 'entry.php');
+        $_SESSION['login'] = 'on';
+        header('Location: ' . Bootstrap::APP_URL . 'index.php');
         exit();
       } else {
         var_dump($query);
         var_dump($res);
         // 登録失敗時は登録画面に戻る
-        $template = 'regist.html.twig';
+        $template = 'regist.twig';
 
         // エラーの配列を空にしてもう一度登録画面に戻る
         foreach($dataArr as $key => $value) {

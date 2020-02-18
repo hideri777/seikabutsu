@@ -1,5 +1,7 @@
 <?php
+
 namespace App\config;
+
 use PDO;
 
 class PDODatabase
@@ -30,7 +32,7 @@ class PDODatabase
 
   public function __construct($db_host, $db_user, $db_pass, $db_name)
   {
-    $this->dbh = $this->connectDB($db_host, $db_user, $db_pass,$db_name);
+    $this->dbh = $this->connectDB($db_host, $db_user, $db_pass, $db_name);
   }
 
   private function connectDB($db_host, $db_user, $db_pass, $db_name)
@@ -39,15 +41,16 @@ class PDODatabase
       // dsnでcharsetの指定をしておく
       $dsn = 'mysql:host=' . $db_host . ';dbname=' . $db_name . ';charset=utf8mb4';
       $dbh = new PDO(
-        $dsn, 
-        $db_user, 
-        $db_pass, 
+        $dsn,
+        $db_user,
+        $db_pass,
         [
           // エラーコードの設定、PDOExceptionをスロー
           PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
           // デフォルトで連想配列
           PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]);
+        ]
+      );
     }
     // 投げられた例外クラスを受け取る
     catch (\PDOException $e) {
@@ -165,7 +168,7 @@ class PDODatabase
     return $sql;
   }
 
-  public function insert($table, $insData = [])
+  public function insert($table, $insData = [], $time = '')
   {
     $insDataKey = [];
     $insDataVal = [];
@@ -187,13 +190,25 @@ class PDODatabase
 
     // ex. item_idを追加するのであれば
     // INSERT INTO  cart  (customer_no,item_id) VALUES (?,?) →これを?に入れる [1,1]
-    $sql = "INSERT INTO "
-      . $table
-      . " ("
-      . $columns
-      . ") VALUES ("
-      . $preSt
-      . ") ";
+    if ($time !== '') {
+      $sql = "INSERT INTO "
+        . $table
+        . " ( "
+        . $columns
+        . " , " . $time
+        . ") VALUES ("
+        . $preSt
+        . ", NOW() "
+        . " ) ";
+    } else {
+      $sql = "INSERT INTO "
+        . $table
+        . " ("
+        . $columns
+        . ") VALUES ("
+        . $preSt
+        . ") ";
+    }
 
     $this->sqlLogInfo($sql, $insDataVal);
 
@@ -272,7 +287,7 @@ class PDODatabase
     if (!file_exists($logDir)) {
       mkdir($logDir, 0777);
     }
-    $logPath = $logDir . '/shopping.log';
+    $logPath = $logDir . '/seikabutsu.log';
     if (!file_exists($logPath)) {
       touch($logPath);
     }

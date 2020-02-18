@@ -5,6 +5,7 @@ require_once __DIR__ . './../vendor/autoload.php';
 
 use App\config\Bootstrap;
 
+session_start();
 $isLogin = isset($_SESSION['login']) ? true : false;
 
 // テンプレート指定

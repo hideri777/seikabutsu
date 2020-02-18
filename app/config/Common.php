@@ -17,14 +17,11 @@ class Common
     $this->dataArr = $dataArr;
     // クラス内のメソッドを読み込む
     $this->createErrorMessage();
-    
-    $this->familyNameCheck();
-    $this->firstNameCheck();
-    $this->birthCheck();
-    $this->zipCheck();
-    $this->addCheck();
-    $this->telCheck();
+  
+    $this->userNameCheck();
     $this->mailCheck();
+    $this->passCheck();
+    $this->birthCheck();
 
     return $this->errArr;
   }
@@ -36,17 +33,24 @@ class Common
     }
   }
 
-  private function familyNameCheck()
+  private function userNameCheck()
   {
-    if($this->dataArr['family_name'] === '') {
-      $this->errArr['family_name'] = 'お名前(氏)を入力してください';
+    if($this->dataArr['user_name'] === '') {
+      $this->errArr['user_name'] = 'ユーザー名を入力してください';
     }
   }
 
-  private function firstNameCheck()
+  private function mailCheck()
   {
-    if($this->dataArr['first_name'] === '') {
-      $this->errArr['first_name'] = 'お名前(名)を入力してください';
+    if(preg_match('/^([a-zA-Z0-9])+([a-zA-z0-9\._-])*@([a-zA-Z0-9_-])+[a-zA-Z0-9\._-]+$/', $this->dataArr['email']) === 0) {
+      $this->errArr['email'] = 'メールアドレスを正しい形式で入力してください';
+    }
+  }
+
+  private function passCheck()
+  {
+    if(strlen($this->dataArr['password']) < 4 || strlen($this->dataArr['password']) > 20) {
+      $this->errArr['password'] = 'パスワードは4文字以上20文字以下で入力してください';
     }
   }
 
@@ -68,42 +72,6 @@ class Common
 
     if(strtotime($this->dataArr['year'] . '-' . $this->dataArr['month'] . '-' . $this->dataArr['day']) - strtotime('now') > 0) {
       $this->errArr['year'] = '正しい日付を入力してください';
-    }
-  }
-
-  private function zipCheck()
-  {
-    if(preg_match('/^[0-9]{3}$/', $this->dataArr['zip1']) === 0) {
-      $this->errArr['zip1'] = '郵便番号の上半分は半角数字3桁で入力してください';
-    }
-    if(preg_match('/^[0-9]{4}$/', $this->dataArr['zip2']) === 0) {
-      $this->errArr['zip2'] = '郵便番号の下半分は半角数字4桁で入力してください';
-    }
-  }
-
-  private function addCheck()
-  {
-    if($this->dataArr['address'] === '') {
-      $this->errArr['address'] = '住所を入力してください';
-    }
-  }
-
-  private function mailCheck()
-  {
-    if(preg_match('/^([a-zA-Z0-9])+([a-zA-z0-9\._-])*@([a-zA-Z0-9_-])+[a-zA-Z0-9\._-]+$/', $this->dataArr['email']) === 0) {
-      $this->errArr['email'] = 'メールアドレスを正しい形式で入力してください';
-    }
-  }
-
-  private function telCheck()
-  {
-    if(
-      preg_match('/^\d{1,6}$/', $this->dataArr['tel1']) === 0 ||
-      preg_match('/^\d{1,6}$/', $this->dataArr['tel2']) === 0 ||
-      preg_match('/^\d{1,6}$/', $this->dataArr['tel3']) === 0 ||
-      strlen($this->dataArr['tel1'] . $this->dataArr['tel2'] . $this->dataArr['tel3']) >= 12
-    ) {
-      $this->errArr['tel1'] = '電話番号は、半角数字で11桁以内で入力してください';
     }
   }
 

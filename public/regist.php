@@ -15,21 +15,14 @@ $twig = new \Twig\Environment($loader, [
 
 // 初期データを設定
 $dataArr = [
-  'family_name' => '',
-  'first_name' => '',
-  'family_name_kana' => '',
-  'first_name_kana' => '',
+  'user_name' => '',
+  'email' => '',
+  'password' => '',
+  'image' => '',
   'year' => '',
   'month' => '',
   'day' => '',
-  'zip1' => '',
-  'zip2' => '',
-  'address' => '',
-  'email' => '',
-  'tel1' => '',
-  'tel2' => '',
-  'tel3' => '',
-  'contents' => ''
+  'regist_date' => 'NOW()'
 ];
 
 // エラーメッセージの定義、初期

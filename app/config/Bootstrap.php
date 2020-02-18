@@ -17,7 +17,7 @@ class Bootstrap
   const DB_USER = 'seikabutsu_user';
   const DB_PASS = 'seikabutsu_pass';
 
-  const APP_DIR = '/Applications/XAMPP/xamppfiles/htdocs/seikabustu/';
+  const APP_DIR = '/Applications/XAMPP/xamppfiles/htdocs/seikabutsu/';
   const TEMPLATE_DIR = self::APP_DIR . 'app/templates/';
 
   // キャッシュ、前回分のデータを利用して読み込み高速化する

@@ -55,7 +55,7 @@ $context['errArr'] = $errArr;
 // 古いバージョン
 // $template = $twig->loadTemplate('regist.html.twig');
 
-$template = $twig->load('regist.html.twig');
+$template = $twig->load('regist.twig');
 $template->display($context);
 
 // echo $twig->render('regist.html.twig', $context);

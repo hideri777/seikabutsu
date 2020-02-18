@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    {# TODO: jsとcssを作る #}
+		<script src="{{constant('App\\config\\Bootstrap::APP_URL')}}js/common.js"></script>
+		<link rel="stylesheet" href="{{constant('App\\config\\Bootstrap::APP_URL')}}css/style.css">
+		<title>新規登録</title>
+	</head>
+	<body>
+		<form action="confirm.php" method="post">
+			<table>
+				<tr>
+					<th>お名前(氏名)<span class="red">*</span>
+					</th>
+					<td>
+						<input type="text" name="family_name" value="{{dataArr.family_name}}">
+						<input type="text" name="first_name" value="{{dataArr.first_name}}">
+						{% if errArr.family_name | length > 0 %}<br><span class="red">{{errArr.family_name}}</span>
+						{% endif %}
+						{% if errArr.first_name | length > 0 %}<br><span class="red">{{errArr.first_name}}</span>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<th>お名前(かな)</th>
+					<td>
+						<input type="text" name="family_name_kana" value="{{dataArr.family_name_kana}}">
+						<input type="text" name="first_name_kana" value="{{dataArr.first_name_kana}}">
+					</td>
+				</tr>
+				<tr>
+					<th>生年月日<span class="red">*</span>
+					</th>
+					<td>
+						<select name="year">
+							{% for index, label in yearArr %}
+								<option value="{{index}}" {% if dataArr.year == index %} selected {% endif %}>
+									{{label}}
+								</option>
+							{% endfor %}
+						</select>
+						<select name="month">
+							{% for index, label in monthArr %}
+								<option value="{{index}}" {% if dataArr.month == index %} selected {% endif %}>
+									{{label}}
+								</option>
+							{% endfor %}
+						</select>
+						<select name="day">
+							{% for index, label in dayArr %}
+								<option value="{{index}}" {% if dataArr.day == index %} selected {% endif %}>
+									{{label}}
+								</option>
+							{% endfor %}
+						</select>
+						{% if errArr.year | length > 0 %}<br><span class="red">{{errArr.year}}</span>
+						{% endif %}
+						{% if errArr.month | length > 0 %}<br><span class="red">{{errArr.month}}</span>
+						{% endif %}
+						{% if errArr.day | length > 0 %}<br><span class="red">{{errArr.day}}</span>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<th>郵便番号<span class="red">*</span>
+					</th>
+					<td>
+						<input type="text" name="zip1" value="{{dataArr.zip1}}" id="zip1" size="3" maxlength="3">
+						-
+						<input type="text" name="zip2" value="{{dataArr.zip2}}" id="zip2" size="4" maxlength="4">
+						<input type="button" name="address_search" value="〒から住所を入力" id="address_search">
+						{% if errArr.zip1 | length > 0 %}<br><span class="red">{{errArr.zip1}}</span>
+						{% endif %}
+						{% if errArr.zip2 | length > 0 %}<br><span class="red">{{errArr.zip2}}</span>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<th>住所<span class="red">*</span>
+					</th>
+					<td>
+						<input type="text" name="address" value="{{dataArr.address}}" id="address" size="40">
+						{% if errArr.address | length > 0 %}<br><span class="red">{{errArr.address}}</span>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<th>メールアドレス<span class="red">*</span>
+					</th>
+					<td>
+						<input type="text" name="email" value="{{dataArr.email}}" size="40">
+						{% if errArr.email | length > 0 %}<br><span class="red">{{errArr.email}}</span>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<th>電話番号<span class="red">*</span>
+					</th>
+					<td>
+						<input type="text" name="tel1" value="{{dataArr.tel1}}" size="6" maxlength="6">
+						-
+						<input type="text" name="tel2" value="{{dataArr.tel2}}" size="6" maxlength="6">
+						-
+						<input type="text" name="tel3" value="{{dataArr.tel3}}" size="6" maxlength="6">
+						{% if errArr.tel1 | length > 0 %}<br><span class="red">{{errArr.tel1}}</span>
+						{% endif %}
+						{% if errArr.tel2 | length > 0 %}<br><span class="red">{{errArr.tel2}}</span>
+						{% endif %}
+						{% if errArr.tel3 | length > 0 %}<br><span class="red">{{errArr.tel3}}</span>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<th>備考</th>
+					<td>
+						<textarea name="contents" cols="40" rows="4"></textarea>
+					</td>
+				</tr>
+			</table>
+			<div>
+				<input type="submit" value="登録確認" name="confirm">
+			</div>
+		</form>
+	</body>
+</html>

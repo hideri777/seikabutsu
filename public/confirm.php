@@ -68,12 +68,12 @@ switch($mode) {
       // ↓この情報はいらないので外しておく
       unset($dataArr['complete']);
 
+      // TODO: Userクラスで行う、ユーザー名のかぶりがないか、アドレスすでに使われていないかなど
       $res = $db->insert('users', $dataArr, 'regist_date');
 
       if($res === true) {
-        // 登録成功時はトップページへ
-        $_SESSION['login'] = 'on';
-        header('Location: ' . Bootstrap::APP_URL . 'index.php');
+        // 登録成功時はログインページへ
+        header('Location: ' . Bootstrap::APP_URL . 'login.php');
         exit();
       } else {
         var_dump($query);

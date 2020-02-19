@@ -3,11 +3,13 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="{{constant('App\\config\\Bootstrap::APP_URL')}}js/common.js"></script>
-		<link rel="stylesheet" href="{{constant('App\\config\\Bootstrap::APP_URL')}}css/style.css">
 		<title>新規登録</title>
 	</head>
 	<body>
+		<ul id="topicpass">
+				<li><a href="index.php">HOME > </a></li>
+				<li>新規登録</li>
+		</ul>
 		<form action="confirm.php" method="post">
 			<table>
 				<tr>
@@ -29,7 +31,8 @@
 					</td>
 				</tr>
 				<tr>
-					<th>パスワード<span class="red">*</span></th>
+					<th>パスワード<span class="red">*</span>
+					</th>
 					<td>
 						<input type="password" name="password">
 						{% if errArr.password | length > 0 %}
@@ -73,7 +76,11 @@
 			</table>
 			<div>
 				<input type="submit" value="登録確認" name="confirm">
+
 			</div>
 		</form>
+		<a href="login.php">
+			ログインはこちらから
+		</a>
 	</body>
 </html>

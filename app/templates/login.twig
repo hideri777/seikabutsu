@@ -13,15 +13,13 @@
 			</li>
 			<li>ログイン</li>
 		</ul>
-		<form action="confirm.php" method="post">
+		<form action="login.php" method="post">
 			<table>
 				<tr>
 					<th>ユーザー名<span class="red">*</span>
 					</th>
 					<td>
-						<input type="text" name="user_name" value="{{dataArr.user_name}}">
-						{% if errArr.user_name | length > 0 %}<br><span class="red">{{errArr.user_name}}</span>
-						{% endif %}
+						<input type="text" name="user_name" value="{{user_name}}">
 					</td>
 				</tr>
 				<tr>
@@ -29,15 +27,14 @@
 					</th>
 					<td>
 						<input type="password" name="password">
-						{% if errArr.password | length > 0 %}
-							<br><span class="red">{{errArr.password}}</span>
-						{% endif %}
 					</td>
 				</tr>
 			</table>
+			{% if err_msg | length > 0 %}
+				<br><span class="red">{{err_msg}}</span>
+			{% endif %}
 			<div>
-				<input type="submit" value="ログイン" name="login">
-				<input type="submit" value="戻る" name="back">
+				<input type="submit" value="ログイン" name="send">
 			</div>
 		</form>
 		<a href="regist.php">

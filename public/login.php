@@ -18,19 +18,21 @@ $user_name = '';
 $password = '';
 $err_msg = '';
 
+// TODO: 後でUserクラス内に移す
 if (isset($_POST['send'])) {
   if(isset($_POST['user_name']) && isset($_POST['password'])) {
     $user_name = $_POST['user_name'];
     $password = $_POST['password'];
     $table = 'users';
-    $column = 'user_name, password';
+    $column = 'user_id, user_name, password';
     $where = 'user_name = ? AND password = ?';
     $arrVal = [$_POST['user_name'], $_POST['password']];
     $res = $db->select($table, $column, $where, $arrVal);
     
     if(!empty($res)) {
       session_start();
-      $_SESSION['login'] = 'on';
+      $_SESSION['user_id'] = $res[0]['user_id'];
+      $_SESSION['user_name'] = $res[0]['user_name'];
       header("Location: index.php");
       exit();
     } else {

@@ -5,7 +5,7 @@ require_once __DIR__ . './../vendor/autoload.php';
 
 session_start();
 function logout() {
-  unset($_SESSION['login']);
+  unset($_SESSION);
 }
 ?>
 

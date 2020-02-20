@@ -193,13 +193,13 @@ class PDODatabase
     if ($time !== '') {
       $sql = "INSERT INTO "
         . $table
-        . " ( "
+        . " ("
         . $columns
         . " , " . $time
         . ") VALUES ("
         . $preSt
         . ", NOW() "
-        . " ) ";
+        . ") ";
     } else {
       $sql = "INSERT INTO "
         . $table

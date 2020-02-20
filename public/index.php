@@ -6,7 +6,7 @@ require_once __DIR__ . './../vendor/autoload.php';
 use App\config\Bootstrap;
 
 session_start();
-$isLogin = isset($_SESSION['login']) ? true : false;
+$isLogin = isset($_SESSION['user_id']) ? true : false;
 
 // テンプレート指定
 $loader = new \Twig\Loader\FilesystemLoader(Bootstrap::TEMPLATE_DIR);

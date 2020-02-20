@@ -15,8 +15,8 @@ require_once __DIR__ . './../vendor/autoload.php';
 use App\config\Bootstrap;
 use App\config\PDODatabase;
 
-session_start();
-if(!isset($_SESSION['user_id']))  header("Location: login.php");
+$isLogin = Bootstrap::returnLoginState();
+if(!$isLogin) header("Location: login.php");
 
 // テンプレート指定
 $loader = new \Twig\Loader\FilesystemLoader(Bootstrap::TEMPLATE_DIR);
@@ -59,5 +59,6 @@ if ($is_uploaded) {
 $context = [];
 $context['insData'] = $insData;
 $context['is_uploaded'] = $is_uploaded;
+$context['isLogin'] = $isLogin;
 
 echo $twig->render('edit.twig', $context);

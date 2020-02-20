@@ -23,19 +23,6 @@
       <div>
         <input type="submit" name="back" value="戻る">
         <input type="submit" name="complete" value="登録完了">
-        {% for key, value in dataArr %}
-        {# TODO: trafficないので不要？ #}
-        {# 下記メソッドで配列か否かをチェックしている #}
-        {# iterableで配列かどうかチェック、、、今回配列はtrafficだけ、trafficの場合はkeyがtraffic[]となる #}
-          {% if value is iterable %}
-            {% for v in value %}
-              <input type="hidden" name="{{key}}[]" value="{{v}}">
-              {# name=traffic[] #}
-            {% endfor %}
-          {% else %}
-            <input type="hidden" name="{{key}}" value="{{value}}">
-          {% endif %}
-        {% endfor %}
       </div>
     </form>
   </body>

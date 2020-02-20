@@ -3,10 +3,17 @@ namespace seikabutsu;
 
 require_once __DIR__ . './../vendor/autoload.php';
 
-session_start();
-function logout() {
-  unset($_SESSION);
-}
-?>
+use App\config\Bootstrap;
+use App\config\PDODatabase;
 
-<input type="button" value="ログアウト" onclick="<?php logout(); ?>">
+$isLogin = Bootstrap::returnLoginState();
+
+// テンプレート指定
+$loader = new \Twig\Loader\FilesystemLoader(Bootstrap::TEMPLATE_DIR);
+$twig = new \Twig\Environment($loader, [
+  'cache' => Bootstrap::CACHE_DIR
+]); 
+
+$context = [];
+$context['isLogin'] = $isLogin;
+echo $twig->render('profile.twig', $context);

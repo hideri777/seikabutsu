@@ -3,12 +3,9 @@ namespace App\config;
 
 /**
  * 汎用的な設定用ファイル
- * twigやpublicフォルダ内の読み込みに活用する
+ * twigやpublicフォルダ内の読み込み
+ * ログイン状態のチェックなど
  */
-
-// Composerでインストールしたときに入ってくるautoload
-// Composerで入れた多くのファイルのrequireonceをまとめて行うことができる
-// require_once dirname(__DIR__) . './../vendor/autoload.php';
 
 class Bootstrap
 {
@@ -26,12 +23,10 @@ class Bootstrap
   // const CACHE_DIR = self::APP_DIR . 'app/templates_c/';
 
   const APP_URL = 'http://localhost/seikabutsu/public/';
-  // const ENTRY_URL = self::APP_URL . 'shopping/';
 
-  // public static function checkLogin() {
-  //   if(!isset($_SESSION['login'])) {
-  //     header("Location: login.php");
-  //   }
-  // }
-
+  public static function returnLoginState() {
+    session_start();
+    $isLogin = isset($_SESSION['user_id']) ? true : false;
+    return $isLogin;
+  }
 }

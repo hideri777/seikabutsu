@@ -67,8 +67,7 @@ switch($mode) {
       $dataArr = $_POST;
       // ↓この情報はいらないので外しておく
       unset($dataArr['complete']);
-      // TODO: Userクラスで行う、ユーザー名のかぶりがないか、アドレスすでに使われていないかなど
-      // $res = $db->insert('users', $dataArr, 'regist_date');
+      // TODO: ユーザー名のかぶりがないか、アドレスすでに使われていないかなど確認
       $res = $user->registUser('users', $dataArr);
 
       if($res === true) {

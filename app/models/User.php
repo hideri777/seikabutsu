@@ -5,7 +5,6 @@ require_once __DIR__ . './../../vendor/autoload.php';
 
 use App\config\PDODatabase;
 
-// TODO: パスワードをDBに登録する前にpassword_hashで暗号化して登録する
 class User
 {
   // 初期化処理

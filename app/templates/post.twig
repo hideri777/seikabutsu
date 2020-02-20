@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1.0">
+		{# <link rel="stylesheet" href="fonts/icomoon/style.css"> #}
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/magnific-popup.css">
+		<link rel="stylesheet" href="css/jquery-ui.css">
+		<link rel="stylesheet" href="css/owl.carousel.min.css">
+		<link rel="stylesheet" href="css/owl.theme.default.min.css">
+		<link
+		rel="stylesheet" href="css/bootstrap-datepicker.css">
+		{# <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css"> #}
+		<link rel="stylesheet" href="css/aos.css">
+
+		<link rel="stylesheet" href="css/style.css">
+
+		<title>記事ページ</title>
+	</head>
+	<body>
+		<div
+			class="site-wrap">
+			{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
+			{% include "menu.twig" with {'isLogin': isLogin} %}
+			<div id="wrapper">
+
+
+				<div id="item_detail">
+
+					<div class="detail">
+						<dl>
+							<dt>タイトル</dt>
+							<dd>{{postData.title}}</dd>
+							<dt>本文</dt>
+							<dd>{{postData.body}}</dd>
+							<dt>筆者</dt>
+              <dd>{{postData.user_name}}</dd>
+							{# <input type="hidden" name="item_id" id="item_id" value="{{itemData.item_id}}"> #}
+						</dl>
+					</div>
+
+					{# <div
+						class="cart_in">
+						{# history.backでjavascriptの一つ前のページに戻る関数 #}
+						<input type="button" name="back" value="一覧へ戻る" onclick="history.back(); return false;">
+						<input type="button" name="cart_in" value="ショッピングカートへ入れる" id="cart_in">
+					</div>
+
+				</div>
+
+
+			</div>
+		</div>
+
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/jquery-migrate-3.0.1.min.js"></script>
+		<script src="js/jquery-ui.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/jquery.stellar.min.js"></script>
+		<script src="js/jquery.countdown.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/bootstrap-datepicker.min.js"></script>
+		<script src="js/aos.js"></script>
+	</body>
+</html>

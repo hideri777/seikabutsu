@@ -27,7 +27,15 @@ class Post
     return ($res !== false && count($res) !== 0) ? $res : false;
   }
 
-  // 商品の詳細情報を取得する
+  public function getPostDetail($post_id)
+  {
+    $query = "SELECT p.post_id, p.title, p.body, p.created_date, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = $post_id";
+
+    $res = $this->db->exeQuery($query);
+
+    return ($res !== false && count($res) !== 0) ? $res : false;
+  }
+
   // public function getItemDetailData($item_id)
   // {
   //   $table = ' item ';

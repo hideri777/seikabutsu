@@ -22,7 +22,7 @@ $dataArr = [
   'year' => '',
   'month' => '',
   'day' => '',
-  'regist_date' => 'NOW()'
+  'regist_date' => ''
 ];
 
 // エラーメッセージの定義、初期
@@ -31,11 +31,7 @@ foreach ($dataArr as $key => $value) {
   $errArr[$key] = '';
 }
 
-// array($yearArr, $monthArr, $dayArr)
-// 静的クラス
-
 list($yearArr, $monthArr, $dayArr) = initMaster::getDate();
-// 右辺の配列の要素を、左辺の変数に代入する事ができる
 
 $context = [];
 $context['yearArr'] = $yearArr;
@@ -45,10 +41,5 @@ $context['dayArr'] = $dayArr;
 $context['dataArr'] = $dataArr;
 $context['errArr'] = $errArr;
 
-// 古いバージョン
-// $template = $twig->loadTemplate('regist.html.twig');
-
 $template = $twig->load('regist.twig');
 $template->display($context);
-
-// echo $twig->render('regist.html.twig', $context);

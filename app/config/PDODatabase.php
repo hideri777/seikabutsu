@@ -189,7 +189,7 @@ class PDODatabase
     return $sql;
   }
 
-  public function insert($table, $insData = [], $time = '')
+  public function insert($table, $insData = [], $timeColumn = '')
   {
     $insDataKey = [];
     $insDataVal = [];
@@ -211,12 +211,12 @@ class PDODatabase
 
     // ex. item_idを追加するのであれば
     // INSERT INTO  cart  (customer_no,item_id) VALUES (?,?) →これを?に入れる [1,1]
-    if ($time !== '') {
+    if ($timeColumn !== '') {
       $sql = "INSERT INTO "
         . $table
         . " ("
         . $columns
-        . " , " . $time
+        . " , " . $timeColumn
         . ") VALUES ("
         . $preSt
         . ", NOW() "

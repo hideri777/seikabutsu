@@ -12,7 +12,12 @@ $isLogin = Bootstrap::returnLoginState();
 $loader = new \Twig\Loader\FilesystemLoader(Bootstrap::TEMPLATE_DIR);
 $twig = new \Twig\Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
-]); 
+]);
+
+if(isset($_POST['send'])) {
+  session_unset();
+  header('Location: index.php');
+}
 
 $context = [];
 $context['isLogin'] = $isLogin;

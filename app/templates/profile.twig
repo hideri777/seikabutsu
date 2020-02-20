@@ -24,6 +24,10 @@
 			class="site-wrap">
 			{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
 			{% include "menu.twig" with {'isLogin': isLogin} %}
+
+      <form action="profile.php" method="post">
+        <input type="submit" value="ログアウト" name="send">
+      </form>
 			</div>
 
 			<script src="js/jquery-3.3.1.min.js"></script>

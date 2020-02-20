@@ -7,6 +7,7 @@ use App\config\Bootstrap;
 use App\config\PDODatabase;
 use App\config\initMaster;
 use App\config\Common;
+use App\models\User;
 
 // テンプレート指定
 $loader = new \Twig\Loader\FilesystemLoader(Bootstrap::TEMPLATE_DIR);
@@ -15,6 +16,7 @@ $twig = new \Twig\Environment($loader, [
 ]);
 
 $db = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME);
+$user = new User($db);
 $common = new Common();
 
 // モード判定(どの画面から来たかの判定)
@@ -39,7 +41,6 @@ switch($mode) {
       unset($_POST['confirm']);
 
       $dataArr = $_POST;
-
       // エラーメッセージの配列作成
       $errArr = $common->errorCheck($dataArr);
       $err_check = $common->getErrorFlg();
@@ -47,7 +48,6 @@ switch($mode) {
       // err_check = true ->エラーがないですよ！
       // エラーなければconfirm.tpl あるとregist.tpl
       $template = ($err_check === true) ? 'confirm.twig' : 'regist.twig';
-
     break;
   
   case 'back': // 戻ってきたとき
@@ -56,10 +56,10 @@ switch($mode) {
       unset($dataArr['back']);
 
       // エラーも定義して置かないと、Undefinedエラーが出る
+      $errArr = [];
       foreach($dataArr as $key => $value) {
         $errArr[$key] = '';
       }
-
       $template = 'regist.twig';
     break;
   
@@ -67,9 +67,9 @@ switch($mode) {
       $dataArr = $_POST;
       // ↓この情報はいらないので外しておく
       unset($dataArr['complete']);
-
       // TODO: Userクラスで行う、ユーザー名のかぶりがないか、アドレスすでに使われていないかなど
-      $res = $db->insert('users', $dataArr, 'regist_date');
+      // $res = $db->insert('users', $dataArr, 'regist_date');
+      $res = $user->registUser('users', $dataArr);
 
       if($res === true) {
         // 登録成功時はログインページへ

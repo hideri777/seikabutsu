@@ -63,6 +63,7 @@ class PDODatabase
   }
 
 
+
   public function setQuery($query = '', $arrVal = [])
   {
     // stmt プリペアドステートメントの略？
@@ -72,6 +73,26 @@ class PDODatabase
     // arrValで実際の値を入れてexecuteで実行
     $stmt = $this->dbh->prepare($query);
     $stmt->execute($arrVal);
+  }
+
+  // 直接SQLをカスタマイズして実行した結果を返す
+  public function exeQuery($query, $arrVal = [])
+  {
+    $this->sqlLogInfo($query, $arrVal);
+    $stmt = $this->dbh->prepare($query);
+    
+    $res = $stmt->execute($arrVal);
+    if ($res === false) {
+      $this->catchError($stmt->errorInfo());
+    }
+
+    // データを連想配列に格納
+    $data = [];
+    // fetchでデータを取得する
+    while ($result = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+      array_push($data, $result);
+    }
+    return $data;
   }
 
   public function select($table, $column = '', $where = '', $arrVal = [])

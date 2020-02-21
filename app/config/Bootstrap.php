@@ -23,6 +23,7 @@ class Bootstrap
   // const CACHE_DIR = self::APP_DIR . 'app/templates_c/';
 
   const APP_URL = 'http://localhost/seikabutsu/public/';
+  const ENTRY_URL = 'http://localhost/seikabutsu/app/';
 
   public static function returnLoginState() {
     session_start();

@@ -75,8 +75,6 @@ switch($mode) {
         header('Location: ' . Bootstrap::APP_URL . 'login.php');
         exit();
       } else {
-        var_dump($query);
-        var_dump($res);
         // 登録失敗時は登録画面に戻る
         $template = 'regist.twig';
 

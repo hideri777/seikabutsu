@@ -21,6 +21,7 @@
 	</head>
 	<body>
 			<input type="hidden" name="app_url" value="{{constant('App\\config\\Bootstrap::APP_URL')}}" id="app_url">
+			<input type="hidden" name="entry_url" value="{{constant('APP\\config\\Bootstrap::ENTRY_URL')}}" id="entry_url">
 		<div
 			class="site-wrap">
 			{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
@@ -38,6 +39,7 @@
 							<dd>{{postData.body}}</dd>
 							<dt>筆者</dt>
               <dd>{{postData.user_name}}</dd>
+							<input type="hidden" name="login_user_id" id="login_user_id" value="{{login_user_id}}">
 							<input type="hidden" name="post_id" id="post_id" value="{{postData.post_id}}">
 						</dl>
 					</div>
@@ -46,7 +48,16 @@
 							<input type="button" value="編集する" name="edit" id="edit_start">
 						{% endif %}
 						<input type="button" name="back" value="一覧へ戻る" onclick="history.back(); return false;">
-						{# <input type="button" name="cart_in" value="ショッピングカートへ入れる" id="cart_in"> #}
+						<br><br>
+						<div class ="comment_area">
+							{% for key, data in commentData %}
+								名前:<span>{{data.user_name}}</span><br>
+								コメント:<span>{{data.body}}</span><br>
+								投稿日時:<span>{{data.created_date}}</span><br>
+							{% endfor %}
+						</div>
+						<textarea name="comment" id="comment_text" cols="30" rows="10" placeholder="コメントを入力"></textarea>
+						<input type="button" value="コメントする" id="send_comment">
 					</div>
 
 				</div>

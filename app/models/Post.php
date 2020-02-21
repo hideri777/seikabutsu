@@ -36,6 +36,27 @@ class Post
     return ($res !== false && count($res) !== 0) ? $res : false;
   }
 
+  public function insertComment($table, $user_id, $comment, $post_id)
+  {
+    $insData = [
+      'body' => $comment,
+      'user_id' => $user_id,
+      'target_posts_id' => $post_id,
+      'created_date' => date('Y-m-d H:i:s'),
+    ];
+    $res = $this->db->insert($table, $insData);
+    return $res;
+  }
+
+  public function getCommentsInfo($post_id)
+  {
+    $query = "SELECT u.user_name, c.body, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE target_posts_id = $post_id";
+
+    $res = $this->db->exeQuery($query);
+
+    return ($res !== false && count($res) !== 0) ? $res : false;
+  }
+
   // public function getItemDetailData($item_id)
   // {
   //   $table = ' item ';

@@ -29,9 +29,13 @@ if($post_id === '') {
 
 // 記事情報を取得する
 $postData = $post->getPostDetail($post_id);
+// コメント取得
+$commentdata = $post->getCommentsInfo($post_id);
 
 $context = [];
 $context['postData'] = $postData[0];
+$context['commentData'] = $commentdata;
+$context['login_user_id'] = $_SESSION['user_id'];
 $context['isLogin'] = $isLogin;
 if($_SESSION['user_id'] === $postData[0]['user_id']) $context['editable'] = true;
 echo $twig->render('post.twig', $context);

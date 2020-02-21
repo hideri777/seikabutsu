@@ -44,6 +44,9 @@
 					{# <div
 						class="cart_in">
 						{# history.backでjavascriptの一つ前のページに戻る関数 #}
+						{% if editable %}
+							<input type="button" value="編集する">
+						{% endif %}
 						<input type="button" name="back" value="一覧へ戻る" onclick="history.back(); return false;">
 						<input type="button" name="cart_in" value="ショッピングカートへ入れる" id="cart_in">
 					</div>

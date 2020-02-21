@@ -33,4 +33,5 @@ $postData = $post->getPostDetail($post_id);
 $context = [];
 $context['postData'] = $postData[0];
 $context['isLogin'] = $isLogin;
+if($_SESSION['user_id'] === $postData[0]['user_id']) $context['editable'] = true;
 echo $twig->render('post.twig', $context);

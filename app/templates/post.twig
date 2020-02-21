@@ -20,6 +20,7 @@
 		<title>記事ページ</title>
 	</head>
 	<body>
+			<input type="hidden" name="app_url" value="{{constant('App\\config\\Bootstrap::APP_URL')}}" id="app_url">
 		<div
 			class="site-wrap">
 			{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
@@ -37,18 +38,15 @@
 							<dd>{{postData.body}}</dd>
 							<dt>筆者</dt>
               <dd>{{postData.user_name}}</dd>
-							{# <input type="hidden" name="item_id" id="item_id" value="{{itemData.item_id}}"> #}
+							<input type="hidden" name="post_id" id="post_id" value="{{postData.post_id}}">
 						</dl>
 					</div>
 
-					{# <div
-						class="cart_in">
-						{# history.backでjavascriptの一つ前のページに戻る関数 #}
 						{% if editable %}
-							<input type="button" value="編集する">
+							<input type="button" value="編集する" name="edit" id="edit_start">
 						{% endif %}
 						<input type="button" name="back" value="一覧へ戻る" onclick="history.back(); return false;">
-						<input type="button" name="cart_in" value="ショッピングカートへ入れる" id="cart_in">
+						{# <input type="button" name="cart_in" value="ショッピングカートへ入れる" id="cart_in"> #}
 					</div>
 
 				</div>
@@ -68,5 +66,6 @@
 		<script src="js/jquery.magnific-popup.min.js"></script>
 		<script src="js/bootstrap-datepicker.min.js"></script>
 		<script src="js/aos.js"></script>
+		<script src="js/self.js"></script>
 	</body>
 </html>

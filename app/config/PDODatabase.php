@@ -80,7 +80,7 @@ class PDODatabase
   {
     $this->sqlLogInfo($query, $arrVal);
     $stmt = $this->dbh->prepare($query);
-    
+
     $res = $stmt->execute($arrVal);
     if ($res === false) {
       $this->catchError($stmt->errorInfo());
@@ -189,6 +189,7 @@ class PDODatabase
     return $sql;
   }
 
+  // TODO: timeColumn消してPHP側でdate関数使って現在時刻
   public function insert($table, $insData = [], $timeColumn = '')
   {
     $insDataKey = [];
@@ -211,7 +212,15 @@ class PDODatabase
 
     // ex. item_idを追加するのであれば
     // INSERT INTO  cart  (customer_no,item_id) VALUES (?,?) →これを?に入れる [1,1]
-    if ($timeColumn !== '') {
+    if ($timeColumn === '') {
+      $sql = "INSERT INTO "
+        . $table
+        . " ("
+        . $columns
+        . ") VALUES ("
+        . $preSt
+        . ") ";
+    } else {
       $sql = "INSERT INTO "
         . $table
         . " ("
@@ -220,14 +229,6 @@ class PDODatabase
         . ") VALUES ("
         . $preSt
         . ", NOW() "
-        . ") ";
-    } else {
-      $sql = "INSERT INTO "
-        . $table
-        . " ("
-        . $columns
-        . ") VALUES ("
-        . $preSt
         . ") ";
     }
 
@@ -251,7 +252,7 @@ class PDODatabase
     foreach ($insData as $col => $val) {
       $arrPreSt[] = $col . " = ? ";
     }
-
+ 
     // 原本implode($arrPreSt, ',');
     // implodeの引数順番が逆？？
     $preSt = implode(',', $arrPreSt);
@@ -265,6 +266,7 @@ class PDODatabase
       . " WHERE "
       . $where;
 
+
     // array_valuesで配列の全ての値を出す
     // 連想配列ではなく、数字の添字をつけた配列
 
@@ -274,7 +276,6 @@ class PDODatabase
     // それをつなげたのがupdateData
     $updateData = array_merge(array_values($insData), $arrWhereVal);
     $this->sqlLogInfo($sql, $updateData);
-
     $stmt = $this->dbh->prepare($sql);
     $res = $stmt->execute($updateData);
 

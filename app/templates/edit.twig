@@ -25,9 +25,11 @@
 			{% include "menu.twig" with {'isLogin': isLogin} %}
 		</div>
 		<form action="edit.php" method="post">
-			<input type="text" name="title" id="" placeholder="タイトル">
-			<textarea name="body" id="" cols="50" rows="15" placeholder="本文"></textarea>
+			<input type="text" name="title" id="" placeholder="タイトル" value="{{insData.title}}">
+			<textarea name="body" id="" cols="50" rows="15" placeholder="本文">{{insData.body}}</textarea>
 			<input type="submit" value="公開する" name="send">
+			<input type="hidden" name="isUpdate" value="{{isUpdate}}">
+			<input type="hidden" name="post_id" value="{{post_id}}">
 		</form>
 		<div id="character-count">文字数の反映</div>
 

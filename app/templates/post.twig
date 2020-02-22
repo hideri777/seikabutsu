@@ -49,11 +49,11 @@
 							<p class="like_text"> いいねしてない</p>
 							<input type="hidden" class="isLiked" value="{{isLiked}}">
 						{% elseif isLiked == 'first' %}
-							<p>まだない</p>
+							<p class="like_text">まだない</p>
 							<input type="hidden" class="isLiked" value="{{isLiked}}">
 						{% endif %}
 						<input type="button" value="いいね!" id="good_button"> 
-						いいね数 : {{postData.liked_count}}
+						いいね数 : <span id="liked_count">{{postData.liked_count}}</span>
 					</div>
 
 						{% if editable %}

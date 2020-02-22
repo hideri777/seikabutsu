@@ -71,6 +71,8 @@ class Post
     ];
 
     $this->db->insert($table, $insData);
+    $likedCount = $this->updateLikedCount('posts', $post_id);
+    return [1, $likedCount];
   }
 
   public function toggleLiked($table, $user_id, $post_id, $isLiked)
@@ -88,7 +90,24 @@ class Post
     ];
 
     $this->db->update($table, $insData, ' user_id = ? AND post_id = ? ', [$user_id, $post_id]);
+    
+    $likedCount = $this->updateLikedCount('posts', $post_id, $isLiked);
 
-    return $updateLiked;
+    return [$updateLiked, $likedCount];
+  }
+
+  private function updateLikedCount($table, $post_id, $isLiked = 'false')
+  {
+    $res = $this->db->select($table, 'liked_count', 'post_id = ?', [$post_id]);
+    $likedCount = $res[0]['liked_count'];
+    // もともといいねではなかった
+    if($isLiked === 'false') {
+      $likedCount += 1;
+    } else {
+      $likedCount -= 1;
+    }
+    $this->db->update($table, ['liked_count' => $likedCount], 'post_id = ?', [$post_id]);
+
+    return $likedCount;
   }
 }

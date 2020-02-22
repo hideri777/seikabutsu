@@ -23,6 +23,7 @@ $(function() {
       }
     }).then(
       function(data) {
+        console.log(data);
         $(".comment_area").append("<p>" + data.post_id + "</p>");
         $(".comment_area").append("<p>" + data.user_id + "</p>");
         $(".comment_area").append("<p>" + data.comment + "</p>");
@@ -49,6 +50,7 @@ $(function() {
     $.ajax({
       url: entry_url + "/functions/likedProvider.php",
       type: "post",
+      dataType: "json",
       data: {
         user_id: user_id,
         post_id: post_id,
@@ -58,13 +60,15 @@ $(function() {
     }).then(
       function(data) {
         // いいね数を1増減させる
-        if(data == 1) {
+        console.log(data);
+        if(data.updateLiked == 1) {
           $(".like_text").text('いいねしたよ');
-          $(".isLiked").val(data);
+          $(".isLiked").val(data.updateLiked);
         } else {
           $(".like_text").text('いいねしてない');
-          $(".isLiked").val(data);
+          $(".isLiked").val(data.updateLiked);
         }
+        $("#liked_count").text(data.likedCount);
       },
       function() {
         alert("うまく行かなかったようです。。");

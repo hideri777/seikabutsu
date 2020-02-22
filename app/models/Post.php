@@ -29,8 +29,16 @@ class Post
 
   public function getPostDetail($post_id)
   {
-    // $query = "SELECT p.post_id, p.title, p.body, p.created_date, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = $post_id";
     $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.liked_count, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = ?";
+
+    $res = $this->db->exeQuery($query, [$post_id]);
+
+    return ($res !== false && count($res) !== 0) ? $res : false;
+  }
+
+  public function getCommentsInfo($post_id)
+  {
+    $query = "SELECT u.user_name, c.body, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE target_posts_id = ?";
 
     $res = $this->db->exeQuery($query, [$post_id]);
 
@@ -45,31 +53,40 @@ class Post
       'target_posts_id' => $post_id,
       'created_date' => date('Y-m-d H:i:s'),
     ];
-    $res = $this->db->insert($table, $insData);
+    $this->db->insert($table, $insData);
+  }
+
+  public function getLikedState($user_id, $post_id)
+  {
+    $res = $this->db->select('liked', 'is_liked', 'user_id = ? AND post_id = ?', [$user_id, $post_id]);
     return $res;
   }
 
-  public function getCommentsInfo($post_id)
+  public function insertLiked($table, $user_id, $post_id)
   {
-    // $query = "SELECT u.user_name, c.body, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE target_posts_id = $post_id";
-    $query = "SELECT u.user_name, c.body, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE target_posts_id = ?";
+    $insData = [
+      'user_id' => $user_id,
+      'post_id' => $post_id,
+      'is_liked' => 1,
+    ];
 
-    $res = $this->db->exeQuery($query, [$post_id]);
-
-    return ($res !== false && count($res) !== 0) ? $res : false;
+    $this->db->insert($table, $insData);
   }
 
-  // public function getItemDetailData($item_id)
-  // {
-  //   $table = ' item ';
-  //   $col = ' item_id, item_name, detail, price, image, ctg_id ';
+  public function toggleLiked($table, $user_id, $post_id, $isLiked)
+  {
+    $updateLiked = 0;
+    if($isLiked === 'false') {
+      $updateLiked = 1;
+    } elseif ($isLiked === 'true') {
+      $updateLiked = 0;
+    }
+     
+    $insData = [
+      // いいねの状態を反転
+      'is_liked' => $updateLiked,
+    ];
 
-  //   $where = ($item_id !== '') ? 'item_id = ?' : '';
-  //   // カテゴリーによって表示させるアイテムを変える
-  //   $arrVal = ($item_id !== '') ? [$item_id] : [];
-
-  //   $res = $this->db->select($table, $col, $where, $arrVal);
-
-  //   return ($res !== false && count($res) !== 0) ? $res : false;
-  // }
+    $this->db->update($table, $insData, ' user_id = ? AND post_id = ? ', [$user_id, $post_id]);
+  }
 }

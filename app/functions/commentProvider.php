@@ -19,7 +19,7 @@ $comment = filter_input(INPUT_POST, 'comment');
 $post_id = filter_input(INPUT_POST, 'post_id');
 
 $table = 'comments';
-$res = $post->insertComment($table, $user_id, $comment, $post_id);
+$post->insertComment($table, $user_id, $comment, $post_id);
 // TODO: selectでpost_idが一致するコメント全部拾ってjsに返す
 // 優先度は低め
 

@@ -35,7 +35,9 @@ $commentdata = $post->getCommentsInfo($post_id);
 $context = [];
 $context['postData'] = $postData[0];
 $context['commentData'] = $commentdata;
-$context['login_user_id'] = $_SESSION['user_id'];
 $context['isLogin'] = $isLogin;
-if($_SESSION['user_id'] === $postData[0]['user_id']) $context['editable'] = true;
+if($isLogin) {
+  $context['login_user_id'] = $_SESSION['user_id'];
+  if($_SESSION['user_id'] === $postData[0]['user_id']) $context['editable'] = true;
+}
 echo $twig->render('post.twig', $context);

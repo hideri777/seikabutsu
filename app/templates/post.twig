@@ -56,8 +56,12 @@
 								投稿日時:<span>{{data.created_date}}</span><br>
 							{% endfor %}
 						</div>
-						<textarea name="comment" id="comment_text" cols="30" rows="10" placeholder="コメントを入力"></textarea>
-						<input type="button" value="コメントする" id="send_comment">
+						{% if isLogin %}
+							<textarea name="comment" id="comment_text" cols="30" rows="10" placeholder="コメントを入力"></textarea>
+							<input type="button" value="コメントする" id="send_comment">
+						{% else %}
+							<a href="login.php">コメントするにはログインしてください</a>
+						{% endif %}
 					</div>
 
 				</div>

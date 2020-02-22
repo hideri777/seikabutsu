@@ -43,14 +43,14 @@
 							<input type="hidden" name="post_id" id="post_id" value="{{postData.post_id}}">
 						</dl>
 						{% if isLiked == 1 %}
-							<p>いいね済</p>
-							<input type="text" class="isLiked" value="{{isLiked}}">
+							<p class="like_text">いいねしたよ</p>
+							<input type="hidden" class="isLiked" value="{{isLiked}}">
 						{% elseif isLiked == 0 %}
-							<p>いいねしてない</p>
-							<input type="text" class="isLiked" value="{{isLiked}}">
+							<p class="like_text"> いいねしてない</p>
+							<input type="hidden" class="isLiked" value="{{isLiked}}">
 						{% elseif isLiked == 'first' %}
 							<p>まだない</p>
-							<input type="text" class="isLiked" value="{{isLiked}}">
+							<input type="hidden" class="isLiked" value="{{isLiked}}">
 						{% endif %}
 						<input type="button" value="いいね!" id="good_button"> 
 						いいね数 : {{postData.liked_count}}

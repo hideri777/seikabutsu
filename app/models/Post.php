@@ -88,5 +88,7 @@ class Post
     ];
 
     $this->db->update($table, $insData, ' user_id = ? AND post_id = ? ', [$user_id, $post_id]);
+
+    return $updateLiked;
   }
 }

@@ -58,7 +58,13 @@ $(function() {
     }).then(
       function(data) {
         // いいね数を1増減させる
-        alert(data);
+        if(data == 1) {
+          $(".like_text").text('いいねしたよ');
+          $(".isLiked").val(data);
+        } else {
+          $(".like_text").text('いいねしてない');
+          $(".isLiked").val(data);
+        }
       },
       function() {
         alert("うまく行かなかったようです。。");

@@ -17,10 +17,13 @@ $post_id = filter_input(INPUT_POST, 'post_id');
 $isLiked = filter_input(INPUT_POST, 'isLiked');
 $isFirst = filter_input(INPUT_POST, 'isFirst');
 
+$updateLiked = 1;
+
 if ($isFirst === 'true') {
   $post->insertLiked($table, $user_id, $post_id);
 } else {
-  $post->toggleLiked($table, $user_id, $post_id, $isLiked);
+  $updateLiked = $post->toggleLiked($table, $user_id, $post_id, $isLiked);
 }
 
-echo 'ok';
+// 1 or 0でいいねの状態を返す
+echo $updateLiked;

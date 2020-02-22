@@ -33,4 +33,25 @@ $(function() {
       },
     );
   });
+
+  $("#good_button").click(function() {
+    var user_id = $("#login_user_id").val();
+    var post_id = $("#post_id").val();
+
+    $.ajax({
+      url: entry_url + "/functions/likedProvider.php",
+      type: "post",
+      data: {
+        user_id: user_id,
+        post_id: post_id,
+      },
+    }).then(
+      function(data) {
+        // いいね数を1増減させる
+      },
+      function() {
+        alert('うまく行かなかったようです。。');
+      },
+    );
+  });
 });

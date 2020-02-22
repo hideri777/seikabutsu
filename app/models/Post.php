@@ -29,9 +29,10 @@ class Post
 
   public function getPostDetail($post_id)
   {
-    $query = "SELECT p.post_id, p.title, p.body, p.created_date, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = $post_id";
+    // $query = "SELECT p.post_id, p.title, p.body, p.created_date, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = $post_id";
+    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.liked_count, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = ?";
 
-    $res = $this->db->exeQuery($query);
+    $res = $this->db->exeQuery($query, [$post_id]);
 
     return ($res !== false && count($res) !== 0) ? $res : false;
   }
@@ -50,9 +51,10 @@ class Post
 
   public function getCommentsInfo($post_id)
   {
-    $query = "SELECT u.user_name, c.body, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE target_posts_id = $post_id";
+    // $query = "SELECT u.user_name, c.body, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE target_posts_id = $post_id";
+    $query = "SELECT u.user_name, c.body, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE target_posts_id = ?";
 
-    $res = $this->db->exeQuery($query);
+    $res = $this->db->exeQuery($query, [$post_id]);
 
     return ($res !== false && count($res) !== 0) ? $res : false;
   }

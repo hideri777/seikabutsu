@@ -25,24 +25,42 @@
 			{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
 			{% include "menu.twig" with {'isLogin': isLogin} %}
 
-      <form action="profile.php" method="post">
-        <input type="submit" value="ログアウト" name="send">
-      </form>
-			</div>
+			<table class="tableType4 profileUsersDate t0M" border="1">
+					<tr>
+						<th>名前</th>
+						<td>
+							{{userInfo.user_name}}
+						</td>
+					</tr>
+					<tr>
+						<th>登録したメールアドレス</th>
+						<td>
+							{{userInfo.email}}
+						</td>
+					</tr>
+					<tr>
+						<th>生年月日</th>
+						<td>{{userInfo.year}}年 {{userInfo.month}}月 {{userInfo.day}}日 </td>
+					</tr>
+			</table>
 
-			<script src="js/jquery-3.3.1.min.js"></script>
-			<script src="js/jquery-migrate-3.0.1.min.js"></script>
-			<script src="js/jquery-ui.js"></script>
-			<script src="js/popper.min.js"></script>
-			<script src="js/bootstrap.min.js"></script>
-			<script src="js/owl.carousel.min.js"></script>
-			<script src="js/jquery.stellar.min.js"></script>
-			<script src="js/jquery.countdown.min.js"></script>
-			<script src="js/jquery.magnific-popup.min.js"></script>
-			<script src="js/bootstrap-datepicker.min.js"></script>
-			<script src="js/aos.js"></script>
+			<form action="profile.php" method="post">
+				<input type="submit" value="ログアウト" name="send">
+			</form>
+		</div>
 
-			<script src="js/main.js"></script>
-		</body>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/jquery-migrate-3.0.1.min.js"></script>
+		<script src="js/jquery-ui.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/jquery.stellar.min.js"></script>
+		<script src="js/jquery.countdown.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/bootstrap-datepicker.min.js"></script>
+		<script src="js/aos.js"></script>
+
+		<script src="js/main.js"></script>
 	</body>
-</html>
+</html></body></html>

@@ -36,12 +36,15 @@
 							<a href="edit.php">記事を書く</a>
 						</li>
 						<li>
-							{% if isLogin %}
+							{% if isLogin.isLogin %}
 								<a href="profile.php">マイページ</a>
 							{% else %}
 								<a href="login.php">ログインする</a>
 							{% endif %}
 						</li>
+						{% if isLogin.isLogin %}
+							{{isLogin.user_name}}でログイン中
+						{% endif %}
 					</ul>
 				</nav>
 				<a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none">

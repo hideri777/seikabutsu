@@ -39,4 +39,14 @@ class User
 
     return false;
   }
+
+  public function getUserInfo($user_id)
+  {
+    $table = 'users';
+    $column = '';
+    $where = 'user_id = ?';
+    $arrVal = [$user_id];
+    $user = $this->db->select($table, $column, $where, $arrVal);
+    return $user;
+  }
 }

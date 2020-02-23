@@ -35,7 +35,22 @@
 						<li>
 							<a href="edit.php">記事を書く</a>
 						</li>
-						<li>
+						{% if isLogin.isLogin %}
+							<li>
+								<a href="profile.php">マイページ</a>
+							</li>
+							<li>
+								{{isLogin.user_name}}でログイン中
+							</li>
+						{% else %}
+							<li>
+								<a href="regist.php">新規会員登録</a>
+							</li>
+							<li>
+								<a href="login.php">ログイン</a>
+							</li>
+						{% endif %}
+						{# <li>
 							{% if isLogin.isLogin %}
 								<a href="profile.php">マイページ</a>
 							{% else %}
@@ -44,7 +59,7 @@
 						</li>
 						{% if isLogin.isLogin %}
 							{{isLogin.user_name}}でログイン中
-						{% endif %}
+						{% endif %} #}
 					</ul>
 				</nav>
 				<a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none">

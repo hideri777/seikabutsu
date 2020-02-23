@@ -28,7 +28,7 @@ class Bootstrap
   public static function returnLoginState() {
     session_start();
     $isLogin = isset($_SESSION['user_id']) ? true : false;
-    $isLogin ? $user_name = $_SESSION['user_name'] : '';
+    $user_name = $isLogin ? $_SESSION['user_name'] : '';
     return [
       'isLogin' => $isLogin,
       'user_name' => $user_name

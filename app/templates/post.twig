@@ -20,8 +20,8 @@
 		<title>記事ページ</title>
 	</head>
 	<body>
-			<input type="hidden" name="app_url" value="{{constant('App\\config\\Bootstrap::APP_URL')}}" id="app_url">
-			<input type="hidden" name="entry_url" value="{{constant('APP\\config\\Bootstrap::ENTRY_URL')}}" id="entry_url">
+		<input type="hidden" name="app_url" value="{{constant('App\\config\\Bootstrap::APP_URL')}}" id="app_url">
+		<input type="hidden" name="entry_url" value="{{constant('APP\\config\\Bootstrap::ENTRY_URL')}}" id="entry_url">
 		<div
 			class="site-wrap">
 			{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
@@ -38,61 +38,52 @@
 							<dt>本文</dt>
 							<dd>{{postData.body}}</dd>
 							<dt>筆者</dt>
-              <dd>{{postData.user_name}}</dd>
+							<dd>{{postData.user_name}}</dd>
 							<input type="hidden" name="login_user_id" id="login_user_id" value="{{login_user_id}}">
 							<input type="hidden" name="post_id" id="post_id" value="{{postData.post_id}}">
 						</dl>
-						{% if isLiked == 1 %}
-							<p class="like_text">いいねしたよ</p>
-							<input type="hidden" class="isLiked" value="{{isLiked}}">
-						{% elseif isLiked == 0 %}
-							<p class="like_text"> いいねしてない</p>
-							<input type="hidden" class="isLiked" value="{{isLiked}}">
-						{% elseif isLiked == 'first' %}
-							<p class="like_text">まだない</p>
-							<input type="hidden" class="isLiked" value="{{isLiked}}">
+						{% if isLogin.isLogin %}
+							{% if isLiked == 1 %}
+								<p class="like_text">いいねしたよ</p>
+								<input type="hidden" class="isLiked" value="{{isLiked}}">
+							{% elseif isLiked == 0 %}
+								<p class="like_text">
+									いいねしてない</p>
+								<input type="hidden" class="isLiked" value="{{isLiked}}">
+							{% elseif isLiked == 'first' %}
+								<p class="like_text">まだない</p>
+								<input type="hidden" class="isLiked" value="{{isLiked}}">
+							{% endif %}
+							<input type="button" value="いいね!" id="good_button">
 						{% endif %}
-						<input type="button" value="いいね!" id="good_button"> 
-						いいね数 : <span id="liked_count">{{postData.liked_count}}</span>
+
+						いいね数 :
+						<span id="liked_count">{{postData.liked_count}}</span>
 					</div>
 
-						{% if editable %}
-							<input type="button" value="編集する" name="edit" id="edit_start">
-						{% endif %}
-						<input type="button" name="back" value="一覧へ戻る" onclick="history.back(); return false;">
-						<br><br>
-						<div class ="comment_area">
-							{% for key, data in commentData %}
-								名前:<span>{{data.user_name}}</span><br>
-								コメント:<span>{{data.body}}</span><br>
-								投稿日時:<span>{{data.created_date}}</span><br>
-							{% endfor %}
-						</div>
-						{% if isLogin %}
-							<textarea name="comment" id="comment_text" cols="30" rows="10" placeholder="コメントを入力"></textarea>
-							<input type="button" value="コメントする" id="send_comment">
-						{% else %}
-							<a href="login.php">コメントするにはログインしてください</a>
-						{% endif %}
+					{% if editable %}
+						<input type="button" value="編集する" name="edit" id="edit_start">
+					{% endif %}
+					<input type="button" name="back" value="一覧へ戻る" onclick="history.back(); return false;">
+					<br><br>
+					<div class="comment_area">
+						{% for key, data in commentData %}
+							名前:<span>{{data.user_name}}</span><br>
+							コメント:<span>{{data.body}}</span><br>
+							投稿日時:<span>{{data.created_date}}</span><br>
+						{% endfor %}
 					</div>
-
+					{% if isLogin.isLogin %}
+						<textarea name="comment" id="comment_text" cols="30" rows="10" placeholder="コメントを入力"></textarea>
+						<input type="button" value="コメントする" id="send_comment">
+					{% else %}
+						<a href="login.php">コメントするにはログインしてください</a>
+					{% endif %}
 				</div>
 
-
 			</div>
-		</div>
 
-		<script src="js/jquery-3.3.1.min.js"></script>
-		<script src="js/jquery-migrate-3.0.1.min.js"></script>
-		<script src="js/jquery-ui.js"></script>
-		<script src="js/popper.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/owl.carousel.min.js"></script>
-		<script src="js/jquery.stellar.min.js"></script>
-		<script src="js/jquery.countdown.min.js"></script>
-		<script src="js/jquery.magnific-popup.min.js"></script>
-		<script src="js/bootstrap-datepicker.min.js"></script>
-		<script src="js/aos.js"></script>
-		<script src="js/self.js"></script>
+
+		</div>
 	</body>
-</html>
+</html></div><script src="js/jquery-3.3.1.min.js"></script><script src="js/jquery-migrate-3.0.1.min.js"></script><script src="js/jquery-ui.js"></script><script src="js/popper.min.js"></script><script src="js/bootstrap.min.js"></script><script src="js/owl.carousel.min.js"></script><script src="js/jquery.stellar.min.js"></script><script src="js/jquery.countdown.min.js"></script><script src="js/jquery.magnific-popup.min.js"></script><script src="js/bootstrap-datepicker.min.js"></script><script src="js/aos.js"></script><script src="js/self.js"></script></body></html>

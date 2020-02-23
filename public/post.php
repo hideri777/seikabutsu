@@ -33,7 +33,7 @@ $postData = $post->getPostDetail($post_id);
 // コメント取得
 $commentdata = $post->getCommentsInfo($post_id);
 // いいねの状態取得
-if ($isLogin) {
+if ($isLogin['isLogin']) {
   $isLiked = $post->getLikedState($_SESSION['user_id'], $post_id);
 }
 
@@ -46,7 +46,7 @@ if (!empty($isLiked)) {
 } else {
   $context['isLiked'] = 'first';
 }
-if ($isLogin) {
+if ($isLogin['isLogin']) {
   $context['login_user_id'] = $_SESSION['user_id'];
   if ($_SESSION['user_id'] === $postData[0]['user_id']) $context['editable'] = true;
 }

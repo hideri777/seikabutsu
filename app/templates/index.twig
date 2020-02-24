@@ -1,108 +1,343 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!doctype html>
+<html class="no-js" lang="zxx">
+
 	<head>
-		<meta charset="UTF-8">
-		<meta
-		name="viewport" content="width=device-width, initial-scale=1.0">
-		{# <link rel="stylesheet" href="fonts/icomoon/style.css"> #}
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/magnific-popup.css">
-		<link rel="stylesheet" href="css/jquery-ui.css">
-		<link rel="stylesheet" href="css/owl.carousel.min.css">
-		<link rel="stylesheet" href="css/owl.theme.default.min.css">
-		<link
-		rel="stylesheet" href="css/bootstrap-datepicker.css">
-		{# <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css"> #}
-		<link rel="stylesheet" href="css/aos.css">
-
-		<link rel="stylesheet" href="css/style.css">
-
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>TopPage</title>
+		<meta name="description" content="">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- <link rel="manifest" href="site.webmanifest"> -->
+		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+		<!-- Place favicon.ico in the root directory -->
+
+		<!-- CSS here -->
+		<link rel="stylesheet" href="css/bootstrap.min.css"> <link rel="stylesheet" href="css/owl.carousel.min.css">
+		<link rel="stylesheet" href="css/magnific-popup.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/themify-icons.css">
+		<link rel="stylesheet" href="css/nice-select.css">
+		<link rel="stylesheet" href="css/flaticon.css">
+		<link rel="stylesheet" href="css/gijgo.css">
+		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" href="css/slicknav.css">
+		<link
+		rel="stylesheet" href="css/style.css">
+	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
 	</head>
+
 	<body>
-		{# {{appInfos.name[0]}} #}
+		<!--[if lte IE 9]>
+				            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+				        <![endif]-->
 
-		{% for appInfo in appInfos %}
-			{{appInfo.name}}
-			<img src="{{appInfo.image}}" alt="画像がない。。">
-		{% endfor %}
-	 
+		<!-- header-start -->
+		{# TODO: menuの使いまわし #}
+		 {# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
+			{# {% include "menu.twig" with {'isLogin': isLogin} %} #}
 
-		<div
-			class="site-wrap">
-			{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
-			{% include "menu.twig" with {'isLogin': isLogin} %}	
+			<header>
+				<div class="header-area "> <div id="sticky-header" class="main-header-area sticky">
+					<div class="container-fluid ">
+						<div class="header_bottom_border">
+							<div class="row align-items-center">
+								<div class="col-xl-3 col-lg-2">
+									<div class="logo">
+										<a
+											href="index.html">
+											{# <img src="img/logo.png" alt=""> #}
+											<h2 class="text-white">ロゴ入れる</h2>
 
-			<div class="site-section">
-				<div class="container">
-					<div class="row mb-5">
-						<div class="col-12">
-							<h2>最近の投稿</h2>
-						</div>
-					</div>
-					<div class="row">
-					{% for recentPost in recentPosts %}
-
-						<div class="col-lg-4 mb-4">
-							<div class="entry2">
-								<a href="{{constant('App\\config\\Bootstrap::APP_URL')}}post.php?post_id={{recentPost.post_id}}"><img src="images/img_1.jpg" alt="Image" class="img-fluid rounded"></a>
-								<div class="excerpt">
-									<span class="post-category text-white bg-secondary mb-3">カテゴリー</span>
-
-									<h2>
-										<a href="{{constant('App\\config\\Bootstrap::APP_URL')}}post.php?post_id={{recentPost.post_id}}">{{recentPost.title}}</a>
-									</h2>
-									<div class="post-meta align-items-center text-left clearfix">
-										<figure class="author-figure mb-0 mr-3 float-left"><img src="images/person_1.jpg" alt="Image" class="img-fluid"></figure>
-										{# TODO: ユーザー名からそのユーザーのプロフィール #}
-										<span class="d-inline-block mt-1">By
-											<a href="{{constant('App\\config\\Bootstrap::APP_URL')}}post.php?post_id={{recentPost.post_id}}">{{recentPost.user_name}}</a>
-										</span>
-										<span>&nbsp;-&nbsp; {{recentPost.created_date}}</span>
+										</a>
 									</div>
-
-									<p>{{recentPost.body}}</p>
-									<p>
-										<a href="{{constant('App\\config\\Bootstrap::APP_URL')}}post.php?post_id={{recentPost.post_id}}">Read More</a>
-										{# <a href="post.php?post_id={{recentPost.post_id}}">Read More</a> #}
-									</p>
+								</div>
+								<div class="col-xl-6 col-lg-7">
+									<div class="main-menu  d-none d-lg-block">
+										<nav>
+											<ul id="navigation">
+												<li>
+													<a href="index.php">ホーム</a>
+												</li>
+												<li>
+													<a href="Loan.html">Loan</a>
+												</li>
+												<li>
+													<a href="about.html">about</a>
+												</li>
+												<li>
+													<a href="#">pages
+														<i class="ti-angle-down"></i>
+													</a>
+													<ul class="submenu">
+														<li>
+															<a href="apply.html">apply loan</a>
+														</li>
+														<li>
+															<a href="elements.html">elements</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">blog
+														<i class="ti-angle-down"></i>
+													</a>
+													<ul class="submenu">
+														<li>
+															<a href="blog.html">blog</a>
+														</li>
+														<li>
+															<a href="single-blog.html">single-blog</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="FAQ.html">FAQ</a>
+												</li>
+												<li>
+													<a href="contact.html">Contact</a>
+												</li>
+											</ul>
+										</nav>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-3 d-none d-lg-block">
+									<div class="Appointment">
+										<div class="phone_num d-none d-xl-block">
+											<a href="#">
+												<i class="fa fa-phone"></i>
+												+10 673 567 367</a>
+										</div>
+										<div class="d-none d-lg-block">
+											<a class="boxed-btn4" href="apply.html">Apply for a Loan</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="mobile_menu d-block d-lg-none"></div>
 								</div>
 							</div>
 						</div>
-					{% endfor %}
-					
-						<div class="row text-center pt-5 border-top">
-							<div class="col-md-12">
-								<div class="custom-pagination">
-									<span>1</span>
-									<a href="#">2</a>
-									<a href="#">3</a>
-									<a href="#">4</a>
-									<span>...</span>
-									<a href="#">15</a>
+
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- header-end -->
+
+		<!-- bradcam_area  -->
+		<div class="bradcam_area bradcam_bg_3">
+					<div class="container">
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="bradcam_text">
+									<h3>トップページ</h3>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+		<!--/ bradcam_area  -->
 
-			
+		<!-- Start Align Area -->
+		<div class="whole-wrap">
+			<div class="container box_1170">
 
-			<script src="js/jquery-3.3.1.min.js"></script>
-			<script src="js/jquery-migrate-3.0.1.min.js"></script>
-			<script src="js/jquery-ui.js"></script>
-			<script src="js/popper.min.js"></script>
-			<script src="js/bootstrap.min.js"></script>
-			<script src="js/owl.carousel.min.js"></script>
-			<script src="js/jquery.stellar.min.js"></script>
-			<script src="js/jquery.countdown.min.js"></script>
-			<script src="js/jquery.magnific-popup.min.js"></script>
-			<script src="js/bootstrap-datepicker.min.js"></script>
-			<script src="js/aos.js"></script>
 
-			<script src="js/main.js"></script>
+				<div class="section-top-border">
+					<h3 class="mb-30">フューチャー作品</h3>
+					<div class="row">
+						<div class="col-md-4">
+							<img src="https://steamcdn-a.akamaihd.net/steam/apps/964570/header.jpg" alt="" class="img-fluid">
+							<div class="single-defination">
+								<h4 class="mb-20">Definition 01</h4>
+								<p>Recently, the US Federal government banned online casinos from operating in America by
+																	making it illegal to
+																	transfer money to them through any US bank or payment system. As a result of this law,
+																	most of the popular
+																	online casino networks</p>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<img src="https://steamcdn-a.akamaihd.net/steam/apps/535111/header.jpg" alt="" class="img-fluid">
+							<div class="single-defination">
+								<h4 class="mb-20">Definition 02</h4>
+								<p>Recently, the US Federal government banned online casinos from operating in America by
+																	making it illegal to
+																	transfer money to them through any US bank or payment system. As a result of this law,
+																	most of the popular
+																	online casino networks</p>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<img src="https://steamcdn-a.akamaihd.net/steam/apps/535736/header.jpg" alt="" class="img-fluid">
+							<div class="single-defination">
+								<h4 class="mb-20">Definition 03</h4>
+								<p>Recently, the US Federal government banned online casinos from operating in America by
+																	making it illegal to
+																	transfer money to them through any US bank or payment system. As a result of this law,
+																	most of the popular
+																	online casino networks</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="section-top-border">
+					<h3 class="mb-30">最近の投稿記事</h3>
+						{% for recentPost in recentPosts %}
+							
+					
+					<div class="row mb-10">
+						<div class="col-md-3">
+							<a href="post.php?post_id={{recentPost.post_id}}">
+							<img src="https://steamcdn-a.akamaihd.net/steam/apps/535630/header.jpg" alt="" class="img-fluid">
+							</a>
+						</div>
+						<div class="col-md-9 mt-sm-20">
+							<h4><a href="post.php?post_id={{recentPost.post_id}}">
+							{{recentPost.title}}
+							</a></h4>
+							{# TODO: ユーザー名からそのユーザーのプロフィール #}
+							<small class="font-weight-bold">投稿者:{{recentPost.user_name}}&nbsp;-&nbsp;
+												{{recentPost.created_date}}</small>
+							<p>{{recentPost.body}}</p>
+						</div>
+					</div>
+					<p></p>
+						{% endfor %}
+				</div>
+
+				<!-- End Align Area -->
+
+				<!-- footer start -->
+				<footer class="footer">
+					<div class="footer_top">
+						<div class="container">
+							<div class="row">
+								<div class="col-xl-4 col-md-6 col-lg-3">
+									<div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+										<div class="footer_logo">
+											<a href="#">
+												<img src="img/footer_logo.png" alt="">
+											</a>
+										</div>
+										<p>
+											finloan@support.com
+											<br>
+											+10 873 672 6782
+											<br>
+											600/D, Green road, NewYork
+										</p>
+										<div class="socail_links">
+											<ul>
+												<li><a href="#"><i class="ti-facebook"></i></a></li>
+												<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+												<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+											</ul>
+										</div>
+
+									</div>
+								</div>
+								<div class="col-xl-2 col-md-6 col-lg-3">
+									<div class="footer_widget wow fadeInUp" data-wow-duration="1.1s" data-wow-delay=".4s">
+										<h3 class="footer_title">
+											Services
+										</h3>
+										<ul>
+											<li><a href="#">SEO/SEM</a></li>
+											<li><a href="#">Web design</a></li>
+											<li><a href="#">Ecommerce</a></li>
+											<li><a href="#">Digital marketing</a></li>
+										</ul>
+
+									</div>
+								</div>
+								<div class="col-xl-2 col-md-6 col-lg-2">
+									<div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
+										<h3 class="footer_title">
+											Useful Links
+										</h3>
+										<ul>
+											<li><a href="#">About</a></li>
+											<li><a href="#">Blog</a></li>
+											<li><a href="#">Contact</a></li>
+											<li><a href="#">Support</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-xl-4 col-md-6 col-lg-4">
+									<div class="footer_widget wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".6s">
+										<h3 class="footer_title">
+											Subscribe
+										</h3>
+										<form action="#" class="newsletter_form">
+											<input type="text" placeholder="Enter your mail">
+											<button type="submit">Subscribe</button>
+										</form>
+										<p class="newsletter_text">Esteem spirit temper too say adieus who direct esteem esteems
+																						                                luckily.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="copy-right_text wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".3s">
+						<div class="container">
+							<div class="footer_border"></div>
+							<div class="row">
+								<div class="col-xl-12">
+									<p
+										class="copy_right text-center">
+										<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+										Copyright &copy;<script>
+											document.write(new Date().getFullYear());
+										</script>
+										All rights reserved | This template is made with
+										<i class="fa fa-heart-o" aria-hidden="true"></i>
+										by
+										<a href="https://colorlib.com" target="_blank">Colorlib</a>
+										<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</footer>
+				<!--/ footer end  -->
+
+				<!-- JS here -->
+				<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+				<script src="js/vendor/jquery-1.12.4.min.js"></script>
+				<script src="js/popper.min.js"></script>
+				<script src="js/bootstrap.min.js"></script>
+				<script src="js/owl.carousel.min.js"></script>
+				<script src="js/isotope.pkgd.min.js"></script>
+				<script src="js/ajax-form.js"></script>
+				<script src="js/waypoints.min.js"></script>
+				<script src="js/jquery.counterup.min.js"></script>
+				<script src="js/imagesloaded.pkgd.min.js"></script>
+				<script src="js/scrollIt.js"></script>
+				<script src="js/jquery.scrollUp.min.js"></script>
+				<script src="js/wow.min.js"></script>
+				<script src="js/nice-select.min.js"></script>
+				<script src="js/jquery.slicknav.min.js"></script>
+				<script src="js/jquery.magnific-popup.min.js"></script>
+				<script src="js/plugins.js"></script>
+				<script src="js/gijgo.min.js"></script>
+
+				<!--contact js-->
+				<script src="js/contact.js"></script>
+				<script src="js/jquery.ajaxchimp.min.js"></script>
+				<script src="js/jquery.form.js"></script>
+				<script src="js/jquery.validate.min.js"></script>
+				<script src="js/mail-script.js"></script>
+
+				<script src="js/main.js"></script>
+
+			</body>
+		</html>
 	</body>
 </html>
-
-

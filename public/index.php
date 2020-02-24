@@ -14,27 +14,17 @@ $file = json_decode($testFile, true);
 $applist = $file['applist'];
 $apps = $applist['apps'];
 
-// $appNames = [];
 $appInfos = [];
 foreach($apps as $app) {
-  $imageUrl = 'https://steamcdn-a.akamaihd.net/steam/apps/' . $app['appid'] . '/header.jpg';
+  $appId = $app['appid'];
   $appName = $app['name'];
+  $imageUrl = 'https://steamcdn-a.akamaihd.net/steam/apps/' . $appId . '/header.jpg';
   $appInfos[] = [
+    'id' => $appId,
     'name' => $appName, 
     'image' => $imageUrl
   ];
 }
-
-// $appInfo = [
-//   'appid' => $appIds,
-//   'name' => $appNames,
-// ]
-
-// appidがあっても単なるテストだったり、画像がないものは取得しない
-// foreach($appId as $value) {
-//   echo $value;
-// }
-// $imageUrl = 'https://steamcdn-a.akamaihd.net/steam/apps/' . $testAppId . '/header.jpg';
 
 $isLogin = Bootstrap::returnLoginState();
 
@@ -49,11 +39,8 @@ $twig = new \Twig\Environment($loader, [
 
 // 直近の10件の投稿を取得する
 $recentPosts = $post->getRecentPost();
-// var_dump($appInfos);
 $context = [];
 $context['appInfos'] = $appInfos;
 $context['recentPosts'] = $recentPosts;
 $context['isLogin'] = $isLogin;
 echo $twig->render('index.twig', $context);
-// var_dump($appInfos);
-// var_dump($appInfos['image'][0]);

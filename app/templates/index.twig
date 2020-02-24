@@ -20,10 +20,18 @@
 		<title>TopPage</title>
 	</head>
 	<body>
+		{# {{appInfos.name[0]}} #}
+
+		{% for appInfo in appInfos %}
+			{{appInfo.name}}
+			<img src="{{appInfo.image}}" alt="画像がない。。">
+		{% endfor %}
+	 
+
 		<div
 			class="site-wrap">
 			{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
-			{% include "menu.twig" with {'isLogin': isLogin} %}
+			{% include "menu.twig" with {'isLogin': isLogin} %}	
 
 			<div class="site-section">
 				<div class="container">
@@ -96,3 +104,5 @@
 			<script src="js/main.js"></script>
 	</body>
 </html>
+
+

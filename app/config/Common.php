@@ -57,21 +57,21 @@ class Common
   private function birthCheck()
   {
     if($this->dataArr['year'] === '') {
-      $this->errArr['year'] = '生年月日の年選択してください';
+      $this->errArr['year'] = '生年月日の年を選択してください';
     }
     if($this->dataArr['month'] === '') {
-      $this->errArr['month'] = '生年月日の月選択してください';
+      $this->errArr['month'] = '生年月日の月を選択してください';
     }
     if($this->dataArr['day'] === '') {
-      $this->errArr['day'] = '生年月日の日選択してください';
+      $this->errArr['day'] = '生年月日の日を選択してください';
     }
 
-    if(checkdate($this->dataArr['month'], $this->dataArr['day'], $this->dataArr['year']) === false) {
+    if(checkdate(intval($this->dataArr['month']), intval($this->dataArr['day']), intval($this->dataArr['year'])) === false) {
       $this->errArr['year'] = '正しい日付を入力してください';
     }
 
     if(strtotime($this->dataArr['year'] . '-' . $this->dataArr['month'] . '-' . $this->dataArr['day']) - strtotime('now') > 0) {
-      $this->errArr['year'] = '正しい日付を入力してください';
+      $this->errArr['year'] = '未来の日付を入力しないで。。。';
     }
   }
 

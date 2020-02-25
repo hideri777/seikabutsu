@@ -84,6 +84,9 @@ switch($mode) {
         }
       }
     break;
+  default:
+    header('Location: ' . Bootstrap::APP_URL . 'regist.php');
+    break;
 }
 
 // 右のものを左のそれぞれの変数に格納する

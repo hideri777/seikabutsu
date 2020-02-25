@@ -33,95 +33,13 @@
 
 	<body>
 		<!--[if lte IE 9]>
-						            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-						        <![endif]-->
+								            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+								        <![endif]-->
+
 
 		<!-- header-start -->
-			<header>
-				<div class="header-area "> <div id="sticky-header" class="main-header-area sticky">
-					<div class="container-fluid ">
-						<div class="header_bottom_border">
-							<div class="row align-items-center">
-								<div class="col-xl-3 col-lg-2">
-									<div class="logo">
-										<a
-											href="index.php">
-											{# <img src="img/logo.png" alt="logo"> #}
-											<h2 class="text-white">ロゴ入れる</h2>
-										</a>
-									</div>
-								</div>
-								<div class="col-xl-6 col-lg-7">
-									<div class="main-menu  d-none d-lg-block">
-										<nav>
-											<ul id="navigation">
-												<li>
-													<a href="index.php">ホーム</a>
-												</li>
-												<li>
-													<a href="Loan.html">Loan</a>
-												</li>
-												<li>
-													<a href="about.html">about</a>
-												</li>
-												<li>
-													<a href="#">pages
-														<i class="ti-angle-down"></i>
-													</a>
-													<ul class="submenu">
-														<li>
-															<a href="apply.html">apply loan</a>
-														</li>
-														<li>
-															<a href="elements.html">elements</a>
-														</li>
-													</ul>
-												</li>
-												<li>
-													<a href="#">blog
-														<i class="ti-angle-down"></i>
-													</a>
-													<ul class="submenu">
-														<li>
-															<a href="blog.html">blog</a>
-														</li>
-														<li>
-															<a href="single-blog.html">single-blog</a>
-														</li>
-													</ul>
-												</li>
-												<li>
-													<a href="FAQ.html">FAQ</a>
-												</li>
-												<li>
-													<a href="contact.html">Contact</a>
-												</li>
-											</ul>
-										</nav>
-									</div>
-								</div>
-								<div class="col-xl-3 col-lg-3 d-none d-lg-block">
-									<div class="Appointment">
-										<div class="phone_num d-none d-xl-block">
-											<a href="#">
-												<i class="fa fa-phone"></i>
-												+10 673 567 367</a>
-										</div>
-										<div class="d-none d-lg-block">
-											<a class="boxed-btn4" href="apply.html">Apply for a Loan</a>
-										</div>
-									</div>
-								</div>
-								<div class="col-12">
-									<div class="mobile_menu d-block d-lg-none"></div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</header>
+		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
+		{% include "menu.twig" with {'isLogin': isLogin} %}
 		<!-- header-end -->
 
 		<!-- apply_form_area -->
@@ -140,41 +58,46 @@
 								</div>
 								<div class="col-md-12">
 									<div class="single_field">
-									{% if errArr.user_name | length > 0 %}<small class="text-danger">{{errArr.user_name}}</small>
-									{% endif %}
+										{% if errArr.user_name | length > 0 %}
+											<small class="text-danger">{{errArr.user_name}}</small>
+										{% endif %}
 										<input type="text" placeholder="ユーザー名" name="user_name" value="{{dataArr.user_name}}">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="single_field">
-									{% if errArr.user_name | length > 0 %}<small class="text-danger">{{errArr.email}}</small>
-									{% endif %}
+										{% if errArr.user_name | length > 0 %}
+											<small class="text-danger">{{errArr.email}}</small>
+										{% endif %}
 										<input type="email" placeholder="メールアドレス" name="email" value="{{dataArr.email}}">
 									</div>
 								</div>
 								<div class="col-md-12">
-									{% if errArr.password | length > 0 %}<small class="text-danger">{{errArr.password}}</small>
+									{% if errArr.password | length > 0 %}
+										<small class="text-danger">{{errArr.password}}</small>
 									{% endif %}
 									<div class="single_field">
 										<input type="password" placeholder="パスワード" name="password">
 									</div>
 								</div>
-								<div class="col-md-4">
-								{# TODO: selectが使いづらいので直接入力してもらう、余裕あれば後で変更 #}
-								<p>&nbsp;年</p>
+								<div
+									class="col-md-4">
+									{# TODO: selectが使いづらいので直接入力してもらう、余裕あれば後で変更 #}
+									<p>&nbsp;年</p>
 									<div class="single_field">
-									<input type="text" name="year" value="{{dataArr.year}}">
-										{# <select class="wide" name="year">
-											{% for index, label in yearArr %}
-												<option value="{{index}}" {% if dataArr.year == index %} selected {% endif %}>
-													{{label}}
-												</option>
-											{% endfor %}
-										</select> #}
+										<input
+										type="text" name="year" value="{{dataArr.year}}">
+									{# <select class="wide" name="year">
+																				{% for index, label in yearArr %}
+																					<option value="{{index}}" {% if dataArr.year == index %} selected {% endif %}>
+																						{{label}}
+																					</option>
+																				{% endfor %}
+																			</select> #}
 									</div>
 								</div>
 								<div class="col-md-4">
-								<p>&nbsp;月</p>
+									<p>&nbsp;月</p>
 									<div class="single_field">
 										<select class="wide" name="month">
 											{% for index, label in monthArr %}
@@ -186,7 +109,7 @@
 									</div>
 								</div>
 								<div class="col-md-4">
-								<p>&nbsp;日</p>
+									<p>&nbsp;日</p>
 									<div class="single_field">
 										<select class="wide" name="day">
 											{% for index, label in dayArr %}
@@ -198,17 +121,19 @@
 									</div>
 								</div>
 								<div class="col-md-12">
-								{% if errArr.year | length > 0 %}<small class="text-danger">{{errArr.year}}</small>
-								{% endif %}
-								<br>
-								{% if errArr.month | length > 0 %}<small class="text-danger">{{errArr.month}}</small>
-								{% endif %}
-								<br>
-								{% if errArr.day | length > 0 %}<small class="text-danger">{{errArr.day}}</small>
-								{% endif %}
+									{% if errArr.year | length > 0 %}
+										<small class="text-danger">{{errArr.year}}</small>
+									{% endif %}
+									<br>
+									{% if errArr.month | length > 0 %}
+										<small class="text-danger">{{errArr.month}}</small>
+									{% endif %}
+									<br>
+									{% if errArr.day | length > 0 %}
+										<small class="text-danger">{{errArr.day}}</small>
+									{% endif %}
 
-					
-								
+
 								</div>
 								<div class="col-md-12">
 									<div class="submit_btn">
@@ -293,7 +218,7 @@
 									<button type="submit">Subscribe</button>
 								</form>
 								<p class="newsletter_text">Esteem spirit temper too say adieus who direct esteem esteems
-																											                                luckily.</p>
+																																				                                luckily.</p>
 							</div>
 						</div>
 					</div>

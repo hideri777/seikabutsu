@@ -71,7 +71,7 @@ class Common
     }
 
     if(strtotime($this->dataArr['year'] . '-' . $this->dataArr['month'] . '-' . $this->dataArr['day']) - strtotime('now') > 0) {
-      $this->errArr['year'] = '未来の日付を入力しないで。。。';
+      $this->errArr['year'] = '正しい日付を入力してください';
     }
   }
 

@@ -763,7 +763,7 @@ h3 {
 
 /* line 13, ../../Arafath/CL/December/234. Finance/HTML/scss/_slick-nav.scss */
 .slicknav_menu .slicknav_nav {
-  background: #fff;
+  /* background: #fff; */
   float: right;
   margin-top: 0;
   padding: 0;
@@ -776,6 +776,14 @@ h3 {
   right: 0;
   margin: auto;
   top: 11px;
+}
+
+.slicknav_menu .slicknav_nav .btn {
+  margin-right: 3rem;
+}
+
+.slicknav_menu .slicknav_nav .stickey-margin-left {
+  margin-left: 3rem;
 }
 
 /* line 28, ../../Arafath/CL/December/234. Finance/HTML/scss/_slick-nav.scss */

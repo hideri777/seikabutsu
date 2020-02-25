@@ -32,115 +32,31 @@
 
 	<body>
 		<!--[if lte IE 9]>
-		            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-		        <![endif]-->
+				            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+				        <![endif]-->
 
 		<!-- header-start -->
-			<header>
-				<div class="header-area "> <div id="sticky-header" class="main-header-area sticky">
-					<div class="container-fluid ">
-						<div class="header_bottom_border">
-							<div class="row align-items-center">
-								<div class="col-xl-3 col-lg-2">
-									<div class="logo">
-										<a
-											href="index.php">
-											{# <img src="img/logo.png" alt="logo"> #}
-											<h2 class="text-white">ロゴ入れる</h2>
-										</a>
-									</div>
-								</div>
-								<div class="col-xl-6 col-lg-7">
-									<div class="main-menu  d-none d-lg-block">
-										<nav>
-											<ul id="navigation">
-												<li>
-													<a href="index.php">ホーム</a>
-												</li>
-												<li>
-													<a href="Loan.html">Loan</a>
-												</li>
-												<li>
-													<a href="about.html">about</a>
-												</li>
-												<li>
-													<a href="#">pages
-														<i class="ti-angle-down"></i>
-													</a>
-													<ul class="submenu">
-														<li>
-															<a href="apply.html">apply loan</a>
-														</li>
-														<li>
-															<a href="elements.html">elements</a>
-														</li>
-													</ul>
-												</li>
-												<li>
-													<a href="#">blog
-														<i class="ti-angle-down"></i>
-													</a>
-													<ul class="submenu">
-														<li>
-															<a href="blog.html">blog</a>
-														</li>
-														<li>
-															<a href="single-blog.html">single-blog</a>
-														</li>
-													</ul>
-												</li>
-												<li>
-													<a href="FAQ.html">FAQ</a>
-												</li>
-												<li>
-													<a href="contact.html">Contact</a>
-												</li>
-											</ul>
-										</nav>
-									</div>
-								</div>
-								<div class="col-xl-3 col-lg-3 d-none d-lg-block">
-									<div class="Appointment">
-										<div class="phone_num d-none d-xl-block">
-											<a href="#">
-												<i class="fa fa-phone"></i>
-												+10 673 567 367</a>
-										</div>
-										<div class="d-none d-lg-block">
-											<a class="boxed-btn4" href="apply.html">Apply for a Loan</a>
-										</div>
-									</div>
-								</div>
-								<div class="col-12">
-									<div class="mobile_menu d-block d-lg-none"></div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</header>
+		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
+		{% include "menu.twig" with {'isLogin': isLogin} %}
 		<!-- header-end -->
 
 		<!-- bradcam_area  -->
 		{# <div class="bradcam_area bradcam_bg_3">
-		        <div class="container">
-		            <div class="row">
-		                <div class="col-xl-12">
-		                    <div class="bradcam_text">
-		                        <h3>Login Now</h3>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div> #}
+				        <div class="container">
+				            <div class="row">
+				                <div class="col-xl-12">
+				                    <div class="bradcam_text">
+				                        <h3>Login Now</h3>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+				    </div> #}
 
 
 		<!--/ bradcam_area  -->
 
-		<!-- apply_form_area -->
-			<div class="apply_form_area"> <div class="container">
+			<!-- apply_form_area --> <div class="apply_form_area"><div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-8">
 						<form method="post" action="login.php" class="apply_form">
@@ -248,7 +164,7 @@
 									<button type="submit">Subscribe</button>
 								</form>
 								<p class="newsletter_text">Esteem spirit temper too say adieus who direct esteem esteems
-									                                luckily.</p>
+																		                                luckily.</p>
 							</div>
 						</div>
 					</div>

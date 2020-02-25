@@ -1,75 +1,81 @@
-<div class="site-mobile-menu">
-	<div class="site-mobile-menu-header">
-		<div class="site-mobile-menu-close mt-3">
+<header>
+	<div class="header-area ">
+		<div id="sticky-header" class="main-header-area sticky">
+			<div class="container-fluid ">
+				<div class="header_bottom_border">
+					<div class="row align-items-center">
+						<div class="col-xl-3 col-lg-2">
+							<div class="logo">
+								<a
+									href="index.php">
+									{# <img src="img/logo.png" alt=""> #}
+									<h2 class="text-white">Meraki</h2>
+									<p>後で消すメラーキ、ギリシャ語で情熱</p>
 
-			<span class="icon-close2 js-menu-toggle"></span>
+								</a>
+							</div>
+						</div>
+						<div class="col-xl-9 col-lg-7">
+							<div class="main-menu  d-none d-lg-block">
+								<nav>
+									<ul id="navigation">
+										<li>
+											<a href="index.php">ホーム</a>
+										</li>
+										<li>
+											<a href="Loan.html">Loan</a>
+										</li>
+										<li>
+											<a href="about.html">about</a>
+										</li>
+										<li>
+											<a href="#">pages
+												<i class="ti-angle-down"></i>
+											</a>
+											<ul class="submenu">
+												<li>
+													<a href="apply.html">apply loan</a>
+												</li>
+												<li>
+													<a href="elements.html">elements</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">blog
+												<i class="ti-angle-down"></i>
+											</a>
+											<ul class="submenu">
+												<li>
+													<a href="blog.html">blog</a>
+												</li>
+												<li>
+													<a href="single-blog.html">single-blog</a>
+												</li>
+											</ul>
+										</li>
+
+										{% if isLogin.isLogin %}
+											<a href="edit.php" class="btn btn-outline-primary ml-5">記事を書く</a>
+											<a href="profile.php" class="btn btn-outline-primary stickey-margin-left">{{isLogin.user_name}}でログイン中</a>
+										{% else %}
+											<a href="regist.php" class="btn btn-outline-primary ml-5">新規登録</a>
+											<a href="login.php" class="btn btn-outline-primary stickey-margin-left">ログイン</a>
+										{% endif %}
+
+
+									</ul>
+								</nav>
+							</div>
+						</div>
+
+						<div class="col-12">
+							<div class="mobile_menu d-block d-lg-none"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 		</div>
-	</div>
-	<div class="site-mobile-menu-body"></div>
-</div>
-
-<header class="site-navbar" role="banner">
-	<div class="container-fluid">
-		<div class="row align-items-center">
-
-			<div class="col-12 search-form-wrap js-search-form">
-				<form method="get" action="#">
-					<input type="text" id="s" class="form-control" placeholder="Search...">
-					<button class="search-btn" type="submit">
-						<span class="icon-search"></span>
-					</button>
-				</form>
-			</div>
-
-			<div class="col-4 site-logo">
-				<a href="index.php" class="text-black h2 mb-0">Meraki</a>
-				<p>後で消すメラーキ、ギリシャ語で情熱</p>
-			</div>
-
-			<div class="col-8 text-right">
-				<nav class="site-navigation" role="navigation">
-					<ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
-						<li>
-							<a href="index.php">最新記事一覧</a>
-						</li>
-						<li>
-							<a href=""></a>
-						</li>
-						<li>
-							<a href="edit.php">記事を書く</a>
-						</li>
-						{% if isLogin.isLogin %}
-							<li>
-								<a href="profile.php">マイページ</a>
-							</li>
-							<li>
-								{{isLogin.user_name}}でログイン中
-							</li>
-						{% else %}
-							<li>
-								<a href="regist.php">新規会員登録</a>
-							</li>
-							<li>
-								<a href="login.php">ログイン</a>
-							</li>
-						{% endif %}
-						{# <li>
-							{% if isLogin.isLogin %}
-								<a href="profile.php">マイページ</a>
-							{% else %}
-								<a href="login.php">ログインする</a>
-							{% endif %}
-						</li>
-						{% if isLogin.isLogin %}
-							{{isLogin.user_name}}でログイン中
-						{% endif %} #}
-					</ul>
-				</nav>
-				<a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none">
-					<span class="icon-menu h3">メニュー</span>
-				</a>
-			</div>
-		</div>
-
 	</div>
 </header>

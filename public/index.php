@@ -37,8 +37,6 @@ $twig = new \Twig\Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]); 
 
-var_dump($_POST);
-
 // 直近の10件の投稿を取得する
 $recentPosts = $post->getRecentPost();
 $context = [];

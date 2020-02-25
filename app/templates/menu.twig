@@ -54,10 +54,26 @@
 												</li>
 											</ul>
 										</li>
+										{# <li>
+											<a href="">
+												{{isLogin.user_name}}
+												<i class="ti-angle-down"></i>
+											</a>
+											<ul class="submenu">
+												<li>
+													<a href="profile.php">プロフィール</a>
+												</li>
+												<li>
+													<a href="">ログアウト</a>
+												</li>
+											</ul>
+										</li> #}
+
 
 										{% if isLogin.isLogin %}
 											<a href="edit.php" class="btn btn-outline-primary ml-5">記事を書く</a>
 											<a href="profile.php" class="btn btn-outline-primary stickey-margin-left">{{isLogin.user_name}}でログイン中</a>
+											
 										{% else %}
 											<a href="regist.php" class="btn btn-outline-primary ml-5">新規登録</a>
 											<a href="login.php" class="btn btn-outline-primary stickey-margin-left">ログイン</a>
@@ -79,3 +95,4 @@
 		</div>
 	</div>
 </header>
+

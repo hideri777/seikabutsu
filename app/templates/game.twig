@@ -30,7 +30,32 @@
 
 
 				<div id="item_detail">
+        <div>ゲームのタイトル {{gameData.game_title}}</div>
+        <div>ゲームid {{gameData.game_id}}</div>
 
+        <br>
+        <br>
+
+
+        {% for postData in postDatas %}
+          <div>投稿されたタイトル {{postData.title}}</div>
+          <div>投稿者 {{postData.user_name}}</div>
+          <div>投稿日 {{postData.created_date}}</div>
+          <div>post_id {{postData.post_id}}</div>
+          {% for comment in comments %}
+            {% if comment.target_posts_id == postData.post_id %}
+              <div>この記事へのコメント : {{comment.body}}</div>
+							<div>コメント投稿日 : {{comment.created_date}}</div>
+            {% endif %}
+          {% endfor %}
+					<br>
+        {% endfor %}
+
+				{# {% for comment in comments %}
+					<div>{{comment.body}}</div>
+				{% endfor %} #}
+
+{# 
 					<div class="detail">
 						<dl>
 							<dt>タイトル</dt>
@@ -41,8 +66,8 @@
 							<dd>{{postData.user_name}}</dd>
 							<input type="hidden" name="login_user_id" id="login_user_id" value="{{login_user_id}}">
 							<input type="hidden" name="post_id" id="post_id" value="{{postData.post_id}}">
-						</dl>
-						{% if isLogin.isLogin %}
+						</dl> #}
+						{# {% if isLogin.isLogin %}
 							{% if isLiked == 1 %}
 								<p class="like_text">いいねしたよ</p>
 								<input type="hidden" class="isLiked" value="{{isLiked}}">
@@ -55,12 +80,12 @@
 								<input type="hidden" class="isLiked" value="{{isLiked}}">
 							{% endif %}
 							<input type="button" value="いいね!" id="good_button">
-						{% endif %}
-
+						{% endif %} #}
+{# 
 						いいね数 :
 						<span id="liked_count">{{postData.liked_count}}</span>
-					</div>
-
+					</div> #}
+{# 
 					{% if editable %}
 						<input type="button" value="編集する" name="edit" id="edit_start">
 					{% endif %}
@@ -79,7 +104,7 @@
 					{% else %}
 						<a href="login.php">コメントするにはログインしてください</a>
 					{% endif %}
-				</div>
+				</div> #}
 
 			</div>
 

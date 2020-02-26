@@ -6,7 +6,7 @@ require_once __DIR__ . './../../vendor/autoload.php';
 
 use App\config\PDODatabase;
 
-class Post
+class Game
 {
   // 初期化処理
   public ?PDODatabase $db = null;
@@ -16,46 +16,40 @@ class Post
     $this->db = $db;
   }
 
+  public function getGameDetail($game_id)
+  {
+    $res = $this->db->select('games', 'game_id, game_title', 'game_id = ?', [$game_id]);
+    return $res;
+  }
+
   // トップページの最近の投稿を取得する
-  public function getRecentPost()
-  {
-    $query = "SELECT p.post_id, p.title, p.body, p.created_date, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id ORDER BY p.created_date DESC LIMIT 5";
+  // public function getRecentPost()
+  // {
+  //   $query = "SELECT p.post_id, p.title, p.body, p.created_date, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id ORDER BY p.created_date DESC LIMIT 5";
 
-    $res = $this->db->exeQuery($query);
+  //   $res = $this->db->exeQuery($query);
 
-    // falseじゃなく0個でなく、ちゃんとチェック
-    return ($res !== false && count($res) !== 0) ? $res : false;
-  }
+  //   // falseじゃなく0個でなく、ちゃんとチェック
+  //   return ($res !== false && count($res) !== 0) ? $res : false;
+  // }
 
-  public function getPostDetail($post_id)
-  {
-    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.liked_count, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = ?";
+  // public function getGameDetail($game_id)
+  // {
+  //   $query = "SELECT g.game_id, g.game_title, p.post_id, p.title, p.body, p.created_date, p.liked_count, u.user_id, u.user_name FROM games g LEFT JOIN posts p ON g.game_id = p.target_game_id LEFT JOIN users u ON p.user_id = u.user_id WHERE g.game_id = ?";
 
-    $res = $this->db->exeQuery($query, [$post_id]);
+  //   $res = $this->db->exeQuery($query, [$game_id]);
 
-    return ($res !== false && count($res) !== 0) ? $res : false;
-  }
+  //   return ($res !== false && count($res) !== 0) ? $res : false;
+  // }
 
-  // 同じゲームに関する投稿を取得する
-  // 投稿日で降順
-  public function getPostsInfo($game_id)
-  {
-    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.liked_count, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE target_game_id = ? ORDER BY p.created_date DESC";
+  // public function getCommentsInfo($post_id)
+  // {
+  //   $query = "SELECT u.user_name, c.body, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE target_posts_id = ?";
 
-    $res = $this->db->exeQuery($query, [$game_id]);
+  //   $res = $this->db->exeQuery($query, [$post_id]);
 
-    return ($res !== false && count($res) !== 0) ? $res : false;
-  }
-
-  // 対象となるゲーム関連のコメントを取得する
-  public function getCommentsForGame($game_id)
-  {
-    $query = "SELECT u.user_name, c.body, c.target_posts_id, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id LEFT JOIN posts p ON c.target_posts_id = p.post_id WHERE p.target_game_id = ? ORDER BY c.created_date DESC";
-
-    $res = $this->db->exeQuery($query, [$game_id]);
-
-    return ($res !== false && count($res) !== 0) ? $res : false;
-  }
+  //   return ($res !== false && count($res) !== 0) ? $res : false;
+  // }
 
   public function insertComment($table, $user_id, $comment, $post_id)
   {

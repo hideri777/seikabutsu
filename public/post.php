@@ -28,6 +28,27 @@ if ($post_id === '') {
   header('Location: index.php');
 }
 
+
+
+$game_id = 535530;
+// 対象のゲームに関する投稿を取得する
+$postData = $post->getPostsInfo($game_id);
+foreach ($postData as $key => $value) {
+  $post_ids[] = ($value['post_id']);
+  // $commentDatas[] = $post->getCommentsInfo($post_id);
+}
+// $post_idsはゲームに対する投稿のidの配列
+// var_dump($post_ids);
+// 投稿に対するコメントを取得する
+foreach ($post_ids as $post_id) {
+  $comments[] = $post->getCommentsInfo($post_id);
+}
+// var_dump($comments);
+// var_dump($comments[8]);
+
+
+
+
 // 記事情報を取得する
 $postData = $post->getPostDetail($post_id);
 // コメント取得

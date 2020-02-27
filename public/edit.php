@@ -85,10 +85,10 @@ if (isset($_POST['send'])) {
   $isComplete = true;
 }
 
-// TODO: 投稿完了ページを作る
-// その記事のページor個人ページに遷移
+// その記事のページに遷移
 // アップロード完了時の処理
 if ($isComplete) {
+  header("Location: game.php?game_id=" . $target_game_id);
   exit('投稿が完了しました');
 }
 
@@ -99,6 +99,4 @@ $context['post_id'] = $post_id;
 $context['target_game_id'] = $target_game_id;
 $context['isLogin'] = $isLogin;
 
-var_dump($_REQUEST);
-var_dump($context);
 echo $twig->render('edit.twig', $context);

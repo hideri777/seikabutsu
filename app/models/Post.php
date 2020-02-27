@@ -16,7 +16,7 @@ class Post
     $this->db = $db;
   }
 
-  // トップページの最近の投稿を取得する
+  // 最近の投稿を取得する
   public function getRecentPost()
   {
     $query = "SELECT p.post_id, p.title, p.body, p.created_date, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id ORDER BY p.created_date DESC LIMIT 5";
@@ -27,6 +27,7 @@ class Post
     return ($res !== false && count($res) !== 0) ? $res : false;
   }
 
+  // 投稿に関する詳細取得
   public function getPostDetail($post_id)
   {
     $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.liked_count, p.target_game_id, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = ?";
@@ -78,12 +79,14 @@ class Post
     $this->db->insert($table, $insData);
   }
 
+  // いいねの状態取得
   public function getLikedState($user_id, $post_id)
   {
     $res = $this->db->select('liked', 'is_liked', 'user_id = ? AND post_id = ?', [$user_id, $post_id]);
     return $res;
   }
 
+  // いいねをONに
   public function insertLiked($table, $user_id, $post_id)
   {
     $insData = [
@@ -97,6 +100,7 @@ class Post
     return [1, $likedCount];
   }
 
+  // いいねのを切り替える
   public function toggleLiked($table, $user_id, $post_id, $isLiked)
   {
     $updateLiked = 0;
@@ -118,6 +122,7 @@ class Post
     return [$updateLiked, $likedCount];
   }
 
+  // いいねの総数を計算
   private function updateLikedCount($table, $post_id, $isLiked = 'false')
   {
     $res = $this->db->select($table, 'liked_count', 'post_id = ?', [$post_id]);

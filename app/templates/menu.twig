@@ -1,29 +1,23 @@
 <header>
-	<div class="header-area ">
+	<div class="header-area">
 		<div id="sticky-header" class="main-header-area sticky">
-			<div class="container-fluid ">
+			<div class="container-fluid">
 				<div class="header_bottom_border">
 					<div class="row align-items-center">
 						<div class="col-xl-3 col-lg-2">
 							<div class="logo">
-								<a
-									href="index.php">
-									{# <img src="img/logo.png" alt=""> #}
-									<h2 class="text-white">Meraki</h2>
-									<p>後で消すメラーキ、ギリシャ語で情熱</p>
+								<a href="index.php">
+									<h2 class="text-white">Gamelog</h2>
 
 								</a>
 							</div>
 						</div>
-						<div class="col-xl-9 col-lg-7">
+						<div class="col-xl-6 col-lg-7">
 							<div class="main-menu  d-none d-lg-block">
 								<nav>
 									<ul id="navigation">
 										<li>
 											<a href="index.php">ホーム</a>
-										</li>
-										<li>
-											<a href="Loan.html">Loan</a>
 										</li>
 										<li>
 											<a href="about.html">about</a>
@@ -54,26 +48,10 @@
 												</li>
 											</ul>
 										</li>
-										{# <li>
-											<a href="">
-												{{isLogin.user_name}}
-												<i class="ti-angle-down"></i>
-											</a>
-											<ul class="submenu">
-												<li>
-													<a href="profile.php">プロフィール</a>
-												</li>
-												<li>
-													<a href="">ログアウト</a>
-												</li>
-											</ul>
-										</li> #}
-
 
 										{% if isLogin.isLogin %}
-											{# <a href="edit.php" class="btn btn-outline-primary ml-5">記事を書く</a> #}
 											<a href="profile.php" class="btn btn-outline-primary stickey-margin-left">{{isLogin.user_name}}でログイン中</a>
-											
+
 										{% else %}
 											<a href="regist.php" class="btn btn-outline-primary ml-5">新規登録</a>
 											<a href="login.php" class="btn btn-outline-primary stickey-margin-left">ログイン</a>
@@ -95,4 +73,3 @@
 		</div>
 	</div>
 </header>
-

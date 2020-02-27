@@ -45,7 +45,9 @@ $postDatasWithLiked = [];
 if ($postDatas) {
   foreach ($postDatas as $postData) {
     $post_id = $postData['post_id'];
-    $isLiked = $post->getLikedState($_SESSION['user_id'], $post_id);
+    if($isLogin['isLogin']) {
+      $isLiked = $post->getLikedState($_SESSION['user_id'], $post_id);
+    }
     if(!empty($isLiked)) {
       $isLikedState = $isLiked[0]['is_liked'];
     } else {

@@ -17,7 +17,7 @@ use App\models\Game;
 use App\models\Post;
 
 $isLogin = Bootstrap::returnLoginState();
-if (!$isLogin) header("Location: login.php");
+if (!$isLogin['isLogin']) header("Location: login.php");
 
 // テンプレート指定
 $loader = new \Twig\Loader\FilesystemLoader(Bootstrap::TEMPLATE_DIR);

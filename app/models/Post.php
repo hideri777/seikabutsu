@@ -29,7 +29,7 @@ class Post
 
   public function getPostDetail($post_id)
   {
-    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.liked_count, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = ?";
+    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.liked_count, p.target_game_id, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = ?";
 
     $res = $this->db->exeQuery($query, [$post_id]);
 

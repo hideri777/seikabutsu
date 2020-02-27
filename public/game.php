@@ -41,7 +41,8 @@ $comments = $post->getCommentsForGame($game_id);
 
 $postDatasWithLiked = [];
 // 投稿に対するいいねの状態取得して配列に格納
-if ($isLogin['isLogin']) {
+// 投稿があれば以下の処理
+if ($postDatas) {
   foreach ($postDatas as $postData) {
     $post_id = $postData['post_id'];
     $isLiked = $post->getLikedState($_SESSION['user_id'], $post_id);
@@ -58,6 +59,9 @@ if ($isLogin['isLogin']) {
   
 $context = [];
 $context['isLogin'] = $isLogin;
+if ($isLogin['isLogin']) {
+  $context['login_user_id'] = $_SESSION['user_id'];
+}
 $context['gameData'] = $gameData[0];
 $context['postDatas'] = $postDatasWithLiked;
 $context['comments'] = $comments;

@@ -2,9 +2,11 @@ $(function() {
   var app_url = $("#app_url").val();
   var entry_url = $("#entry_url").val();
 
-  $("#edit_start").click(function() {
-    var post_id = $("#post_id").val();
-    location.href = app_url + "edit.php?post_id=" + post_id;
+  $(".edit_start").click(function() {
+    // 対象はどのゲームか、どの投稿なのかGETを送る
+    var target_game_id = $("#target_game_id").val();
+    var post_id = $("#get_post_id").val();
+    location.href = app_url + "edit.php?target_game_id=" + target_game_id + "&post_id=" + post_id;
   });
 
   $("#send_comment").click(function() {
@@ -35,13 +37,13 @@ $(function() {
     );
   });
 
-  $("#good_button").click(function() {
+  $(".good_button").click(function() {
     var isFirst = false;
     var user_id = $("#login_user_id").val();
-    var post_id = $("#post_id").val();
-    if ($(".isLiked").val() == "first") {
+    var post_id = $(this).attr("id");
+    if ($(".isLiked_" + post_id).val() == "first") {
       isFirst = true;
-    } else if ($(".isLiked").val() == 1) {
+    } else if ($(".isLiked_" + post_id).val() == 1) {
       var isLiked = true;
     } else {
       var isLiked = false;
@@ -61,20 +63,18 @@ $(function() {
       function(data) {
         // いいね数を1増減させる
         console.log(data);
-        if(data.updateLiked == 1) {
-          $(".like_text").text('いいねしたよ');
-          $(".isLiked").val(data.updateLiked);
+        if (data.updateLiked == 1) {
+          $(".like_text_" + post_id).text("いいねしたよ");
+          $(".isLiked_" + post_id).val(data.updateLiked);
         } else {
-          $(".like_text").text('いいねしてない');
-          $(".isLiked").val(data.updateLiked);
+          $(".like_text_" + post_id).text("いいねしてない");
+          $(".isLiked_" + post_id).val(data.updateLiked);
         }
-        $("#liked_count").text(data.likedCount);
+        $("#liked_count_" + post_id).text(data.likedCount);
       },
       function() {
         alert("うまく行かなかったようです。。");
       }
     );
   });
-
-  $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
 });

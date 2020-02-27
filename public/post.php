@@ -6,12 +6,14 @@ require_once __DIR__ . './../vendor/autoload.php';
 
 use App\config\Bootstrap;
 use App\config\PDODatabase;
+use App\models\Game;
 use App\models\Post;
 
 $isLogin = Bootstrap::returnLoginState();
 
 $db = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME);
 $post = new Post($db);
+$game = new Game($db);
 
 // テンプレート指定
 $loader = new \Twig\Loader\FilesystemLoader(Bootstrap::TEMPLATE_DIR);
@@ -36,9 +38,12 @@ $commentdata = $post->getCommentsInfo($post_id);
 if ($isLogin['isLogin']) {
   $isLiked = $post->getLikedState($_SESSION['user_id'], $post_id);
 }
+// 対象のゲームの情報を取得
+$gameData = $game->getGameDetail($postData[0]['target_game_id']);
 
 $context = [];
 $context['postData'] = $postData[0];
+$context['gameData'] = $gameData[0];
 $context['commentData'] = $commentdata;
 $context['isLogin'] = $isLogin;
 if (!empty($isLiked)) {

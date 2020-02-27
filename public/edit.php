@@ -3,17 +3,17 @@
 namespace seikabutsu;
 
 /**
+ * //TODO: 手動でedit.phpにきたときにチェックできてない
+ * //TODO: 余裕あれば
  * https://papadays.com/post/7fh0bicxoctivnraohvxax/
  * 編集中にページ遷移しようとするときには確認のアラーム
- * 
- * 最低限
- * タイトル、本文を書いて投稿するボタンを押すと記事の投稿ができる
  */
 
 require_once __DIR__ . './../vendor/autoload.php';
 
 use App\config\Bootstrap;
 use App\config\PDODatabase;
+use App\models\Game;
 use App\models\Post;
 
 $isLogin = Bootstrap::returnLoginState();
@@ -27,13 +27,26 @@ $twig = new \Twig\Environment($loader, [
 
 $db = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME);
 $post = new Post($db);
+$game = new Game($db);
+
 
 $table = 'posts';
 $title = isset($_POST['title']) ? $_POST['title'] : '';
 $body = isset($_POST['body']) ? $_POST['body'] : '';
 $isUpdate = isset($_POST['isUpdate']) ? $_POST['isUpdate'] : false;
 $post_id = isset($_POST['post_id']) ? $_POST['post_id'] : '';
+$target_game_id = isset($_POST['target_game_id']) ? $_POST['target_game_id'] : '';
 $isComplete = false;
+
+// gameが存在するか確認
+if(isset($_GET['target_game_id'])) {
+  $res = $game->getGameDetail($_GET['target_game_id']);
+  if(empty($res[0])) {
+    // TODO: リダイレクトかエラーメッセージちゃんと表示する
+    exit('no');
+  }
+  $target_game_id = $res[0]['game_id'];
+}
 
 // 既存ページの書き換えのとき
 if (isset($_GET['post_id']) === true && preg_match('/^\d+$/', $_GET['post_id']) === 1) {
@@ -47,23 +60,27 @@ if (isset($_GET['post_id']) === true && preg_match('/^\d+$/', $_GET['post_id']) 
   $isUpdate = true;
 }
 
+// 初回書き込み時のデータ
 $insertData = [
   'title' => $title,
   'body' => $body,
   'user_id' => $_SESSION['user_id'],
+  'target_game_id' => $target_game_id
 ];
 
+// 更新用データ
 $updateData = [
   'title' => $title,
   'body' => $body,
   'update_date' => date('Y-m-d H:i:s')
 ];
 
+// 投稿ボタンが押されたら
 if (isset($_POST['send'])) {
-  if (!$isUpdate) {
-    $db->insert($table, $insertData, 'created_date');
-  } else {
+  if ($isUpdate) {
     $db->update($table, $updateData, 'post_id = ?', [$post_id]);
+  } else {
+    $db->insert($table, $insertData, 'created_date');
   }
   $isComplete = true;
 }
@@ -79,6 +96,9 @@ $context = [];
 $context['insData'] = $isUpdate ? $updateData : $insertData;
 $context['isUpdate'] = $isUpdate;
 $context['post_id'] = $post_id;
+$context['target_game_id'] = $target_game_id;
 $context['isLogin'] = $isLogin;
 
+var_dump($_REQUEST);
+var_dump($context);
 echo $twig->render('edit.twig', $context);

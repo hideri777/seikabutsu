@@ -39,18 +39,26 @@ $postDatas = $post->getPostsInfo($game_id);
 // 対象のゲームに関連するコメント
 $comments = $post->getCommentsForGame($game_id);
 
+$postDatasWithLiked = [];
+// 投稿に対するいいねの状態取得して配列に格納
+if ($isLogin['isLogin']) {
+  foreach ($postDatas as $postData) {
+    $post_id = $postData['post_id'];
+    $isLiked = $post->getLikedState($_SESSION['user_id'], $post_id);
+    if(!empty($isLiked)) {
+      $isLikedState = $isLiked[0]['is_liked'];
+    } else {
+      $isLikedState = 'first';
+    }
+    $postData['isLiked'] = $isLikedState;
+    // この配列をtwigで使う
+    $postDatasWithLiked[] = $postData;
+  }
+}
+  
 $context = [];
-// $context['isLogin'] = $isLogin;
-// if (!empty($isLiked)) {
-//   $context['isLiked'] = $isLiked[0]['is_liked'];
-// } else {
-//   $context['isLiked'] = 'first';
-// }
-// if ($isLogin['isLogin']) {
-//   $context['login_user_id'] = $_SESSION['user_id'];
-//   if ($_SESSION['user_id'] === $postData[0]['user_id']) $context['editable'] = true;
-// }
+$context['isLogin'] = $isLogin;
 $context['gameData'] = $gameData[0];
-$context['postDatas'] = $postDatas;
+$context['postDatas'] = $postDatasWithLiked;
 $context['comments'] = $comments;
 echo $twig->render('game.twig', $context);

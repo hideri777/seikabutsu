@@ -9,6 +9,34 @@ $(function() {
     location.href = app_url + "edit.php?target_game_id=" + target_game_id + "&post_id=" + post_id;
   });
 
+  $('#delete').click(function(){
+    var post_id = $("#get_post_id").val();
+    var target_game_id = $("#target_game_id").val();
+
+    if(!confirm('投稿を削除しますか？')){
+        /* キャンセルの時の処理 */
+        return false;
+    }else{
+        /*OKの時の処理 */
+        $.ajax({
+          url: entry_url + "/functions/deletePost.php",
+          type: "post",
+          data: {
+            post_id: post_id,
+          },
+        }).then(
+          function() {
+            alert("削除しました");
+            location.href = app_url +  "game.php?game_id=" + target_game_id;
+          },
+          function () {
+            alert('削除に失敗しました。再度お試しください');
+          }
+        );
+
+    }
+});
+
   $("#send_comment").click(function() {
     var user_id = $("#login_user_id").val();
     var comment_text = $("#comment_text").val();

@@ -31,6 +31,7 @@ class Bootstrap
     $user_name = $isLogin ? $_SESSION['user_name'] : '';
     return [
       'isLogin' => $isLogin,
+      'user_id' => $_SESSION['user_id'],
       'user_name' => $user_name
     ];
   }

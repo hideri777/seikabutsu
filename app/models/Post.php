@@ -51,7 +51,7 @@ class Post
   // 対象となる投稿へのコメントを取得する
   public function getCommentsInfo($post_id)
   {
-    $query = "SELECT u.user_name, c.body, c.target_posts_id, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE c.target_posts_id = ?";
+    $query = "SELECT u.user_name, c.comment_id, c.body, c.target_posts_id, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE c.target_posts_id = ?";
 
     $res = $this->db->exeQuery($query, [$post_id]);
 

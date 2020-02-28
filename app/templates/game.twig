@@ -83,7 +83,7 @@
 							  <input type="submit" name="create_review" value="レビューを書く" class="edit_start boxed-btn4">
 						</div>
 
-
+							{# ゲームに対する投稿内容一覧 #}
 							<input type="hidden" name="login_user_id" id="login_user_id" value="{{login_user_id}}">
 							{% for postData in postDatas %}
 								<div class="comment-list border">
@@ -134,56 +134,8 @@
 										</div>
 									</div>
 								</div>
-								{# <div class="">
-									{% for comment in comments %}
-										{% if comment.target_posts_id == postData.post_id %}
-											<div>この記事へのコメント :
-												{{comment.body}}</div>
-											<div>コメント投稿日 :
-												{{comment.created_date}}</div>
-										{% endif %}
-									{% endfor %}
-
-								</div> #}
-
-								<br>
-								{# {% if isLogin.isLogin %}
-																											<textarea name="comment" id="comment_text" cols="30" rows="10" placeholder="コメントを入力"></textarea>
-																											<input type="button" value="コメントする" id="send_comment">
-																										{% endif %} #}
 							{% endfor %}
 
-							<input type="button" name="back" value="一覧へ戻る" onclick="history.back(); return false;">
-						</div>
-						<div class="comment-form">
-							<h4>Leave a Reply</h4>
-							<form class="form-contact comment_form" action="#" id="commentForm">
-								<div class="row">
-									<div class="col-12">
-										<div class="form-group">
-											<textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input class="form-control" name="name" id="name" type="text" placeholder="Name">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input class="form-control" name="email" id="email" type="email" placeholder="Email">
-										</div>
-									</div>
-									<div class="col-12">
-										<div class="form-group">
-											<input class="form-control" name="website" id="website" type="text" placeholder="Website">
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
-								</div>
-							</form>
 						</div>
 					</div>
 					{# 右側 #}

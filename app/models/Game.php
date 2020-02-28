@@ -23,6 +23,13 @@ class Game
     return $res;
   }
 
+  // ピックアップ、最新作品、人気作品に分割してreturnする
+  public function splitGameData($gameData, $splitCounts)
+  {
+    $splitedGameData = array_chunk($gameData, $splitCounts);
+    return $splitedGameData;
+  }
+
   // 対象ゲームの詳細取得
   public function getGameDetail($game_id)
   {

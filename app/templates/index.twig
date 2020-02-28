@@ -30,12 +30,12 @@
 
 	<body>
 		{# [if lte IE 9]>
-		<p class="browserupgrade">You are using an
-			<strong>outdated</strong>
-			browser. Please
-			<a href="https://browsehappy.com/">upgrade your browser</a>
-			to improve your experience and security.</p>
-		[endif] #}
+						<p class="browserupgrade">You are using an
+							<strong>outdated</strong>
+							browser. Please
+							<a href="https://browsehappy.com/">upgrade your browser</a>
+							to improve your experience and security.</p>
+						[endif] #}
 
 		<!-- header-start -->
 		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
@@ -62,32 +62,87 @@
 
 				<div class="section-top-border">
 					<div class="row justify-content-xl-between">
-					<h3 class="mb-30">フューチャー作品</h3>
-					<a href=""></a>
+						<h3 class="mb-30">運営イチオシ</h3>
+						<a href="">もっと見る</a>
 					</div>
-						
+
 					<div class="row">
-					{% for pickupGame in pickupGames %}
-						<div class="col-md-4">
-							<img src="https://steamcdn-a.akamaihd.net/steam/apps/{{pickupGame.game_id}}/header.jpg" alt="" class="img-fluid">
-							<div class="single-defination">
-								<h4 class="mb-20">
-									<a href="game.php?game_id={{pickupGame.game_id}}">{{pickupGame.game_title}}</a>
-								</h4>
-								<p>Recently, the US Federal government banned online casinos from operating in America by
-																										making it illegal to
-																										transfer money to them through any US bank or payment system. As a result of this law,
-																										most of the popular
-																										online casino networks</p>
+						{% for pickupGame in pickupGames %}
+							<div class="col-md-4">
+								<img src="https://steamcdn-a.akamaihd.net/steam/apps/{{pickupGame.game_id}}/header.jpg" alt="" class="img-fluid">
+								<div class="single-defination">
+									<h4 class="mb-20">
+										<a href="game.php?game_id={{pickupGame.game_id}}">{{pickupGame.game_title}}</a>
+									</h4>
+									<p>Recently, the US Federal government banned online casinos from operating in America by
+																																														making it illegal to
+																																														transfer money to them through any US bank or payment system. As a result of this law,
+																																														most of the popular
+																																														online casino networks</p>
+								</div>
 							</div>
-						</div>
-					{% endfor %}
-					
+						{% endfor %}
+
 					</div>
 				</div>
 
 				<div class="section-top-border">
-					<h3 class="mb-30">最近の投稿記事</h3>
+					<div class="row justify-content-xl-between">
+						<h3 class="mb-30">新作ゲーム</h3>
+						<a href="">もっと見る</a>
+					</div>
+
+					<div class="row">
+						{% for newGame in newGames %}
+							<div class="col-md-4">
+								<img src="https://steamcdn-a.akamaihd.net/steam/apps/{{newGame.game_id}}/header.jpg" alt="" class="img-fluid">
+								<div class="single-defination">
+									<h4 class="mb-20">
+										<a href="game.php?game_id={{newGame.game_id}}">{{newGame.game_title}}</a>
+									</h4>
+									<p>Recently, the US Federal government banned online casinos from operating in America by
+																																														making it illegal to
+																																														transfer money to them through any US bank or payment system. As a result of this law,
+																																														most of the popular
+																																														online casino networks</p>
+								</div>
+							</div>
+						{% endfor %}
+
+					</div>
+				</div>
+
+				<div class="section-top-border">
+					<div class="row justify-content-xl-between">
+						<h3 class="mb-30">人気ゲーム</h3>
+						<a href="">もっと見る</a>
+					</div>
+
+					<div class="row">
+						{% for popularGame in popularGames %}
+							<div class="col-md-4">
+								<img src="https://steamcdn-a.akamaihd.net/steam/apps/{{popularGame.game_id}}/header.jpg" alt="画像画像画像" class="img-fluid">
+								<div class="single-defination">
+									<h4 class="mb-20">
+										<a href="game.php?game_id={{popularGame.game_id}}">{{popularGame.game_title}}</a>
+									</h4>
+									<p>Recently, the US Federal government banned online casinos from operating in America by
+																																														making it illegal to
+																																														transfer money to them through any US bank or payment system. As a result of this law,
+																																														most of the popular
+																																														online casino networks</p>
+								</div>
+							</div>
+						{% endfor %}
+
+					</div>
+				</div>
+
+				<div class="section-top-border">
+					<div class="row justify-content-xl-between">
+						<h3 class="mb-30">最新の投稿レビュー</h3>
+						<a href="">もっと見る</a>
+					</div>
 					{% for recentPost in recentPosts %}
 						<div class="row mb-10">
 							<div class="col-md-3">
@@ -101,7 +156,6 @@
 										{{recentPost.title}}
 									</a>
 								</h4>
-								{# TODO: ユーザー名からそのユーザーのプロフィール #}
 								<small class="font-weight-bold">投稿者:{{recentPost.user_name}}&nbsp;-&nbsp;
 									{{recentPost.created_date}}</small>
 								<p>{{recentPost.body}}</p>
@@ -110,42 +164,40 @@
 						<p></p>
 					{% endfor %}
 				</div>
+			</div>
+		</div>
+		<!-- End Align Area -->
 
-				<!-- End Align Area -->
+		<!-- footer start -->
+		{% include "footer.twig" %}<!--/ footer end  -->
 
-				<!-- footer start -->
-				{% include "footer.twig" %}
-				<!--/ footer end  -->
+		<!-- JS here --><script src="js/vendor/modernizr-3.5.0.min.js"> </script>
+		<script src="js/vendor/jquery-1.12.4.min.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/isotope.pkgd.min.js"></script>
+		<script src="js/ajax-form.js"></script>
+		<script src="js/waypoints.min.js"></script>
+		<script src="js/jquery.counterup.min.js"></script>
+		<script src="js/imagesloaded.pkgd.min.js"></script>
+		<script src="js/scrollIt.js"></script>
+		<script src="js/jquery.scrollUp.min.js"></script>
+		<script src="js/wow.min.js"></script>
+		<script src="js/nice-select.min.js"></script>
+		<script src="js/jquery.slicknav.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/gijgo.min.js"></script>
 
-				<!-- JS here --><script src="js/vendor/modernizr-3.5.0.min.js"> </script>
-				<script src="js/vendor/jquery-1.12.4.min.js"></script>
-				<script src="js/popper.min.js"></script>
-				<script src="js/bootstrap.min.js"></script>
-				<script src="js/owl.carousel.min.js"></script>
-				<script src="js/isotope.pkgd.min.js"></script>
-				<script src="js/ajax-form.js"></script>
-				<script src="js/waypoints.min.js"></script>
-				<script src="js/jquery.counterup.min.js"></script>
-				<script src="js/imagesloaded.pkgd.min.js"></script>
-				<script src="js/scrollIt.js"></script>
-				<script src="js/jquery.scrollUp.min.js"></script>
-				<script src="js/wow.min.js"></script>
-				<script src="js/nice-select.min.js"></script>
-				<script src="js/jquery.slicknav.min.js"></script>
-				<script src="js/jquery.magnific-popup.min.js"></script>
-				<script src="js/plugins.js"></script>
-				<script src="js/gijgo.min.js"></script>
+		<!--contact js-->
+		<script src="js/contact.js"></script>
+		<script src="js/jquery.ajaxchimp.min.js"></script>
+		<script src="js/jquery.form.js"></script>
+		<script src="js/jquery.validate.min.js"></script>
+		<script src="js/mail-script.js"></script>
 
-				<!--contact js-->
-				<script src="js/contact.js"></script>
-				<script src="js/jquery.ajaxchimp.min.js"></script>
-				<script src="js/jquery.form.js"></script>
-				<script src="js/jquery.validate.min.js"></script>
-				<script src="js/mail-script.js"></script>
+		<script src="js/main.js"></script>
 
-				<script src="js/main.js"></script>
-
-			</body>
-		</html>
 	</body>
-</html>
+</html></body></html>

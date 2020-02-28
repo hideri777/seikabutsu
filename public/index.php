@@ -17,8 +17,18 @@ $game = new Game($db);
 
 // もととなる作品の抽出
 if (!isset($_SESSION['games'])) {
-  $_SESSION['games'] = $game->getGames(300);
+  $_SESSION['games'] = $game->getGames(30);
+  list($_SESSION['pickupGames'], $_SESSION['newGames'], $_SESSION['popularGames']) = $game->splitGameData($_SESSION['games'], 10);
 }
+
+
+// トップページで表示する分
+for($i = 0; $i < 6; $i++) {
+  $topPickupGames[] = $_SESSION['pickupGames'][$i];
+  $topNewGames[] = $_SESSION['newGames'][$i];
+  $topPopularGames[] = $_SESSION['popularGames'][$i];
+}
+
 
 // テンプレート指定
 $loader = new \Twig\Loader\FilesystemLoader(Bootstrap::TEMPLATE_DIR);
@@ -31,6 +41,8 @@ $recentPosts = $post->getRecentPost();
 
 $context = [];
 $context['isLogin'] = $isLogin;
-$context['games'] = $_SESSION['games'];
+$context['pickupGames'] = $topPickupGames;
+$context['newGames'] = $topNewGames;
+$context['popularGames'] = $topPopularGames;
 $context['recentPosts'] = $recentPosts;
 echo $twig->render('index.twig', $context);

@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="ja">
 
 	<head>
 		<meta charset="utf-8">
@@ -29,14 +29,6 @@
 	</head>
 
 	<body>
-		{# [if lte IE 9]>
-						<p class="browserupgrade">You are using an
-							<strong>outdated</strong>
-							browser. Please
-							<a href="https://browsehappy.com/">upgrade your browser</a>
-							to improve your experience and security.</p>
-						[endif] #}
-
 		<!-- header-start -->
 		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
 		{% include "header.twig" with {'isLogin': isLogin} %}
@@ -63,22 +55,20 @@
 				<div class="section-top-border">
 					<div class="row justify-content-xl-between">
 						<h3 class="mb-30">運営イチオシ</h3>
-						<a href="">もっと見る</a>
+						<a href="list.php?type=pickup">もっと見る</a>
 					</div>
 
 					<div class="row">
 						{% for pickupGame in pickupGames %}
 							<div class="col-md-4">
+							<a href="game.php?game_id={{pickupGame.game_id}}">
 								<img src="https://steamcdn-a.akamaihd.net/steam/apps/{{pickupGame.game_id}}/header.jpg" alt="" class="img-fluid">
+							</a>
 								<div class="single-defination">
 									<h4 class="mb-20">
 										<a href="game.php?game_id={{pickupGame.game_id}}">{{pickupGame.game_title}}</a>
 									</h4>
-									<p>Recently, the US Federal government banned online casinos from operating in America by
-																																														making it illegal to
-																																														transfer money to them through any US bank or payment system. As a result of this law,
-																																														most of the popular
-																																														online casino networks</p>
+									<p>ゲームの紹介文</p>
 								</div>
 							</div>
 						{% endfor %}
@@ -89,22 +79,20 @@
 				<div class="section-top-border">
 					<div class="row justify-content-xl-between">
 						<h3 class="mb-30">新作ゲーム</h3>
-						<a href="">もっと見る</a>
+						<a href="list.php?type=new">もっと見る</a>
 					</div>
 
 					<div class="row">
 						{% for newGame in newGames %}
 							<div class="col-md-4">
+							<a href="game.php?game_id={{newGame.game_id}}">
 								<img src="https://steamcdn-a.akamaihd.net/steam/apps/{{newGame.game_id}}/header.jpg" alt="" class="img-fluid">
+							</a>
 								<div class="single-defination">
 									<h4 class="mb-20">
 										<a href="game.php?game_id={{newGame.game_id}}">{{newGame.game_title}}</a>
 									</h4>
-									<p>Recently, the US Federal government banned online casinos from operating in America by
-																																														making it illegal to
-																																														transfer money to them through any US bank or payment system. As a result of this law,
-																																														most of the popular
-																																														online casino networks</p>
+									<p>ゲームの紹介文</p>
 								</div>
 							</div>
 						{% endfor %}
@@ -115,22 +103,20 @@
 				<div class="section-top-border">
 					<div class="row justify-content-xl-between">
 						<h3 class="mb-30">人気ゲーム</h3>
-						<a href="">もっと見る</a>
+						<a href="list.php?type=popular">もっと見る</a>
 					</div>
 
 					<div class="row">
 						{% for popularGame in popularGames %}
 							<div class="col-md-4">
+							<a href="game.php?game_id={{popularGame.game_id}}">
 								<img src="https://steamcdn-a.akamaihd.net/steam/apps/{{popularGame.game_id}}/header.jpg" alt="画像画像画像" class="img-fluid">
+							</a>
 								<div class="single-defination">
 									<h4 class="mb-20">
 										<a href="game.php?game_id={{popularGame.game_id}}">{{popularGame.game_title}}</a>
 									</h4>
-									<p>Recently, the US Federal government banned online casinos from operating in America by
-																																														making it illegal to
-																																														transfer money to them through any US bank or payment system. As a result of this law,
-																																														most of the popular
-																																														online casino networks</p>
+									<p>ゲームの紹介文</p>
 								</div>
 							</div>
 						{% endfor %}
@@ -141,7 +127,6 @@
 				<div class="section-top-border">
 					<div class="row justify-content-xl-between">
 						<h3 class="mb-30">最新の投稿レビュー</h3>
-						<a href="">もっと見る</a>
 					</div>
 					{% for recentPost in recentPosts %}
 						<div class="row mb-10">
@@ -200,4 +185,4 @@
 		<script src="js/main.js"></script>
 
 	</body>
-</html></body></html>
+</html>

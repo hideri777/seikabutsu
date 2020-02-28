@@ -1,0 +1,128 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Finloans</title>
+		<meta name="description" content="">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- <link rel="manifest" href="site.webmanifest"> -->
+		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+		<!-- Place favicon.ico in the root directory -->
+
+		<!-- CSS here -->
+		<link rel="stylesheet" href="css/bootstrap.min.css"> <link rel="stylesheet" href="css/owl.carousel.min.css">
+		<link rel="stylesheet" href="css/magnific-popup.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/themify-icons.css">
+		<link rel="stylesheet" href="css/nice-select.css">
+		<link rel="stylesheet" href="css/flaticon.css">
+		<link rel="stylesheet" href="css/gijgo.css">
+		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" href="css/slicknav.css">
+		<link
+		rel="stylesheet" href="css/style.css">
+	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
+	</head>
+
+	<body>
+		<!--[if lte IE 9]>
+						            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+						        <![endif]-->
+
+		<!-- header-start -->
+		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
+		{% include "header.twig" with {'isLogin': isLogin} %}
+		<!-- header-end -->
+
+		<!-- bradcam_area  -->
+
+		<!--/ bradcam_area  -->
+
+
+			<!--================Blog Area =================--> <section class="blog_area section-padding"><div class="container">
+				<div class="row">
+					<div class="col-lg-8 mb-5 mb-lg-0">
+						<div class="blog_left_sidebar">
+
+							<div class="section-top-border">
+								<div class="row justify-content-xl-between">
+									<h3 class="mb-30">{{title}}</h3>
+								</div>
+
+								<div class="row">
+									{% for gameData in listGameData %}
+										<div class="col-md-6">
+											<img src="https://steamcdn-a.akamaihd.net/steam/apps/{{gameData.game_id}}/header.jpg" alt="画像画像画像" class="img-fluid">
+											<div class="single-defination">
+												<h4 class="mb-20">
+													<a href="game.php?game_id={{gameData.game_id}}">{{gameData.game_title}}</a>
+												</h4>
+												<p>ゲームの紹介文</p>
+											</div>
+										</div>
+									{% endfor %}
+
+								</div>
+							</div>
+
+							<nav class="blog-pagination justify-content-center d-flex">
+								<input type="hidden" id="page-number" value="{{page}}">
+								<ul class="pagination">
+									{% for pageNumber in pageNumbers %}
+										<li class="page-item" id="page-item-{{pageNumber}}">
+											<input type="hidden" id="page-tag-{{pageNumber}}" value="{{pageNumber}}">
+											<a href="list.php?type={{type}}&page={{pageNumber}}" class="page-link">{{pageNumber}}</a>
+										</li>
+									{% endfor %}
+								</ul>
+							</nav>
+						</div>
+
+					</div>
+					<div class="col-lg-4">
+						{% include "main_right_menu.twig" %}
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--================Blog Area =================-->
+
+		<!-- footer start -->
+		{% include "footer.twig" %}<!--/ footer end  -->
+
+
+		<!-- JS here --><script src="js/vendor/modernizr-3.5.0.min.js"> </script>
+		<script src="js/vendor/jquery-1.12.4.min.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/isotope.pkgd.min.js"></script>
+		<script src="js/ajax-form.js"></script>
+		<script src="js/waypoints.min.js"></script>
+		<script src="js/jquery.counterup.min.js"></script>
+		<script src="js/imagesloaded.pkgd.min.js"></script>
+		<script src="js/scrollIt.js"></script>
+		<script src="js/jquery.scrollUp.min.js"></script>
+		<script src="js/wow.min.js"></script>
+		<script src="js/nice-select.min.js"></script>
+		<script src="js/jquery.slicknav.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/gijgo.min.js"></script>
+
+		<!--contact js-->
+		<script src="js/contact.js"></script>
+		<script src="js/jquery.ajaxchimp.min.js"></script>
+		<script src="js/jquery.form.js"></script>
+		<script src="js/jquery.validate.min.js"></script>
+		<script src="js/mail-script.js"></script>
+
+		<script src="js/main.js"></script>
+		<script src="js/self.js"></script>
+	</body>
+</html>

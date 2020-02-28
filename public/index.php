@@ -17,8 +17,8 @@ $game = new Game($db);
 
 // もととなる作品の抽出
 if (!isset($_SESSION['games'])) {
-  $_SESSION['games'] = $game->getGames(30);
-  list($_SESSION['pickupGames'], $_SESSION['newGames'], $_SESSION['popularGames']) = $game->splitGameData($_SESSION['games'], 10);
+  $_SESSION['games'] = $game->getGames(300);
+  list($_SESSION['pickupGames'], $_SESSION['newGames'], $_SESSION['popularGames']) = $game->splitGameData($_SESSION['games'], 100);
 }
 
 

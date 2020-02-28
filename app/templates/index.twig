@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>TopPage</title>
+		<title>Gamelog</title>
 		<meta name="description" content="">
 		<meta
 		name="viewport" content="width=device-width, initial-scale=1">
@@ -61,13 +61,18 @@
 
 
 				<div class="section-top-border">
+					<div class="row justify-content-xl-between">
 					<h3 class="mb-30">フューチャー作品</h3>
+					<a href=""></a>
+					</div>
+						
 					<div class="row">
+					{% for pickupGame in pickupGames %}
 						<div class="col-md-4">
-							<img src="https://steamcdn-a.akamaihd.net/steam/apps/535530/header.jpg" alt="" class="img-fluid">
+							<img src="https://steamcdn-a.akamaihd.net/steam/apps/{{pickupGame.game_id}}/header.jpg" alt="" class="img-fluid">
 							<div class="single-defination">
 								<h4 class="mb-20">
-									<a href="game.php?game_id=535530">Demon Hunter</a>
+									<a href="game.php?game_id={{pickupGame.game_id}}">{{pickupGame.game_title}}</a>
 								</h4>
 								<p>Recently, the US Federal government banned online casinos from operating in America by
 																										making it illegal to
@@ -76,38 +81,14 @@
 																										online casino networks</p>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<img src="https://steamcdn-a.akamaihd.net/steam/apps/535700/header.jpg" alt="" class="img-fluid">
-							<div class="single-defination">
-								<h4 class="mb-20">
-									<a href="game.php?game_id=535700">3D Chess</a>
-								</h4>
-								<p>Recently, the US Federal government banned online casinos from operating in America by
-																										making it illegal to
-																										transfer money to them through any US bank or payment system. As a result of this law,
-																										most of the popular
-																										online casino networks</p>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<img src="https://steamcdn-a.akamaihd.net/steam/apps/535736/header.jpg" alt="" class="img-fluid">
-							<div class="single-defination">
-								<h4 class="mb-20">Definition 03</h4>
-								<p>Recently, the US Federal government banned online casinos from operating in America by
-																										making it illegal to
-																										transfer money to them through any US bank or payment system. As a result of this law,
-																										most of the popular
-																										online casino networks</p>
-							</div>
-						</div>
+					{% endfor %}
+					
 					</div>
 				</div>
 
 				<div class="section-top-border">
 					<h3 class="mb-30">最近の投稿記事</h3>
 					{% for recentPost in recentPosts %}
-
-
 						<div class="row mb-10">
 							<div class="col-md-3">
 								<a href="post.php?post_id={{recentPost.post_id}}">

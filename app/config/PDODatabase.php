@@ -139,24 +139,24 @@ class PDODatabase
   public function setOrder($strOrder = '')
   {
     if ($strOrder !== '') {
-      $this->order = 'ORDER BY' . $strOrder;
+      $this->order = 'ORDER BY ' . $strOrder;
     }
   }
 
   public function setLimitOff($limit = '', $offset = '')
   {
     if ($limit !== "") {
-      $this->limit = "LIMIT" . $limit;
+      $this->limit = "LIMIT " . $limit;
     }
     if ($offset !== "") {
-      $this->offset = "OFFSET" . $offset;
+      $this->offset = "OFFSET " . $offset;
     }
   }
 
   public function setGroupBy($groupby)
   {
     if ($groupby !== "") {
-      $this->groupby = 'GROUP BY' . $groupby;
+      $this->groupby = 'GROUP BY ' . $groupby;
     }
   }
 

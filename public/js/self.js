@@ -136,10 +136,12 @@ $(function() {
         // いいね数を1増減させる
         console.log(data);
         if (data.updateLiked == 1) {
-          $(".like_text_" + post_id).text("いいねしたよ");
+          $(".heart_" + post_id).removeClass("far fa-heart");
+          $(".heart_" + post_id).addClass("fa fa-heart");
           $(".isLiked_" + post_id).val(data.updateLiked);
         } else {
-          $(".like_text_" + post_id).text("いいねしてない");
+          $(".heart_" + post_id).removeClass("fa fa-heart");
+          $(".heart_" + post_id).addClass("far fa-heart");
           $(".isLiked_" + post_id).val(data.updateLiked);
         }
         $("#liked_count_" + post_id).text(data.likedCount);

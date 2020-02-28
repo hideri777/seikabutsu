@@ -40,6 +40,12 @@ $commentdata = $post->getCommentsInfo($post_id);
 // いいねの状態取得
 if ($isLogin['isLogin']) {
   $isLiked = $post->getLikedState($_SESSION['user_id'], $post_id);
+  if(!empty($isLiked)) {
+    $isLikedState = $isLiked[0]['is_liked'];
+  } else {
+    $isLikedState = 'first';
+  }
+  $postData[0]['isLiked'] = $isLikedState;
 }
 // 対象のゲームの情報を取得
 $gameData = $game->getGameDetail($postData[0]['target_game_id']);

@@ -23,36 +23,35 @@
 		<link rel="stylesheet" href="css/gijgo.css">
 		<link rel="stylesheet" href="css/animate.css">
 		<link rel="stylesheet" href="css/slicknav.css">
-		<link
-		rel="stylesheet" href="css/style.css">
-	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://kit.fontawesome.com/0252130ac9.js" crossorigin="anonymous"></script>
+
+		<!-- <link rel="stylesheet" href="css/responsive.css"> -->
 	</head>
 
 	<body>
 		<!--[if lte IE 9]>
-						            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-						        <![endif]-->
+								            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+								        <![endif]-->
 		<!-- header-start -->
 		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
 		{% include "header.twig" with {'isLogin': isLogin} %}
 		<!-- header-end -->
 
-			<!-- bradcam_area  --> 
-			{# <div class="bradcam_area bradcam_bg_3"><div class="container">
-				<div class="row">
-					<div class="col-xl-12">
-						<div class="bradcam_text">
-							<h3>Single Blog</h3>
+		<!-- bradcam_area  -->
+		{# <div class="bradcam_area bradcam_bg_3"><div class="container">
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="bradcam_text">
+									<h3>Single Blog</h3>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div> #}
+				</div> #}
 		<!--/ bradcam_area  -->
 
-		<!--================Blog Area =================-->
-		<section class="blog_area single-post-area section-padding">
-			<input type="hidden" name="app_url" value="{{constant('App\\config\\Bootstrap::APP_URL')}}" id="app_url">
+			<!--================Blog Area =================--> <section class="blog_area single-post-area section-padding"><input type="hidden" name="app_url" value="{{constant('App\\config\\Bootstrap::APP_URL')}}" id="app_url">
 			<input type="hidden" name="entry_url" value="{{constant('APP\\config\\Bootstrap::ENTRY_URL')}}" id="entry_url">
 			<div class="container">
 				<div class="row">
@@ -67,7 +66,7 @@
 								<p class="excert">
 									このゲームは10年に一度の傑作と言われている。爽快なアクション、重厚長大なストーリー、それだけで一つのゲームができてしまうほどボリュームのあるミニゲーム。あの龍が如くの再ライトも言われた本作の続編が、満を持しての登場！
 								</p>
-								
+
 								<div class="quote-wrapper">
 									<div class="quotes">
 										このゲームは10年に一度の傑作と言われている。爽快なアクション、重厚長大なストーリー、それだけで一つのゲームができてしまうほどボリュームのあるミニゲーム。あの龍が如くの再ライトも言われた本作の続編が、満を持しての登場！
@@ -77,16 +76,17 @@
 						</div>
 						<div class="comments-area">
 							<h4>レビュー</h4>
-						<div class="row justify-content-md-end mx-auto mb-5">
-							{# <div class="boxed-btn4"><a href="edit.php?target_game_id={{gameData.game_id}}">レビューを書いてみる</a></div> #}
+							<div
+								class="row justify-content-md-end mx-auto mb-5">
+								{# <div class="boxed-btn4"><a href="edit.php?target_game_id={{gameData.game_id}}">レビューを書いてみる</a></div> #}
 								<input type="hidden" id="target_game_id" value="{{gameData.game_id}}">
-							  <input type="submit" name="create_review" value="レビューを書く" class="edit_start boxed-btn4">
-						</div>
+								<input type="submit" name="create_review" value="レビューを書く" class="edit_start boxed-btn4">
+							</div>
 
 							{# ゲームに対する投稿内容一覧 #}
 							<input type="hidden" name="login_user_id" id="login_user_id" value="{{login_user_id}}">
 							{% for postData in postDatas %}
-								<div class="comment-list border">
+								<div class="comment-list">
 									<div class="single-comment justify-content-between d-flex">
 										<div class="user justify-content-between d-flex">
 											<div class="thumb">
@@ -108,27 +108,31 @@
 														<input type="hidden" name="post_id" class="post_id" value="{{postData.post_id}}">
 														{% if isLogin.isLogin %}
 															{% if postData.isLiked == 1 %}
-																<p class="like_text_{{postData.post_id}}">いいねしたよ</p>
+																<button type="submit" id="{{postData.post_id}}" class="btn good_button">
+																	<i class="heart_{{postData.post_id}} fa fa-heart"></i>
+																</button>
 																<input type="hidden" class="isLiked_{{postData.post_id}}" value="{{postData.isLiked}}">
 															{% elseif postData.isLiked == 0 %}
-																<p class="like_text_{{postData.post_id}}">いいねしてない</p>
+																<button type="submit" id="{{postData.post_id}}" class="btn good_button">
+																	<i class="heart_{{postData.post_id}} far fa-heart"></i>
+																</button>
 																<input type="hidden" class="isLiked_{{postData.post_id}}" value="{{postData.isLiked}}">
 															{% elseif postData.isLiked == 'first' %}
-																<p class="like_text_{{postData.post_id}}">まだない</p>
+																<button type="submit" id="{{postData.post_id}}" class="btn good_button">
+																	<i class="heart_{{postData.post_id}} fa far-heart"></i>
+																</button>
 																<input type="hidden" class="isLiked_{{postData.post_id}}" value="{{postData.isLiked}}">
 															{% endif %}
-															<input type="button" value="いいね!" id="{{postData.post_id}}" class="good_button">
 														{% endif %}
-															<i class="fa fa-heart"></i>
 														<div id="liked_count_{{postData.post_id}}">{{postData.liked_count}}</div>
 													</div>
 													{% if isLogin.user_name == postData.user_name %}
 														<input type="hidden" id="get_post_id" value="{{postData.post_id}}">
-														<input type="button" value="編集する" name="edit" class="edit_start">
+														<input type="button" value="編集する" name="edit" class="btn-primary edit_start">
 													{% endif %}
-													<div class="reply-btn">
+													{# <div class="reply-btn">
 														<a href="post.php?post_id={{postData.post_id}}#comment_tag" class="btn-reply text-uppercase">コメントする</a>
-													</div>
+													</div> #}
 												</div>
 											</div>
 										</div>
@@ -152,8 +156,7 @@
 		<!--/ footer end  -->
 
 
-		<!-- JS here -->
-		<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+		<!-- JS here --><script src="js/vendor/modernizr-3.5.0.min.js"> </script>
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>

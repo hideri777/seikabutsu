@@ -72,7 +72,7 @@
 									</li>
 								</ul>
 								{% if isLogin.user_name == postData.user_name %}
-									<div class="row justify-content-xl-end">
+									<div class="row justify-content-xl-end mb-5">
 										<input type="button" value="編集する" name="edit" class="genric-btn success-border circle mr-3 edit_start">
 										<input type="button" value="削除する" id="delete_post" name="delete" class="genric-btn danger-border circle mr-3">
 									</div>
@@ -80,11 +80,7 @@
 								<p class="excert">
 									{{postData.body}}
 								</p>
-								<div class="quote-wrapper">
-									<div class="quotes">
-										{{postData.body}}
-									</div>
-								</div>
+							
 
 							</div>
 						</div>
@@ -105,7 +101,7 @@
 																<input type="hidden" class="isLiked_{{postData.post_id}}" value="{{postData.isLiked}}">
 															{% elseif postData.isLiked == 'first' %}
 																<button type="submit" id="{{postData.post_id}}" class="btn good_button">
-																	<i class="heart_{{postData.post_id}} fa far-heart"></i>
+																	<i class="heart_{{postData.post_id}} far fa-heart"></i>
 																</button>
 																<input type="hidden" class="isLiked_{{postData.post_id}}" value="{{postData.isLiked}}">
 															{% endif %}

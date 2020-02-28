@@ -56,7 +56,9 @@
 								<div class="row">
 									{% for gameData in listGameData %}
 										<div class="col-md-6">
+											<a href="game.php?game_id={{gameData.game_id}}">
 											<img src="https://steamcdn-a.akamaihd.net/steam/apps/{{gameData.game_id}}/header.jpg" alt="画像画像画像" class="img-fluid">
+											</a>
 											<div class="single-defination">
 												<h4 class="mb-20">
 													<a href="game.php?game_id={{gameData.game_id}}">{{gameData.game_title}}</a>

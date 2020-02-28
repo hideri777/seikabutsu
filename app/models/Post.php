@@ -19,7 +19,7 @@ class Post
   // 最近の投稿を取得する
   public function getRecentPost()
   {
-    $query = "SELECT p.post_id, p.title, p.body, p.created_date, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id ORDER BY p.created_date DESC LIMIT 5";
+    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.target_game_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id ORDER BY p.created_date DESC LIMIT 5";
 
     $res = $this->db->exeQuery($query);
 

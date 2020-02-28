@@ -24,14 +24,17 @@ $twig = new \Twig\Environment($loader, [
 // post_idを取得する
 $post_id = (isset($_GET['post_id']) === true && preg_match('/^\d+$/', $_GET['post_id']) === 1) ? $_GET['post_id'] : '';
 
-// item_idが取得できていない場合、商品一覧へ遷移させる
+// item_idが取得できていない場合、一覧へ遷移させる
 if ($post_id === '') {
   // headerでリダイレクト処理
   header('Location: index.php');
 }
 
 // 記事情報を取得する
+// 情報が取れなかった場合はトップページ
 $postData = $post->getPostDetail($post_id);
+if($postData[0] === null) header('Location: index.php');
+
 // コメント取得
 $commentdata = $post->getCommentsInfo($post_id);
 // いいねの状態取得

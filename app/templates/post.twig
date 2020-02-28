@@ -25,32 +25,26 @@
 		<link rel="stylesheet" href="css/slicknav.css">
 		<link
 		rel="stylesheet" href="css/style.css">
-	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
+		<!-- <link rel="stylesheet" href="css/responsive.css"> -->
 	</head>
 
 	<body>
 		<!--[if lte IE 9]>
-								            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-								        <![endif]-->
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+		<![endif]-->
+
 		<!-- header-start -->
 		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
 		{% include "header.twig" with {'isLogin': isLogin} %}
 		<!-- header-end -->
-
-		<!-- bradcam_area  -->
-		{# <div class="bradcam_area bradcam_bg_3">
-									<div class="container">
-										<div class="row">
-											<div class="col-xl-12">
-												<div class="bradcam_text">
-													<h3>Single Blog</h3>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> #}
-		<!--/ bradcam_area  --><!--================Blog Area =================--> <section class="blog_area single-post-area section-padding"><input type="hidden" name="app_url" value="{{constant('App\\config\\Bootstrap::APP_URL')}}" id="app_url">
+		
+		<!--================Blog Area =================-->
+		<section class="blog_area single-post-area section-padding">
+			<input type="hidden" name="app_url" value="{{constant('App\\config\\Bootstrap::APP_URL')}}" id="app_url">
 			<input type="hidden" name="entry_url" value="{{constant('APP\\config\\Bootstrap::ENTRY_URL')}}" id="entry_url">
+			<input type="hidden" id="login_user_id" value="{{postData.user_id}}">
+			<input type="hidden" id="get_post_id" value="{{postData.post_id}}">
+			<input type="hidden" id="target_game_id" value="{{gameData.game_id}}">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 posts-list">
@@ -74,8 +68,6 @@
 								</ul>
 								{% if isLogin.user_name == postData.user_name %}
 									<div class="row justify-content-xl-end">
-										<input type="hidden" id="target_game_id" value="{{gameData.game_id}}">
-										<input type="hidden" id="get_post_id" value="{{postData.post_id}}">
 										<input type="button" value="編集する" name="edit" class="genric-btn success-border circle mr-3 edit_start">
 										<input type="button" value="削除する" id="delete" name="delete" class="genric-btn danger-border circle mr-3">
 									</div>
@@ -99,89 +91,82 @@
 									</span>
 									4
 								</p>
-								<div class="col-sm-4 text-center my-2 my-sm-0">{# <img class="img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/{{gameData.game_id}}/header.jpg" alt=""> #}
-									{# <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> #}
+								<div class="col-sm-4 text-center my-2 my-sm-0">
+								{# <img class="img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/{{gameData.game_id}}/header.jpg" alt=""> #}
+								{# <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> #}
 								</div>
 
 							</div>
 						</div>
 
-						<div
-							class="comments-area">{# <h4>05 Comments</h4>
-																															<div class="comment-list">
-																																<div class="single-comment justify-content-between d-flex">
-																																	<div class="user justify-content-between d-flex">
-																																		<div class="thumb">
-																																			<img src="img/comment/comment_1.png" alt="">
-																																		</div>
-																																		<div class="desc">
-																																			<p class="comment">
-																																				Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-																																				                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-																																			</p>
-																																			<div class="d-flex justify-content-between">
-																																				<div class="d-flex align-items-center">
-																																					<h5>
-																																						<a href="#">Emilly Blunt</a>
-																																					</h5>
-																																					<p class="date">December 4, 2017 at 3:12 pm
-																																					</p>
-																																				</div>
-																																				<div class="reply-btn">
-																																					<a href="#" class="btn-reply text-uppercase">reply</a>
-																																				</div>
-																																			</div>
-																																		</div>
-																																	</div>
-																																</div>
-																															</div> #}
+						<div class="comments-area">
+							<h4>コメント</h4>
+
+							{% for comment in commentData %}
+							<div class="comment-list">
+								<div class="single-comment justify-content-between d-flex">
+									<div class="user justify-content-between d-flex">
+										<div class="thumb">
+											<img src="img/comment/comment_1.png" alt="">
+										</div>
+										<div class="desc">
+											<p class="comment">
+												{{comment.body | nl2br}}
+											</p>
+											<div class="d-flex justify-content-between">
+												<div class="d-flex align-items-center">
+													<h5>
+														<a href="#">{{comment.user_name}}</a>
+													</h5>
+													<p class="date">{{comment.created_date}}
+													</p>
+												</div>
+												<div class="reply-btn">
+													<a href="#" class="btn-reply text-uppercase">reply</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
 
 
 						</div>
-						<div class="comment-form">
-							<h4>Leave a Reply</h4>
-							<form class="form-contact comment_form" action="#" id="commentForm">
+						<div class="comment-form" id="comment_tag">
+							<h4>コメントする</h4>
+						
 								<div class="row">
 									<div class="col-12">
 										<div class="form-group">
-											<textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input class="form-control" name="name" id="name" type="text" placeholder="Name">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input class="form-control" name="email" id="email" type="email" placeholder="Email">
-										</div>
-									</div>
-									<div class="col-12">
-										<div class="form-group">
-											<input class="form-control" name="website" id="website" type="text" placeholder="Website">
+											<textarea class="form-control w-100" name="comment" id="comment_text" cols="30" rows="9" placeholder="コメントを書いてみる"></textarea>
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
-									<button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+									<input type="submit" id="send_comment" class="button button-contactForm btn_1 boxed-btn"></input>
 								</div>
-							</form>
+
 						</div>
 					</div>
+
+					{# 右側メニュー #}
 					<div class="col-lg-4">
 						{% include "main_right_menu.twig" %}
 					</div>
+					{# 右側メニュー #}
 				</div>
 			</div>
 		</section>
 		<!--================ Blog Area end =================-->
 
 		<!-- footer start -->
-		{% include "footer.twig" %}<!--/ footer end  -->
+		{% include "footer.twig" %}
+		<!--/ footer end  -->
 
 
-		<!-- JS here --><script src="js/vendor/modernizr-3.5.0.min.js"> </script>
+		<!-- JS here -->
+		<script src="js/vendor/modernizr-3.5.0.min.js"> </script>
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>

@@ -40,7 +40,8 @@ $(function() {
   $("#send_comment").click(function() {
     var user_id = $("#login_user_id").val();
     var comment_text = $("#comment_text").val();
-    var post_id = $("#post_id").val();
+    var post_id = $("#get_post_id").val();
+    
 
     $.ajax({
       url: entry_url + "/functions/commentProvider.php",
@@ -52,15 +53,15 @@ $(function() {
         post_id: post_id
       }
     }).then(
-      function(data) {
-        console.log(data);
-        $(".comment_area").append("<p>" + data.post_id + "</p>");
-        $(".comment_area").append("<p>" + data.user_id + "</p>");
-        $(".comment_area").append("<p>" + data.comment + "</p>");
-        $("#comment_text").val("");
-      },
+      function(datas) {
+        $(".comments-area").empty();
+        $(".comments-area").append("<h4>コメント</h4>");
+        datas.map((data) => $(".comments-area").append(
+          "<div class='comment-list'><div class='single-comment justify-content-between d-flex'><div class='user justify-content-between d-flex'><div class='thumb'><img src='img/comment/comment_1.png' alt=''></div><div class='desc'><p class='comment'>" + data.body.replace(/\n/g, '<br>') + "</p><div class='d-flex justify-content-between'><div class='d-flex align-items-center'><h5><a href='#'>" + data.user_name + "</a></h5><p class='date'>" + data.created_date + "</p></div><div class='reply-btn'><a href='#' class='btn-reply text-uppercase'>reply</a></div></div></div></div></div></div>"
+        ));
+},
       function() {
-        alert("特殊文字は入力できません");
+        alert("コメントが送れませんでした。");
       }
     );
   });

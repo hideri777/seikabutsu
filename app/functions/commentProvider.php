@@ -22,12 +22,13 @@ $table = 'comments';
 $post->insertComment($table, $user_id, $comment, $post_id);
 // TODO: selectでpost_idが一致するコメント全部拾ってjsに返す
 // 優先度は低め
+$res = $post->getCommentsInfo($post_id);
 
 // jsに返すデータ
-$response_arr = [
-  'user_id' => $user_id,
-  'comment' => $comment,
-  'post_id' => $post_id,
-];
+// $response_arr = [
+//   'user_id' => $user_id,
+//   'comment' => $comment,
+//   'post_id' => $post_id,
+// ];
 
-echo json_encode($response_arr);
+echo json_encode($res);

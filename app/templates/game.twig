@@ -97,7 +97,7 @@
 													<a href="post.php?post_id={{postData.post_id}}">
 														<h4>{{postData.title}}</h4>
 													</a>
-													{{postData.body}}
+													{{postData.body | nl2br}}
 												</p>
 												<div class="d-flex justify-content-between">
 													<div class="d-flex align-items-center">
@@ -127,7 +127,7 @@
 														<input type="button" value="編集する" name="edit" class="edit_start">
 													{% endif %}
 													<div class="reply-btn">
-														<a href="#" class="btn-reply text-uppercase">コメントする</a>
+														<a href="post.php?post_id={{postData.post_id}}#comment_tag" class="btn-reply text-uppercase">コメントする</a>
 													</div>
 												</div>
 											</div>

@@ -30,9 +30,6 @@
 	</head>
 
 	<body>
-		<!--[if lte IE 9]>
-								<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-								<![endif]-->
 
 		<!-- header-start -->
 		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
@@ -110,7 +107,8 @@
 														<span id="liked_count_{{postData.post_id}}">{{postData.liked_count}}</span>
 
 								</p>
-								<div class="col-sm-4 text-center my-2 my-sm-0">{# <img class="img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/{{gameData.game_id}}/header.jpg" alt=""> #}
+								<div class="col-sm-4 text-center my-2 my-sm-0">
+								{# <img class="img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/{{gameData.game_id}}/header.jpg" alt=""> #}
 									{# <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> #}
 								</div>
 
@@ -146,9 +144,6 @@
 															<input type="button" value="削除する" name="delete" id="{{comment.comment_id}}" class="delete_comment genric-btn danger-border radius">
 														</div>
 													{% endif %}
-													{# <div class="reply-btn">
-																																																				<a href="#" class="btn-reply text-uppercase">reply</a>
-																																																			</div> #}
 												</div>
 											</div>
 										</div>

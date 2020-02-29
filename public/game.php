@@ -37,7 +37,7 @@ $gameData = $game->getGameDetail($game_id);
 $postDatas = $post->getPostsInfo($game_id);
 
 // 対象のゲームに関連するコメント
-$comments = $post->getCommentsForGame($game_id);
+// $comments = $post->getCommentsForGame($game_id);
 
 $postDatasWithLiked = [];
 // 投稿に対するいいねの状態取得して配列に格納
@@ -66,5 +66,5 @@ if ($isLogin['isLogin']) {
 }
 $context['gameData'] = $gameData[0];
 $context['postDatas'] = $postDatasWithLiked;
-$context['comments'] = $comments;
+// $context['comments'] = $comments;
 echo $twig->render('game.twig', $context);

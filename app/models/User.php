@@ -19,7 +19,8 @@ class User
   {
     $hashPass = password_hash($dataArr['password'], PASSWORD_BCRYPT);
     $dataArr['password'] = $hashPass;
-    $res = $this->db->insert($table, $dataArr, 'regist_date');
+    $dataArr['regist_date'] = date('Y-m-d H:i:s');
+    $res = $this->db->insert($table, $dataArr);
     return $res;
   }
 

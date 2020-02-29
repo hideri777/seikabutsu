@@ -45,9 +45,7 @@ switch ($mode) {
     // エラーメッセージの配列作成
     $errArr = $common->errorCheck($dataArr);
     $err_check = $common->getErrorFlg();
-    // err_check = false ->エラーがありますよ！
-    // err_check = true ->エラーがないですよ！
-    // エラーなければconfirm.tpl あるとregist.tpl
+  
     $template = ($err_check === true) ? 'confirm.twig' : 'regist.twig';
     break;
 
@@ -68,7 +66,7 @@ switch ($mode) {
     $dataArr = $_POST;
     // ↓この情報はいらないので外しておく
     unset($dataArr['complete']);
-    // TODO: ユーザー名のかぶりがないか、アドレスすでに使われていないかなど確認
+
     $res = $user->registUser('users', $dataArr);
 
     if ($res === true) {
@@ -113,6 +111,5 @@ $context['dayArr'] = $dayArr;
 $context['dataArr'] = $dataArr;
 $context['errArr'] = $errArr;
 
-// $template = $twig->loadTemplate($template);
 $template = $twig->load($template);
 $template->display($context);

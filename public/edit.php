@@ -2,9 +2,8 @@
 
 namespace seikabutsu;
 
+// TODO できれば
 /**
- * //TODO: 手動でedit.phpにきたときにチェックできてない
- * //TODO: 余裕あれば
  * https://papadays.com/post/7fh0bicxoctivnraohvxax/
  * 編集中にページ遷移しようとするときには確認のアラーム
  */
@@ -65,6 +64,7 @@ $insertData = [
   'title' => $title,
   'body' => $body,
   'user_id' => $_SESSION['user_id'],
+  'created_date' => date('Y-m-d H:i:s'),
   'target_game_id' => $target_game_id
 ];
 
@@ -80,7 +80,7 @@ if (isset($_POST['send'])) {
   if ($isUpdate) {
     $db->update($table, $updateData, 'post_id = ?', [$post_id]);
   } else {
-    $db->insert($table, $insertData, 'created_date');
+    $db->insert($table, $insertData);
   }
   $isComplete = true;
 }

@@ -54,7 +54,6 @@ class PDODatabase
     }
     // 投げられた例外クラスを受け取る
     catch (\PDOException $e) {
-      // TODO: 接続失敗時にはユーザーに適切にメッセージを見せる
       var_dump($e->getMessage());
       exit();
     }
@@ -63,19 +62,15 @@ class PDODatabase
   }
 
 
-
+  // ただSQLを発行するだけ
   public function setQuery($query = '', $arrVal = [])
   {
-    // stmt プリペアドステートメントの略？
-    // prepateはパラメータを自動的にエスケープしてくれる
-    // 値が固定でないSQLを使うとときにprepareを使うといい
-    // 今回なら$queryのところに?があって
-    // arrValで実際の値を入れてexecuteで実行
     $stmt = $this->dbh->prepare($query);
     $stmt->execute($arrVal);
   }
 
   // 直接SQLをカスタマイズして実行した結果を返す
+  // いろいろテーブル連結したいときなど
   public function exeQuery($query, $arrVal = [])
   {
     $this->sqlLogInfo($query, $arrVal);
@@ -134,8 +129,6 @@ class PDODatabase
     return intval($result['NUM']);
   }
 
-  // もとが$orderになっていたが、、、
-  // public function setOrder($order = '')
   public function setOrder($strOrder = '')
   {
     if ($strOrder !== '') {
@@ -159,7 +152,6 @@ class PDODatabase
       $this->groupby = 'GROUP BY ' . $groupby;
     }
   }
-
 
 
   // selectかcountのときの挙動をコントロール
@@ -189,8 +181,7 @@ class PDODatabase
     return $sql;
   }
 
-  // TODO: timeColumn消してPHP側でdate関数使って現在時刻
-  public function insert($table, $insData = [], $timeColumn = '')
+  public function insert($table, $insData = [])
   {
     $insDataKey = [];
     $insDataVal = [];
@@ -212,7 +203,6 @@ class PDODatabase
 
     // ex. item_idを追加するのであれば
     // INSERT INTO  cart  (customer_no,item_id) VALUES (?,?) →これを?に入れる [1,1]
-    if ($timeColumn === '') {
       $sql = "INSERT INTO "
         . $table
         . " ("
@@ -220,17 +210,7 @@ class PDODatabase
         . ") VALUES ("
         . $preSt
         . ") ";
-    } else {
-      $sql = "INSERT INTO "
-        . $table
-        . " ("
-        . $columns
-        . " , " . $timeColumn
-        . ") VALUES ("
-        . $preSt
-        . ", NOW() "
-        . ") ";
-    }
+    
 
     $this->sqlLogInfo($sql, $insDataVal);
 

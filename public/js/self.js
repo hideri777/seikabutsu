@@ -2,6 +2,7 @@ $(function() {
   var app_url = $("#app_url").val();
   var entry_url = $("#entry_url").val();
 
+  // listのページ現在地
   var page = $("#page-number").val();
   if($("#page-tag-" + page).val() == $("#page-number").val()) {
     $("#page-item-" + page).addClass("active");

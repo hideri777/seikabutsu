@@ -23,12 +23,13 @@
 		<link rel="stylesheet" href="css/gijgo.css">
 		<link rel="stylesheet" href="css/animate.css">
 		<link rel="stylesheet" href="css/slicknav.css">
-		<link
-		rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://kit.fontawesome.com/0252130ac9.js" crossorigin="anonymous"></script>
 	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
 	</head>
 
 	<body>
+
 		<!-- header-start -->
 		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
 		{% include "header.twig" with {'isLogin': isLogin} %}
@@ -154,7 +155,8 @@
 		<!-- End Align Area -->
 
 		<!-- footer start -->
-		{% include "footer.twig" %}<!--/ footer end  -->
+		{% include "footer.twig" %}
+		<!--/ footer end  -->
 
 		<!-- JS here --><script src="js/vendor/modernizr-3.5.0.min.js"> </script>
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
@@ -183,6 +185,7 @@
 		<script src="js/mail-script.js"></script>
 
 		<script src="js/main.js"></script>
+		<script src="js/self.js"></script>
 
 	</body>
 </html>

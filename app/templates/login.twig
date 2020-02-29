@@ -25,36 +25,18 @@
 		<link rel="stylesheet" href="css/slick.css">
 		<link rel="stylesheet" href="css/slicknav.css">
 
-		<link
-		rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://kit.fontawesome.com/0252130ac9.js" crossorigin="anonymous"></script>
 	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
 	</head>
 
 	<body>
-		<!--[if lte IE 9]>
-				            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-				        <![endif]-->
+
 
 		<!-- header-start -->
 		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
 		{% include "header.twig" with {'isLogin': isLogin} %}
 		<!-- header-end -->
-
-		<!-- bradcam_area  -->
-		{# <div class="bradcam_area bradcam_bg_3">
-				        <div class="container">
-				            <div class="row">
-				                <div class="col-xl-12">
-				                    <div class="bradcam_text">
-				                        <h3>Login Now</h3>
-				                    </div>
-				                </div>
-				            </div>
-				        </div>
-				    </div> #}
-
-
-		<!--/ bradcam_area  -->
 
 			<!-- apply_form_area --> <div class="apply_form_area"><div class="container">
 				<div class="row justify-content-center">
@@ -102,7 +84,8 @@
 		<!--/ footer end  -->
 
 		<!-- link that opens popup -->
-		<!-- JS here --><script src="js/vendor/modernizr-3.5.0.min.js"> </script>
+		<!-- JS here -->
+		<script src="js/vendor/modernizr-3.5.0.min.js"> </script>
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -132,6 +115,7 @@
 
 
 		<script src="js/main.js"></script>
+		<script src="js/self.js"></script>
 
 	</body>
 

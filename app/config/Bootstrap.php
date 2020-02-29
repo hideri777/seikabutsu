@@ -25,6 +25,7 @@ class Bootstrap
   const APP_URL = 'http://localhost/seikabutsu/public/';
   const ENTRY_URL = 'http://localhost/seikabutsu/app/';
 
+  // TODO: SESSIONで扱う情報増えてきたらまとめてSession.phpを作る
   public static function returnLoginState() {
     session_start();
     $isLogin = isset($_SESSION['user_id']) ? true : false;

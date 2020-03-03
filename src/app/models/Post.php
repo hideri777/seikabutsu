@@ -9,7 +9,7 @@ use App\config\PDODatabase;
 class Post
 {
   // 初期化処理
-  public ?PDODatabase $db = null;
+  public $db = null;
 
   public function __construct($db)
   {

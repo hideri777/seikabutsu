@@ -49,8 +49,8 @@ class PDODatabase
           PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
           // デフォルトで連想配列
           PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]
-      );
+          ]
+        );
     }
     // 投げられた例外クラスを受け取る
     catch (\PDOException $e) {

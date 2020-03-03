@@ -23,7 +23,7 @@ if (!isset($_SESSION['games'])) {
 
 
 // トップページで表示する分
-for($i = 0; $i < 6; $i++) {
+for ($i = 0; $i < 6; $i++) {
   $topPickupGames[] = $_SESSION['pickupGames'][$i];
   $topNewGames[] = $_SESSION['newGames'][$i];
   $topPopularGames[] = $_SESSION['popularGames'][$i];
@@ -34,7 +34,7 @@ for($i = 0; $i < 6; $i++) {
 $loader = new \Twig\Loader\FilesystemLoader(Bootstrap::TEMPLATE_DIR);
 $twig = new \Twig\Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
-]); 
+]);
 
 // 直近の10件の投稿を取得する
 $recentPosts = $post->getRecentPost();

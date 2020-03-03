@@ -1,4 +1,5 @@
 <?php
+
 namespace App\config;
 
 /**
@@ -9,27 +10,28 @@ namespace App\config;
 
 class Bootstrap
 {
-  const DB_HOST = 'localhost';
-  const DB_NAME = 'seikabutsu_db';
-  const DB_USER = 'seikabutsu_user';
-  const DB_PASS = 'seikabutsu_pass';
+  const DB_HOST = 'mysql';
+  const DB_NAME = 'gamelog_db';
+  const DB_USER = 'gamelog_user';
+  const DB_PASS = "gamelog_pass";
 
-  const APP_DIR = '/Applications/XAMPP/xamppfiles/htdocs/seikabutsu/';
+  const APP_DIR = '/var/www/html/';
   const TEMPLATE_DIR = self::APP_DIR . 'app/templates/';
 
   // キャッシュ、前回分のデータを利用して読み込み高速化する
   // TODO: 完成後false外す falseで利用しない
   const CACHE_DIR = false;
-  // const CACHE_DIR = self::APP_DIR . 'app/templates_c/';
+  // const CACHE_DIR = self::APP_DIR . 'app/logs/templates_c';
 
-  const APP_URL = 'http://localhost/seikabutsu/public/';
-  const ENTRY_URL = 'http://localhost/seikabutsu/app/';
+  // 外部に公開されるルートフォルダ
+  const APP_URL = 'http://localhost/public/';
 
   // TODO: SESSIONで扱う情報増えてきたらまとめてSession.phpを作る
-  public static function returnLoginState() {
+  public static function returnLoginState()
+  {
     session_start();
     $isLogin = isset($_SESSION['user_id']) ? true : false;
-    if($isLogin) {
+    if ($isLogin) {
       $user_id = $_SESSION['user_id'];
       $user_name = $_SESSION['user_name'];
     } else {

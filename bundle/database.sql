@@ -2,7 +2,7 @@
 -- https://teratail.com/questions/106894
 
 CREATE DATABASE gamelog_db DEFAULT CHARACTER SET utf8;
-GRANT ALL PRIVILEGES ON gamelog_db.* TO gamelog_user@'172.21.0.4' IDENTIFIED BY 'gamelog_pass' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON gamelog_db.* TO gamelog_user@'%' IDENTIFIED BY 'gamelog_pass' WITH GRANT OPTION;
 
 USE gamelog_db;
 

@@ -1,10 +1,10 @@
 $(function() {
+  var public_url = $("#public_url").val();
   var app_url = $("#app_url").val();
-  var entry_url = $("#entry_url").val();
 
   // listのページ現在地
   var page = $("#page-number").val();
-  if($("#page-tag-" + page).val() == $("#page-number").val()) {
+  if ($("#page-tag-" + page).val() == $("#page-number").val()) {
     $("#page-item-" + page).addClass("active");
   }
 
@@ -13,7 +13,7 @@ $(function() {
     var target_game_id = $("#target_game_id").val();
     var post_id = $("#get_post_id").val();
     location.href =
-      app_url +
+      public_url +
       "edit.php?target_game_id=" +
       target_game_id +
       "&post_id=" +
@@ -30,7 +30,7 @@ $(function() {
     } else {
       /*OKの時の処理 */
       $.ajax({
-        url: entry_url + "/functions/deletePost.php",
+        url: app_url + "/functions/deletePost.php",
         type: "post",
         data: {
           post_id: post_id
@@ -38,7 +38,7 @@ $(function() {
       }).then(
         function() {
           alert("削除しました");
-          location.href = app_url + "game.php?game_id=" + target_game_id;
+          location.href = public_url + "game.php?game_id=" + target_game_id;
         },
         function() {
           alert("削除に失敗しました。再度お試しください");
@@ -56,7 +56,7 @@ $(function() {
     } else {
       /*OKの時の処理 */
       $.ajax({
-        url: entry_url + "/functions/deleteComment.php",
+        url: app_url + "/functions/deleteComment.php",
         type: "post",
         data: {
           comment_id: comment_id
@@ -79,7 +79,7 @@ $(function() {
     var post_id = $("#get_post_id").val();
 
     $.ajax({
-      url: entry_url + "/functions/commentProvider.php",
+      url: app_url + "/functions/commentProvider.php",
       type: "post",
       dataType: "json",
       data: {
@@ -123,7 +123,7 @@ $(function() {
     }
 
     $.ajax({
-      url: entry_url + "/functions/likedProvider.php",
+      url: app_url + "/functions/likedProvider.php",
       type: "post",
       dataType: "json",
       data: {

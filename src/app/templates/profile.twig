@@ -59,46 +59,50 @@
 						{# 左側 #}
 						<div class="col-lg-8 col-md-8">
 							<h3 class="mb-30">{{userInfo.user_name}}さんのプロフィール</h3>
-							<form action="#">
-								<div class="bg-light border p-3">
-									<p class="text-center">現在のユーザー名</p>
-									<p class="text-center">{{userInfo.user_name}}</p>
-									<p class="text-center">新しいユーザー名</p>
-									<input class="d-block mx-auto" type="text" size="30" name=""><br>
-									<input class="boxed-btn4 d-block mx-auto" type="submit" value="ユーザー名を変更する">
-								</div>
-								<div class="bg-light border p-3 mt-10">
-									<p class="text-center">現在のメールアドレス</p>
-									<p class="text-center">{{userInfo.email}}</p>
-									<p class="text-center">新しいメールアドレス</p>
-									<input class="d-block mx-auto" type="mail" size="30" name=""><br>
-									<input class="boxed-btn4 d-block mx-auto" type="submit" value="メールアドレスを変更する">
-								</div>
-								<div class="bg-light border p-3 mt-10">
-									<p class="" id="profile-img">現在のプロフィール画像</p>
-									<img class="d-flex mx-auto mb-3" src="./img/profile/default.png" alt="">
-									<div id="drop_zone" class="d-flex align-items-center">プロフィール画像をドロップ</div>
-									<output id="list"></output>
-									<form id="my_form" enctype="multipart/form-data">
-										<input type="file" class="d-block mx-auto" style="display:inline" name="upload_file">
-										<br>
-										<button type="button" class="boxed-btn4 d-block mx-auto" onclick="file_upload()">画像を変更する</button>
-									</form>
-								</div>
-								<div class="bg-light border p-3 mt-10">
-									<p class="text-center">生年月日</p>
-									<p class="text-center">{{userInfo.year}}年{{userInfo.month}}月{{userInfo.day}}日</p>
-								</div>
-								<div class="bg-light border p-3 mt-10">
-									<p class="text-center">現在のパスワード</p>
-									<input class="d-block mx-auto" type="password" size="30" name=""><br>
-									<p class="text-center">新しいパスワード</p>
-									<input class="d-block mx-auto" type="password" size="30" name=""><br>
-									<input class="boxed-btn4 d-block mx-auto" type="submit" value="パスワードを変更する">
-								</div>
-							</form>
+
+							<div class="bg-light border p-3">
+								<p class="text-center">現在のユーザー名</p>
+								<p class="text-center">{{userInfo.user_name}}</p>
+								<p class="text-center">新しいユーザー名</p>
+								<input class="d-block mx-auto" type="text" size="30" name=""><br>
+								<input class="boxed-btn4 d-block mx-auto" type="submit" value="ユーザー名を変更する">
+							</div>
+
+							<div class="bg-light border p-3 mt-10">
+								<p class="text-center">現在のメールアドレス</p>
+								<p class="text-center">{{userInfo.email}}</p>
+								<p class="text-center">新しいメールアドレス</p>
+								<input class="d-block mx-auto" type="mail" size="30" name=""><br>
+								<input class="boxed-btn4 d-block mx-auto" type="submit" value="メールアドレスを変更する">
+							</div>
+
+							<div class="bg-light border p-3 mt-10">
+								<form action="profile.php" method="post" enctype="multipart/form-data">
+									<p class="text-center">プロフィール画像</p>
+									<br>
+									<img class="d-block mx-auto mb-3" src="./img/profile/{{userInfo.image}}" alt="プロフィール画像">
+									<input class="d-block mx-auto mb-3" type="file" name="image" value="ファイルを選択">
+									<input class="d-block mx-auto boxed-btn4" name="sendImage" type="submit" value="プロフィール画像を変更する">
+								</form>
+								<div>{{errMsg}}</div>
+							</div>
+
+
+							<div class="bg-light border p-3 mt-10">
+								<p class="text-center">生年月日</p>
+								<p class="text-center">{{userInfo.year}}年{{userInfo.month}}月{{userInfo.day}}日</p>
+							</div>
+
+							<div class="bg-light border p-3 mt-10">
+								<p class="text-center">現在のパスワード</p>
+								<input class="d-block mx-auto" type="password" size="30" name=""><br>
+								<p class="text-center">新しいパスワード</p>
+								<input class="d-block mx-auto" type="password" size="30" name=""><br>
+								<input class="boxed-btn4 d-block mx-auto" type="submit" value="パスワードを変更する">
+							</div>
+
 							<form action="profile.php" method="post">
-								<input type="submit" class="boxed-btn4 d-block mt-10" value="ログアウト" name="send">
+								<input type="submit" class="boxed-btn4 d-block mt-10" value="ログアウト" name="logout">
 							</form>
 						</div>
 						{# 右側のエリア #}
@@ -110,6 +114,7 @@
 			</div>
 		</div>
 		<!-- End Align Area -->
+
 
 		<!-- footer start -->
 		{% include "footer.twig" %}<!--/ footer end  -->
@@ -142,37 +147,6 @@
 
 		<script src="js/main.js"></script>
 		<script src="js/self.js"></script>
-
-		<!-- 画像のアップロード -->
-		<script>
-		const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
-			function handleFileSelect(evt) {
-evt.stopPropagation(); // イベントの伝播を止める
-evt.preventDefault();
-
-files = evt.dataTransfer.files;
-// FileList object
-
-// 必要なFile Objectのプロパティ
-var output = [];
-for (var i = 0, f; f = files[i]; i++) {
-output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ', f.size, 'bytes, lastmodified: ', f.lastModifiedDate.toLocaleDateString(), '</li>');
-}
-document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-}
-
-function handleDragOver(evt) {
-evt.stopPropagation();
-evt.preventDefault();
-evt.dataTransfer.dropEffect = 'copy';
-}
-
-// イベントリスナーの設定
-var dropZone = document.getElementById('drop_zone');
-dropZone.addEventListener('dragover', handleDragOver, false);
-dropZone.addEventListener('drop', handleFileSelect, false);
-		</script>
 
 	</body>
 </html>

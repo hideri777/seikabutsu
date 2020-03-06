@@ -36,8 +36,10 @@
 		{% include "header.twig" with {'isLogin': isLogin} %}
 		<!-- header-end -->
 
-			<!--================Blog Area =================--> <section class="blog_area single-post-area section-padding"><input type="hidden" name="app_url" value="{{constant('App\\config\\Bootstrap::APP_URL')}}" id="app_url">
-			<input type="hidden" name="entry_url" value="{{constant('APP\\config\\Bootstrap::ENTRY_URL')}}" id="entry_url">
+			<!--================Blog Area =================--> 
+			<section class="blog_area single-post-area section-padding">
+			<input type="hidden" name="public_url" value="{{constant('App\\config\\Bootstrap::PUBLIC_URL')}}" id="public_url">
+			<input type="hidden" name="app_url" value="{{constant('APP\\config\\Bootstrap::APP_URL')}}" id="app_url">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 posts-list">

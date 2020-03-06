@@ -81,7 +81,7 @@ switch ($mode) {
         exit();
       } else {
         // ログイン処理が失敗した場合はログインページへ
-        header('Location: ' . Bootstrap::APP_URL . 'login.php');
+        header('Location: ' . Bootstrap::PUBLIC_URL . 'login.php');
       }
     } else {
       // 登録失敗時は登録画面に戻る
@@ -95,7 +95,7 @@ switch ($mode) {
     break;
   default:
     // 戻るボタンや再読み込みの場合は再度登録ページに
-    header('Location: ' . Bootstrap::APP_URL . 'regist.php');
+    header('Location: ' . Bootstrap::PUBLIC_URL . 'regist.php');
     break;
 }
 

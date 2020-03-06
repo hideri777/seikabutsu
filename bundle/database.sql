@@ -32,7 +32,7 @@ CREATE TABLE users (
   user_name varchar(255) not null,
   email varchar(255) not null,
   password varchar(255) not null,
-  image varchar(20),
+  image varchar(255) not null DEFAULT default.png,
   year varchar(4) not null,
   month varchar(2) not null,
   day varchar(2) not null,
@@ -42,6 +42,7 @@ CREATE TABLE users (
   delete_flg tinyint(1) unsigned not null default 0,
   primary key (user_id)
 );
+
 
 -- 投稿テーブル
 -- 投稿されたレビューなど

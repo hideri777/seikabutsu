@@ -23,8 +23,11 @@ class Bootstrap
   const CACHE_DIR = false;
   // const CACHE_DIR = self::APP_DIR . 'app/logs/templates_c';
 
-  // 外部に公開されるルートフォルダ
-  const APP_URL = 'http://localhost/public/';
+  // 外部に公開されるディレクトリ
+  const PUBLIC_URL = 'http://localhost/public/';
+  // アプリの中身のディレクトリ
+  const APP_URL = 'http://localhost/app/';
+
 
   // TODO: SESSIONで扱う情報増えてきたらまとめてSession.phpを作る
   public static function returnLoginState()

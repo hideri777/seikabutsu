@@ -37,8 +37,9 @@
 		<!-- header-end -->
 
 		<!--================Blog Area =================-->
-			<section class="blog_area single-post-area section-padding"> <input type="hidden" name="app_url" value="{{constant('App\\config\\Bootstrap::APP_URL')}}" id="app_url">
-			<input type="hidden" name="entry_url" value="{{constant('APP\\config\\Bootstrap::ENTRY_URL')}}" id="entry_url">
+			<section class="blog_area single-post-area section-padding"> 
+			<input type="hidden" name="public_url" value="{{constant('App\\config\\Bootstrap::PUBLIC_URL')}}" id="public_url">
+			<input type="hidden" name="app_url" value="{{constant('APP\\config\\Bootstrap::APP_URL')}}" id="app_url">
 			<input type="hidden" id="login_user_id" value="{{isLogin.user_id}}">
 			<input type="hidden" id="get_post_id" value="{{postData.post_id}}">
 			<input type="hidden" id="target_game_id" value="{{gameData.game_id}}">

@@ -1,0 +1,13 @@
+#profile-img {
+  /* height: 80px; */
+  /* width: 80px; */
+}
+
+#drop_zone {
+  width: 80%;
+  height: 100px;
+  color: grey;
+  border: 1px dotted black;
+  border-radius: 1rem;
+  margin: auto;
+}

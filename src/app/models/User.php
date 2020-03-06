@@ -50,4 +50,6 @@ class User
     $user = $this->db->select($table, $column, $where, $arrVal);
     return $user;
   }
+
+  
 }

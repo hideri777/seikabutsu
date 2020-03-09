@@ -1,13 +1,35 @@
-#profile-img {
-  /* height: 80px; */
-  /* width: 80px; */
+.user-wrapper {
+  background-color: #F8F9FA;
+  min-width: 650px;
 }
 
-#drop_zone {
-  width: 80%;
-  height: 100px;
-  color: grey;
-  border: 1px dotted black;
-  border-radius: 1rem;
-  margin: auto;
+.user-prof {
+  display: inline-block;
+  width: 84px;
+}
+
+.user-info {
+  display: inline-block;
+  vertical-align: top;
+  width: 85%;
+}
+
+.user-shelf {
+
+}
+.user-activity, .user-follow {
+  display: inline-block;
+}
+.user-activity li, .user-follow li {
+  display: inline-block;
+  vertical-align: middle;
+  /* width: 65px; */
+}
+.user-activity dl, .user-follow dl {
+  text-align: center;
+}
+.user-activity dt, .user-follow dt {
+  font-size: 11px;
+    color: #646464;
+    margin-bottom: 5px;
 }

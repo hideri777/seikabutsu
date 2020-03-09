@@ -19,34 +19,18 @@ $twig = new \Twig\Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
 
-$errMsg = '';
+// user_idを取得する
+$user_id = (isset($_GET['user_id']) === true && preg_match('/^\d+$/', $_GET['user_id']) === 1) ? $_GET['user_id'] : '';
 
-if (isset($_POST['sendImage'])) {
-  // 簡易版で検査
-  if ($_FILES['image']['size'] !== 0) {
-    $file_name = $_FILES['image']['name'];
-    $update_name = time() . $file_name;
-    var_dump($update_name);
-    
-    $res = $db->update('users', ['image' => $update_name], 'user_id = ?', [$_SESSION['user_id']]);
-
-    if ($res === true) {
-      move_uploaded_file($_FILES['image']['tmp_name'], './img/profile/' . $update_name);
-    }
-  } else {
-    $errMsg = '画像をアップロードしてください';
-  }
-}
-
-if (isset($_POST['logout'])) {
-  session_unset();
+// user_idが取得できていない場合、一覧へ遷移させる
+if ($user_id === '') {
+  // headerでリダイレクト処理
   header('Location: index.php');
 }
 
-$userInfo = $user->getUserInfo($_SESSION['user_id']);
+$userInfo = $user->getUserInfo($user_id);
 
 $context = [];
 $context['isLogin'] = $isLogin;
 $context['userInfo'] = $userInfo[0];
-$context['errMsg'] = $errMsg;
 echo $twig->render('profile.twig', $context);

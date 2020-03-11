@@ -93,7 +93,6 @@ CREATE TABLE rates (
   primary key (rate_id)
 );
 
-
 -- いいねテーブル
 -- 誰が(user_id)、どの投稿に(post_id)
 -- いいねしたのか判定する
@@ -105,3 +104,11 @@ CREATE TABLE liked (
   primary key (liked_id)
 );
 
+-- ユーザーの関連テーブル
+-- フォロー、フォロワーの管理
+CREATE TABLE user_relations (
+  user_relation_id int unsigned not null auto_increment,
+  following_id int not null,
+  followed_id int not null,
+  primary key (user_relation_id)
+);

@@ -2,20 +2,39 @@
   background-color: #F8F9FA;
   min-width: 650px;
 }
-
 .user-prof {
   display: inline-block;
   width: 84px;
 }
+.user-social .follow-btn {
+  color: #4ea6cc;
+  background: #fff !important;
+  border: solid 1px #4ea6cc;
+  border-radius: 5%;
+  padding: 5px;
+}
+
 
 .user-info {
   display: inline-block;
   vertical-align: top;
   width: 85%;
+  padding-left: 30px;
 }
-
-.user-shelf {
-
+.user-prof .prof-img-m {
+  border-radius: 50%;
+}
+.user-info .user-shelf h1 {
+    margin-bottom: 5px;
+    font-weight: bold;
+    word-wrap: normal;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }
 .user-activity, .user-follow {
   display: inline-block;
@@ -23,6 +42,7 @@
 .user-activity li, .user-follow li {
   display: inline-block;
   vertical-align: middle;
+  margin-right: 10px;
   /* width: 65px; */
 }
 .user-activity dl, .user-follow dl {

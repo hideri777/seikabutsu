@@ -13,6 +13,7 @@ CREATE TABLE games (
   game_title varchar(255) not null,
   primary key (game_id)
 );
+ALTER TABLE games ADD rate_score decimal DEFAULT 0.0;
 
 -- https://qiita.com/nanaco/items/78680e241a2202bb00ab
 -- ↑一旦これでローカルのcsvをdockerのmysqlにコピー
@@ -80,6 +81,18 @@ CREATE TABLE bookmark (
   game_id int unsigned not null,
   primary key (bookmark_id)
 );
+
+-- レーティングテーブル
+-- 誰が(user_id)、どのゲームを(game_id)
+-- 評価したか
+CREATE TABLE rates (
+  rate_id int unsigned not null auto_increment,
+  score int unsigned not null,
+  user_id int unsigned not null,
+  game_id int unsigned not null,
+  primary key (rate_id)
+);
+
 
 -- いいねテーブル
 -- 誰が(user_id)、どの投稿に(post_id)

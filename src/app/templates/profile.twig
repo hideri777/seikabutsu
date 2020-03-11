@@ -57,12 +57,13 @@
 					<div
 						class="row">
 						{# 左側 #}
-						<div class="col-lg-8 col-md-8">
+						<div
+							class="col-lg-8 col-md-8">
 
 							{# ユーザーの情報欄------------------------ #}
 							<div class="user-wrapper clearFix">
 								<div class="user-prof">
-									<div class="user-icon">
+									<div class="user-icon mb-3">
 										<a href="/users/nakaizawa">
 											<img src="./img/profile/{{userInfo.image}}" class="prof-img-m" width="84" height="84" alt="ユーザー">
 										</a>
@@ -72,8 +73,7 @@
 										<div class="user-follow-btn">
 											<div class="follow-area" data-account="nakaizawa">
 												<a href="#" class="follow-btn">
-													<i class="fa fa-plus"></i>
-													フォローする</a>
+													フォロー</a>
 											</div>
 										</div>
 										{# TODO jsでフォロー機能 #}
@@ -94,7 +94,7 @@
 									<ul class="user-activity">
 										<li>
 											<dl>
-												<dt>お気に入り</dt>
+												<dt>お気に入りゲーム</dt>
 												<dd>
 													<a href="/users/nakaizawa">8,160</a>
 												</dd>
@@ -110,7 +110,7 @@
 										</li>
 										<li>
 											<dl>
-												<dt>いいね！</dt>
+												<dt>いいねしたレビュー</dt>
 												<dd>
 													<a href="/users/nakaizawa?reviewed=1">8,160</a>
 												</dd>
@@ -151,7 +151,30 @@
 						</div>
 					</div>
 				</div>
-			</body>
-		</html>
+			</div>
+		</div><!-- End Align Area --><!-- footer start -->{% include "footer.twig" %}<!--/ footer end  --><!-- JS here --><script src="js/vendor/modernizr-3.5.0.min.js"> </script>
+		<script src="js/vendor/jquery-1.12.4.min.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/isotope.pkgd.min.js"></script>
+		<script src="js/ajax-form.js"></script>
+		<script src="js/waypoints.min.js"></script>
+		<script src="js/jquery.counterup.min.js"></script>
+		<script src="js/imagesloaded.pkgd.min.js"></script>
+		<script src="js/scrollIt.js"></script>
+		<script src="js/jquery.scrollUp.min.js"></script>
+		<script src="js/wow.min.js"></script>
+		<script src="js/nice-select.min.js"></script>
+		<script src="js/jquery.slicknav.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/gijgo.min.js"></script><!--contact js--><script src="js/contact.js"></script>
+		<script src="js/jquery.ajaxchimp.min.js"></script>
+		<script src="js/jquery.form.js"></script>
+		<script src="js/jquery.validate.min.js"></script>
+		<script src="js/mail-script.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/self.js"></script>
 	</body>
-</html></div></div><!-- End Align Area --><!-- footer start -->{% include "footer.twig" %}<!--/ footer end  --><!-- JS here --><script src="js/vendor/modernizr-3.5.0.min.js"> </script><script src="js/vendor/jquery-1.12.4.min.js"></script><script src="js/popper.min.js"></script><script src="js/bootstrap.min.js"></script><script src="js/owl.carousel.min.js"></script><script src="js/isotope.pkgd.min.js"></script><script src="js/ajax-form.js"></script><script src="js/waypoints.min.js"></script><script src="js/jquery.counterup.min.js"></script><script src="js/imagesloaded.pkgd.min.js"></script><script src="js/scrollIt.js"></script><script src="js/jquery.scrollUp.min.js"></script><script src="js/wow.min.js"></script><script src="js/nice-select.min.js"></script><script src="js/jquery.slicknav.min.js"></script><script src="js/jquery.magnific-popup.min.js"></script><script src="js/plugins.js"></script><script src="js/gijgo.min.js"></script><!--contact js--><script src="js/contact.js"></script><script src="js/jquery.ajaxchimp.min.js"></script><script src="js/jquery.form.js"></script><script src="js/jquery.validate.min.js"></script><script src="js/mail-script.js"></script><script src="js/main.js"></script><script src="js/self.js"></script></body></html>
+</html>

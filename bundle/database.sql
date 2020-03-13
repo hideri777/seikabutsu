@@ -75,12 +75,12 @@ CREATE TABLE comments (
 -- ブックマークテーブル
 -- 誰が(user_id)、どのゲームを(game_id)
 -- ブックマークしたのか判定する
-CREATE TABLE bookmark (
-  bookmark_id int unsigned not null auto_increment,
-  user_id int unsigned not null,
-  game_id int unsigned not null,
-  primary key (bookmark_id)
-);
+-- CREATE TABLE bookmark (
+--   bookmark_id int unsigned not null auto_increment,
+--   user_id int unsigned not null,
+--   game_id int unsigned not null,
+--   primary key (bookmark_id)
+-- );
 
 -- レーティングテーブル
 -- 誰が(user_id)、どのゲームを(game_id)

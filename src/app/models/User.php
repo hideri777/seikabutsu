@@ -41,6 +41,7 @@ class User
     return false;
   }
 
+  // ユーザーの基本情報
   public function getUserInfo($user_id)
   {
     $table = 'users';
@@ -51,5 +52,14 @@ class User
     return $user;
   }
 
+  // そのユーザーの投稿一覧
+  public function getUserPosts($user_id)
+  {
+    $query = "SELECT p.title, p.body, p.liked_count, p.target_game_id, p.created_date, p.update_date, g.game_title, g.rate_score FROM users u LEFT JOIN posts p ON u.user_id = p.user_id LEFT JOIN games g ON p.target_game_id = g.game_id WHERE p.user_id = ?";
+    
+    $res = $this->db->exeQuery($query, [$user_id]);
+
+    return ($res !== false && count($res) !== 0) ? $res : false;
+  }
   
 }

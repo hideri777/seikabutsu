@@ -96,7 +96,7 @@
 											<dl>
 												<dt>評価したゲーム</dt>
 												<dd>
-													<a href="/users/nakaizawa">8,160</a>
+													<a href="/users/nakaizawa">0</a>
 												</dd>
 											</dl>
 										</li>
@@ -104,7 +104,7 @@
 											<dl>
 												<dt>レビュー</dt>
 												<dd>
-													<a href="/users/nakaizawa?reviewed=1">8,160</a>
+													<a href="/users/nakaizawa?reviewed=1">{{userPosts | length}}</a>
 												</dd>
 											</dl>
 										</li>
@@ -112,7 +112,7 @@
 											<dl>
 												<dt>いいねしたレビュー</dt>
 												<dd>
-													<a href="/users/nakaizawa?reviewed=1">8,160</a>
+													<a href="/users/nakaizawa?reviewed=1">0</a>
 												</dd>
 											</dl>
 										</li>
@@ -133,7 +133,7 @@
 												<dt>フォロワー</dt>
 												<dd>
 													<a href="/users/nakaizawa/follower">
-														<span id="follower_num">414</span>
+														<span id="follower_num">0</span>
 													</a>
 												</dd>
 											</dl>
@@ -151,6 +151,17 @@
 								</div>
 							</div>
 							{# ユーザーの情報欄------------------------ #}
+
+							{# レビューなど----------------- #}
+							<div>
+								{% for userPost in userPosts %}
+								投稿：
+									{{userPost.title}}
+									{{userPost.body}}
+									<br>
+								{% endfor %}
+							</div>
+							{# レビューなど----------------- #}
 
 
 						</div>

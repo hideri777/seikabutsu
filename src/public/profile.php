@@ -30,9 +30,11 @@ if ($user_id === '') {
 
 $userInfo = $user->getUserInfo($user_id);
 $userPosts = $user->getUserPosts($user_id);
+$userLikes = $user->getUserLikes($user_id);
 
 $context = [];
 $context['isLogin'] = $isLogin;
 $context['userInfo'] = $userInfo[0];
 $context['userPosts'] = $userPosts;
+$context['userLikes'] = $userLikes;
 echo $twig->render('profile.twig', $context);

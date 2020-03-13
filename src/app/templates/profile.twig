@@ -112,7 +112,7 @@
 											<dl>
 												<dt>いいねしたレビュー</dt>
 												<dd>
-													<a href="/users/nakaizawa?reviewed=1">0</a>
+													<a href="/users/nakaizawa?reviewed=1">{{userLikes | length}}</a>
 												</dd>
 											</dl>
 										</li>
@@ -162,6 +162,16 @@
 								{% endfor %}
 							</div>
 							{# レビューなど----------------- #}
+
+							{# いいね一覧--------------------- #}
+							<div>
+								{% for userLike in userLikes %}
+									いいねしたレビュー
+									{{userLike.user_name}}の投稿:
+									{{userLike.title}}
+								{% endfor %}
+							</div>
+							{# いいね一覧--------------------- #}
 
 
 						</div>

@@ -94,7 +94,7 @@
 									<ul class="user-activity">
 										<li>
 											<dl>
-												<dt>お気に入りゲーム</dt>
+												<dt>評価したゲーム</dt>
 												<dd>
 													<a href="/users/nakaizawa">8,160</a>
 												</dd>
@@ -139,6 +139,15 @@
 											</dl>
 										</li>
 									</ul>
+									{% if isLogin.user_id == userInfo.user_id %}
+									<ul class="user-edit">
+										<li>
+											<a href="mypage.php" class="ml-5">
+											<i class="fas fa-pen"></i>
+											編集する</a>
+										</li>
+									</ul>
+									{% endif %}
 								</div>
 							</div>
 							{# ユーザーの情報欄------------------------ #}

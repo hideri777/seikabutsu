@@ -53,7 +53,7 @@
 										</li>
 
 										{% if isLogin.isLogin %}
-											<a href="mypage.php" class="btn btn-outline-primary stickey-margin-left">{{isLogin.user_name}}でログイン中</a>
+											<a href="profile.php?user_id={{isLogin.user_id}}" class="btn btn-outline-primary stickey-margin-left">{{isLogin.user_name}}でログイン中</a>
 
 										{% else %}
 											<a href="regist.php" class="btn btn-outline-primary ml-5">新規登録</a>

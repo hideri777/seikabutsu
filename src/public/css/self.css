@@ -1,5 +1,5 @@
 .user-wrapper {
-  background-color: #F8F9FA;
+  background-color: #f8f9fa;
   min-width: 650px;
 }
 .user-prof {
@@ -14,7 +14,6 @@
   padding: 5px;
 }
 
-
 .user-info {
   display: inline-block;
   vertical-align: top;
@@ -25,31 +24,36 @@
   border-radius: 50%;
 }
 .user-info .user-shelf h1 {
-    margin-bottom: 5px;
-    font-weight: bold;
-    word-wrap: normal;
-    font-size: 1.8rem;
-    line-height: 2.7rem;
-    white-space: nowrap;
-    overflow: hidden;
-    -ms-text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
+  margin-bottom: 5px;
+  font-weight: bold;
+  word-wrap: normal;
+  font-size: 1.8rem;
+  line-height: 2.7rem;
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
-.user-activity, .user-follow {
+.user-activity,
+.user-follow,
+.user-edit {
   display: inline-block;
 }
-.user-activity li, .user-follow li {
+.user-activity li,
+.user-follow li {
   display: inline-block;
   vertical-align: middle;
   margin-right: 10px;
   /* width: 65px; */
 }
-.user-activity dl, .user-follow dl {
+.user-activity dl,
+.user-follow dl {
   text-align: center;
 }
-.user-activity dt, .user-follow dt {
+.user-activity dt,
+.user-follow dt {
   font-size: 11px;
-    color: #646464;
-    margin-bottom: 5px;
+  color: #646464;
+  margin-bottom: 5px;
 }

@@ -6,10 +6,22 @@
   display: inline-block;
   width: 84px;
 }
-.user-social .follow-btn {
+.user-prof .prof-img-m {
+  border-radius: 50%;
+}
+
+.user-social .follow-btn,
+.edit-btn {
   color: #4ea6cc;
   background: #fff !important;
   border: solid 1px #4ea6cc;
+  border-radius: 5%;
+  padding: 5px;
+}
+.user-social .unfollow-btn {
+  background: #89c600;
+  color: #fff !important;
+  border: solid 1px #89c600;
   border-radius: 5%;
   padding: 5px;
 }
@@ -19,9 +31,6 @@
   vertical-align: top;
   width: 85%;
   padding-left: 30px;
-}
-.user-prof .prof-img-m {
-  border-radius: 50%;
 }
 .user-info .user-shelf h1 {
   margin-bottom: 5px;

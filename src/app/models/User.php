@@ -71,5 +71,27 @@ class User
 
     return ($res !== false && count($res) !== 0) ? $res : false;
   }
+
+  // そのページのユーザーのフォロー状況
+  public function getUserFollowings($user_id)
+  {
+    $table = 'user_relations';
+    $column = 'following_id';
+    $where = 'followed_id = ?';
+    $arrVal = [$user_id];
+    $res = $this->db->select($table, $column, $where, $arrVal);
+    return $res;
+  }
+
+  // そのページのユーザーのフォロワー状況
+  public function getUserFollowers($user_id)
+  {
+    $table = 'user_relations';
+    $column = 'followed_id';
+    $where = 'following_id = ?';
+    $arrVal = [$user_id];
+    $res = $this->db->select($table, $column, $where, $arrVal);
+    return $res;
+  }
   
 }

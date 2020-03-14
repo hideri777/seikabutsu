@@ -31,10 +31,14 @@ if ($user_id === '') {
 $userInfo = $user->getUserInfo($user_id);
 $userPosts = $user->getUserPosts($user_id);
 $userLikes = $user->getUserLikes($user_id);
+$followings = $user->getUserFollowings($user_id);
+$followers = $user->getUserFollowers($user_id);
 
 $context = [];
 $context['isLogin'] = $isLogin;
 $context['userInfo'] = $userInfo[0];
 $context['userPosts'] = $userPosts;
 $context['userLikes'] = $userLikes;
+$context['followings'] = $followings;
+$context['followers'] = $followers;
 echo $twig->render('profile.twig', $context);

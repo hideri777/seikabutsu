@@ -34,6 +34,8 @@ $userLikes = $user->getUserLikes($user_id);
 $followings = $user->getUserFollowings($user_id);
 $followers = $user->getUserFollowers($user_id);
 
+$isFollow = empty($user->judgeFollowing($isLogin['user_id'], $user_id)) ? false : true;
+
 $context = [];
 $context['isLogin'] = $isLogin;
 $context['userInfo'] = $userInfo[0];
@@ -41,4 +43,5 @@ $context['userPosts'] = $userPosts;
 $context['userLikes'] = $userLikes;
 $context['followings'] = $followings;
 $context['followers'] = $followers;
+$context['isFollow'] = $isFollow;
 echo $twig->render('profile.twig', $context);

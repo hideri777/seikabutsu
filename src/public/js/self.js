@@ -137,7 +137,6 @@ $(function() {
     }).then(
       function(data) {
         // いいね数を1増減させる
-        console.log(data);
         if (data.updateLiked == 1) {
           $(".heart_" + post_id).removeClass("far fa-heart");
           $(".heart_" + post_id).addClass("fa fa-heart");
@@ -155,8 +154,40 @@ $(function() {
     );
   });
 
-  $(".follow-btn").click(function() {
-    
+  $(".toggle-follow").click(function() {
+    var following_id = $("#following_id").val();
+    var followed_id = $("#followed_id").val();
+    var isFollow = ($(this).attr("id")) == 'follow' ? true : false;
+
+    var followedNum = Number($("#follower_num").text());
+
+    $.ajax({
+      url: app_url + "/functions/followProvider.php",
+      type: "post",
+      data: {
+        following_id: following_id,
+        followed_id: followed_id,
+        isFollow: isFollow
+      }
+    }).then(
+      function(data) {
+        if (isFollow) {
+          $(".toggle-follow").removeClass("follow-btn");
+          $(".toggle-follow").addClass("unfollow-btn");
+          $(".toggle-follow").attr("id", "unfollow");
+          $("#follower_num").text(String(followedNum + 1));
+        } else {
+          console.log(data);
+          // フォロー外したとき
+          $(".toggle-follow").removeClass("unfollow-btn");
+          $(".toggle-follow").addClass("follow-btn");
+          $(".toggle-follow").attr("id", "follow");
+          $("#follower_num").text(String(followedNum - 1));
+        }
+      }, function() {
+        alert("うまく行かなかったようです。。");
+      }
+    );
   });
 
 });

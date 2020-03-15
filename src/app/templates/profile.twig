@@ -34,6 +34,9 @@
 		<!-- header-start -->
 		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
 		{% include "header.twig" with {'isLogin': isLogin} %}
+		<input type="hidden" id="app_url" value="{{constant('APP\\config\\Bootstrap::APP_URL')}}">
+		<input type="hidden" id="following_id" value="{{isLogin.user_id}}">
+		<input type="hidden" id="followed_id" value="{{userInfo.user_id}}">
 		<!-- header-end -->
 
 		<!-- bradcam_area  -->
@@ -73,9 +76,16 @@
 										<div class="user-follow-btn">
 											<div class="follow-area">
 												{% if isLogin.user_id != userInfo.user_id %}
-													<button type="submit" class="btn follow-btn">
-														<i class="fa fa-plus"></i>
-														フォロー</button>
+													{% if isFollow %}
+													<button type="submit" class="btn unfollow-btn toggle-follow" id="unfollow">
+														フォロー
+													</button>
+													{% else %}
+													<button type="submit" class="btn follow-btn toggle-follow" id="follow">
+														{# <i class="fa fa-plus"></i> #}
+														フォロー
+													</button>
+													{% endif %}
 												{% else %}
 												{# 自分のプロフィールなら編集ボタン #}
 													<a href="mypage.php" class="btn edit-btn">

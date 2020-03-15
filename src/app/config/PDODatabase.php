@@ -266,6 +266,27 @@ class PDODatabase
     return $res;
   }
 
+  public function delete($table, $where, $arrVal)
+  {
+    foreach ($arrVal as $key => $value) {
+      $values[] = $value;
+    }
+
+    $sql = "DELETE FROM "
+     . $table
+     . ' WHERE ' 
+     . $where;
+    $this->sqlLogInfo($sql, $arrVal);
+
+    $stmt = $this->dbh->prepare($sql);
+    $res = $stmt->execute($values);
+    if ($res === false) {
+      $this->catchError($stmt->errorInfo());
+    }
+    
+    return $res;
+  }
+
   public function getLastId()
   {
     return $this->dbh->lastInsertId();

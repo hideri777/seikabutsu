@@ -76,8 +76,8 @@ class User
   public function getUserFollowings($user_id)
   {
     $table = 'user_relations';
-    $column = 'following_id';
-    $where = 'followed_id = ?';
+    $column = 'followed_id';
+    $where = 'following_id = ?';
     $arrVal = [$user_id];
     $res = $this->db->select($table, $column, $where, $arrVal);
     return $res;
@@ -87,11 +87,39 @@ class User
   public function getUserFollowers($user_id)
   {
     $table = 'user_relations';
-    $column = 'followed_id';
-    $where = 'following_id = ?';
+    $column = 'following_id';
+    $where = 'followed_id = ?';
     $arrVal = [$user_id];
     $res = $this->db->select($table, $column, $where, $arrVal);
     return $res;
+  }
+
+  // そのユーザーをフォローしているかどうか
+  public function judgeFollowing($login_user_id, $user_id)
+  {
+    $table = 'user_relations';
+    $column = '';
+    $where = 'following_id = ? AND followed_id = ?';
+    $arrVal = [$login_user_id, $user_id];
+    $res = $this->db->select($table, $column, $where, $arrVal);
+    return $res;
+  }
+
+  // フォローしたとき
+  public function followUser($dataArr)
+  {
+    $table = 'user_relations';
+    $res = $this->db->insert($table, $dataArr);
+    return $res;
+  }
+
+  // フォローを外したとき
+  public function unfollowUser($dataArr)
+  {
+    $table = 'user_relations';
+    $where = 'following_id = ? AND followed_id = ?';
+    $arrVal = $dataArr;
+    $this->db->delete($table, $where, $arrVal);
   }
   
 }

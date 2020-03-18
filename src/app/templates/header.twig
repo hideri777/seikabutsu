@@ -1,0 +1,77 @@
+<header>
+	<div class="header-area">
+		<div id="sticky-header" class="main-header-area sticky">
+			<div class="container-fluid">
+				<div class="header_bottom_border">
+					<div class="row align-items-center">
+						<div class="col-xl-3 col-lg-2">
+							<div class="logo">
+								<a href="index.php">
+									<h2 class="text-white">Gamelog</h2>
+
+								</a>
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-7">
+							<div class="main-menu  d-none d-lg-block">
+								<nav>
+									<ul id="navigation">
+										<li>
+											<a href="index.php">home</a>
+										</li>
+										<li>
+											<a href="index.php">about</a>
+										</li>
+										<li>
+											<a href="#">pages
+												<i class="ti-angle-down"></i>
+											</a>
+											<ul class="submenu">
+												<li>
+													<a href="list.php?type=pickup">イチオシ</a>
+												</li>
+												<li>
+													<a href="list.php?type=new">新作一覧</a>
+												</li>
+												<li>
+													<a href="list.php?type=popular">人気作品</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">reviews
+												<i class="ti-angle-down"></i>
+											</a>
+											<ul class="submenu">
+												<li>
+													<a href="index.php">最新の投稿</a>
+												</li>
+												<li>
+													<a href="index.php">人気の投稿</a>
+												</li>
+											</ul>
+										</li>
+
+										{% if isLogin.isLogin %}
+											<a href="profile.php?user_id={{isLogin.user_id}}" class="btn btn-outline-primary stickey-margin-left">{{isLogin.user_name}}でログイン中</a>
+
+										{% else %}
+											<a href="regist.php" class="btn btn-outline-primary ml-5">新規登録</a>
+											<a href="login.php" class="btn btn-outline-primary stickey-margin-left">ログイン</a>
+										{% endif %}
+
+									</ul>
+								</nav>
+							</div>
+						</div>
+
+						<div class="col-12">
+							<div class="mobile_menu d-block d-lg-none"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</header>

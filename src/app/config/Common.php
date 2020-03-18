@@ -85,4 +85,22 @@ class Common
     }
     return $err_check;
   }
+
+  // public function imageCheck($file_obj)
+  // {
+  //   if ($file_obj['image']['error'] !== 4) {
+  //     $tmp_image = $file_obj['image'];
+  //     if ($tmp_image['error'] === 0 && $tmp_image['size'] !== 0) {
+  //       if (is_uploaded_file($tmp_image['tmp_name']) === true) {
+  //         $image_info = getimagesize($tmp_image['tmp_name']);
+  //         $image_mime = $image_info['mime'];
+  //       }
+  //       if ($tmp_image['size'] > 1048576) {
+  //         $this->errArr['image'] = 'アップロードできる画像のサイズは 1MB までです';
+  //       } elseif (preg_match('/^image\/jpeg$/', $image_mime) === 0) {
+  //         $this->errArr['image'] = 'アップロードできる画像の形式は JPEG 形式だけです';
+  //       }
+  //     }
+  //   }
+  // }
 }

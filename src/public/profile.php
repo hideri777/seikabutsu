@@ -1,4 +1,5 @@
 <?php
+
 namespace seikabutsu;
 
 require_once __DIR__ . './../vendor/autoload.php';
@@ -18,14 +19,29 @@ $twig = new \Twig\Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
 
-if(isset($_POST['send'])) {
-  session_unset();
+// user_idを取得する
+$user_id = (isset($_GET['user_id']) === true && preg_match('/^\d+$/', $_GET['user_id']) === 1) ? $_GET['user_id'] : '';
+
+// user_idが取得できていない場合、一覧へ遷移させる
+if ($user_id === '') {
+  // headerでリダイレクト処理
   header('Location: index.php');
 }
 
-$userInfo = $user->getUserInfo($_SESSION['user_id']);
+$userInfo = $user->getUserInfo($user_id);
+$userPosts = $user->getUserPosts($user_id);
+$userLikes = $user->getUserLikes($user_id);
+$followings = $user->getUserFollowings($user_id);
+$followers = $user->getUserFollowers($user_id);
+
+$isFollow = empty($user->judgeFollowing($isLogin['user_id'], $user_id)) ? false : true;
 
 $context = [];
 $context['isLogin'] = $isLogin;
 $context['userInfo'] = $userInfo[0];
+$context['userPosts'] = $userPosts;
+$context['userLikes'] = $userLikes;
+$context['followings'] = $followings;
+$context['followers'] = $followers;
+$context['isFollow'] = $isFollow;
 echo $twig->render('profile.twig', $context);

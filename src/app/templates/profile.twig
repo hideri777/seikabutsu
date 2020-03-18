@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>TopPage</title>
+		<title>プロフィール</title>
 		<meta name="description" content="">
 		<meta
 		name="viewport" content="width=device-width, initial-scale=1">
@@ -23,9 +23,10 @@
 		<link rel="stylesheet" href="css/gijgo.css">
 		<link rel="stylesheet" href="css/animate.css">
 		<link rel="stylesheet" href="css/slicknav.css">
-		<link	rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/self.css">
 		<script src="https://kit.fontawesome.com/0252130ac9.js" crossorigin="anonymous"></script>
-	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
+		<!-- <link rel="stylesheet" href="css/responsive.css"> -->
 	</head>
 
 	<body>
@@ -33,6 +34,9 @@
 		<!-- header-start -->
 		{# isLoginでログイン済みかどうかを判定してマイページの表示を変える #}
 		{% include "header.twig" with {'isLogin': isLogin} %}
+		<input type="hidden" id="app_url" value="{{constant('APP\\config\\Bootstrap::APP_URL')}}">
+		<input type="hidden" id="following_id" value="{{isLogin.user_id}}">
+		<input type="hidden" id="followed_id" value="{{userInfo.user_id}}">
 		<!-- header-end -->
 
 		<!-- bradcam_area  -->
@@ -56,42 +60,132 @@
 					<div
 						class="row">
 						{# 左側 #}
-						<div class="col-lg-8 col-md-8">
-							<h3 class="mb-30">{{userInfo.user_name}}さんのプロフィール</h3>
-							<form action="#">
-								<div class="bg-light border p-3">
-									<p class="text-center">現在のユーザー名</p>
-									<p class="text-center">{{userInfo.user_name}}</p>
-									<p class="text-center">新しいユーザー名</p>
-									<input class="d-block mx-auto" type="text" size="30" name="" id=""><br>
-									<input class="boxed-btn4 d-block mx-auto" type="submit" value="ユーザー名を変更する">
+						<div
+							class="col-lg-8 col-md-8">
+
+							{# ユーザーの情報欄------------------------ #}
+							<div class="user-wrapper clearFix">
+								<div class="user-prof">
+									<div class="user-icon mb-3">
+										<a href="">
+											<img src="./img/profile/{{userInfo.image}}" class="prof-img-m" width="84" height="84" alt="ユーザー">
+										</a>
+									</div>
+
+									<div class="user-social">
+										<div class="user-follow-btn">
+											<div class="follow-area">
+												{% if isLogin.user_id != userInfo.user_id %}
+													{% if isFollow %}
+													<button type="submit" class="btn unfollow-btn toggle-follow" id="unfollow">
+														フォロー
+													</button>
+													{% else %}
+													<button type="submit" class="btn follow-btn toggle-follow" id="follow">
+														{# <i class="fa fa-plus"></i> #}
+														フォロー
+													</button>
+													{% endif %}
+												{% else %}
+												{# 自分のプロフィールなら編集ボタン #}
+													<a href="mypage.php" class="btn edit-btn">
+														<i class="fas fa-pen"></i>
+														編集する</a>
+												{% endif %}
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="bg-light border p-3 mt-10">
-									<p class="text-center">現在のメールアドレス</p>
-									<p class="text-center">{{userInfo.email}}</p>
-									<p class="text-center">新しいメールアドレス</p>
-									<input class="d-block mx-auto" type="mail" size="30" name="" id=""><br>
-									<input class="boxed-btn4 d-block mx-auto" type="submit" value="メールアドレスを変更する">
+
+								<div class="user-info">
+									<div class="user-shelf">
+										<h1 class="r0P">{{userInfo.user_name}}さんのプロフィール</h1>
+										<a href="" class="user-shelf-nickname r0P">{{userInfo.user_name}}さん</a>
+										<div
+											class="user-shelf-des-area">
+											{# TODO 自己紹介文 #}
+											<p class="user-shelf-des">ここに自己紹介文</p>
+										</div>
+									</div>
+
+									<ul class="user-activity">
+										<li>
+											<dl>
+												<dt>評価したゲーム</dt>
+												<dd>
+													<a href="">0</a>
+												</dd>
+											</dl>
+										</li>
+										<li>
+											<dl>
+												<dt>レビュー</dt>
+												<dd>
+													<a href="">{{userPosts | length}}</a>
+												</dd>
+											</dl>
+										</li>
+										<li>
+											<dl>
+												<dt>いいねしたレビュー</dt>
+												<dd>
+													<a href="">{{userLikes | length}}</a>
+												</dd>
+											</dl>
+										</li>
+									</ul>
+									<ul class="user-follow">
+										<li>
+											<dl>
+												<dt>フォロー</dt>
+												<dd>
+													<a href="">
+														<span id="following_num">{{followings | length}}</span>
+													</a>
+												</dd>
+											</dl>
+										</li>
+										<li>
+											<dl>
+												<dt>フォロワー</dt>
+												<dd>
+													<a href="">
+														<span id="follower_num">{{followers | length}}</span>
+													</a>
+												</dd>
+											</dl>
+										</li>
+									</ul>
 								</div>
-								<div class="bg-light border p-3 mt-10">
-									<p class="text-center">生年月日</p>
-									<p class="text-center">{{userInfo.year}}年{{userInfo.month}}月{{userInfo.day}}日</p>
-								</div>
-								<div class="bg-light border p-3 mt-10">
-									<p class="text-center">現在のパスワード</p>
-									<input class="d-block mx-auto" type="password" size="30" name="" id=""><br>
-									<p class="text-center">新しいパスワード</p>
-									<input class="d-block mx-auto" type="password" size="30" name="" id=""><br>
-									<input class="boxed-btn4 d-block mx-auto" type="submit" value="パスワードを変更する">
-								</div>
-							</form>
-							<form action="profile.php" method="post">
-								<input type="submit" class="boxed-btn4 d-block mt-10" value="ログアウト" name="send">
-							</form>
+							</div>
+							{# ユーザーの情報欄------------------------ #}
+
+							{# レビューなど----------------- #}
+							<div>
+								{% for userPost in userPosts %}
+									投稿：
+									{{userPost.title}}
+									{{userPost.body}}
+									<br>
+								{% endfor %}
+							</div>
+							{# レビューなど----------------- #}
+
+							{# いいね一覧--------------------- #}
+							<div>
+								{% for userLike in userLikes %}
+									いいねしたレビュー
+									{{userLike.user_name}}の投稿:
+									{{userLike.title}}
+								{% endfor %}
+							</div>
+							{# いいね一覧--------------------- #}
+
+
 						</div>
 						{# 右側のエリア #}
 						<div class="col-lg-3 col-md-4 mt-sm-30">
-							{% include "profile_right_menu.twig" %}
+							{% include "mypage_right_menu.twig" %}
 						</div>
 					</div>
 				</div>
@@ -102,9 +196,7 @@
 		<!-- footer start -->
 		{% include "footer.twig" %}
 		<!--/ footer end  -->
-
-		<!-- JS here -->
-		<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+		<!-- JS here --><script src="js/vendor/modernizr-3.5.0.min.js"> </script>
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -121,15 +213,11 @@
 		<script src="js/jquery.slicknav.min.js"></script>
 		<script src="js/jquery.magnific-popup.min.js"></script>
 		<script src="js/plugins.js"></script>
-		<script src="js/gijgo.min.js"></script>
-
-		<!--contact js-->
-		<script src="js/contact.js"></script>
+		<script src="js/gijgo.min.js"></script><!--contact js--><script src="js/contact.js"></script>
 		<script src="js/jquery.ajaxchimp.min.js"></script>
 		<script src="js/jquery.form.js"></script>
 		<script src="js/jquery.validate.min.js"></script>
 		<script src="js/mail-script.js"></script>
-
 		<script src="js/main.js"></script>
 		<script src="js/self.js"></script>
 

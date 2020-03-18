@@ -13,6 +13,7 @@ CREATE TABLE games (
   game_title varchar(255) not null,
   primary key (game_id)
 );
+ALTER TABLE games ADD rate_score decimal DEFAULT 0.0;
 
 -- https://qiita.com/nanaco/items/78680e241a2202bb00ab
 -- ↑一旦これでローカルのcsvをdockerのmysqlにコピー
@@ -32,7 +33,7 @@ CREATE TABLE users (
   user_name varchar(255) not null,
   email varchar(255) not null,
   password varchar(255) not null,
-  image varchar(20),
+  image varchar(255) not null DEFAULT default.png,
   year varchar(4) not null,
   month varchar(2) not null,
   day varchar(2) not null,
@@ -42,6 +43,7 @@ CREATE TABLE users (
   delete_flg tinyint(1) unsigned not null default 0,
   primary key (user_id)
 );
+
 
 -- 投稿テーブル
 -- 投稿されたレビューなど
@@ -73,11 +75,22 @@ CREATE TABLE comments (
 -- ブックマークテーブル
 -- 誰が(user_id)、どのゲームを(game_id)
 -- ブックマークしたのか判定する
-CREATE TABLE bookmark (
-  bookmark_id int unsigned not null auto_increment,
+-- CREATE TABLE bookmark (
+--   bookmark_id int unsigned not null auto_increment,
+--   user_id int unsigned not null,
+--   game_id int unsigned not null,
+--   primary key (bookmark_id)
+-- );
+
+-- レーティングテーブル
+-- 誰が(user_id)、どのゲームを(game_id)
+-- 評価したか
+CREATE TABLE rates (
+  rate_id int unsigned not null auto_increment,
+  score int unsigned not null,
   user_id int unsigned not null,
   game_id int unsigned not null,
-  primary key (bookmark_id)
+  primary key (rate_id)
 );
 
 -- いいねテーブル
@@ -91,3 +104,11 @@ CREATE TABLE liked (
   primary key (liked_id)
 );
 
+-- ユーザーの関連テーブル
+-- フォロー、フォロワーの管理
+CREATE TABLE user_relations (
+  user_relation_id int unsigned not null auto_increment,
+  following_id int not null,
+  followed_id int not null,
+  primary key (user_relation_id)
+);

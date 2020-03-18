@@ -41,7 +41,7 @@ class Post
   // 投稿日で降順
   public function getPostsInfo($game_id)
   {
-    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.liked_count, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE target_game_id = ? ORDER BY p.created_date DESC";
+    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.liked_count, u.user_id, u.user_name, u.image FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE target_game_id = ? ORDER BY p.created_date DESC";
 
     $res = $this->db->exeQuery($query, [$game_id]);
 
@@ -51,7 +51,7 @@ class Post
   // 対象となる投稿へのコメントを取得する
   public function getCommentsInfo($post_id)
   {
-    $query = "SELECT u.user_name, c.comment_id, c.body, c.target_posts_id, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE c.target_posts_id = ?";
+    $query = "SELECT u.user_name, u.image, c.comment_id, c.body, c.target_posts_id, c.created_date FROM comments c LEFT JOIN users u ON c.user_id = u.user_id WHERE c.target_posts_id = ?";
 
     $res = $this->db->exeQuery($query, [$post_id]);
 

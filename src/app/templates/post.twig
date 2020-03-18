@@ -37,8 +37,9 @@
 		<!-- header-end -->
 
 		<!--================Blog Area =================-->
-			<section class="blog_area single-post-area section-padding"> <input type="hidden" name="app_url" value="{{constant('App\\config\\Bootstrap::APP_URL')}}" id="app_url">
-			<input type="hidden" name="entry_url" value="{{constant('APP\\config\\Bootstrap::ENTRY_URL')}}" id="entry_url">
+			<section class="blog_area single-post-area section-padding"> 
+			<input type="hidden" name="public_url" value="{{constant('App\\config\\Bootstrap::PUBLIC_URL')}}" id="public_url">
+			<input type="hidden" name="app_url" value="{{constant('APP\\config\\Bootstrap::APP_URL')}}" id="app_url">
 			<input type="hidden" id="login_user_id" value="{{isLogin.user_id}}">
 			<input type="hidden" id="get_post_id" value="{{postData.post_id}}">
 			<input type="hidden" id="target_game_id" value="{{gameData.game_id}}">
@@ -63,7 +64,7 @@
 								</h2>
 								<ul class="blog-info-link mt-3 mb-4">
 									<li>
-										<a href="#">
+										<a href="profile.php?user_id={{postData.user_id}}">
 											<i class="fa fa-user"></i>
 											{{postData.user_name}}</a>
 									</li>
@@ -123,7 +124,7 @@
 									<div id="content-wrapper" class="single-comment justify-content-between d-flex">
 										<div class="user justify-content-between d-flex">
 											<div class="thumb">
-												<img src="img/comment/comment_1.png" alt="">
+												<img src="img/profile/{{comment.image}}" alt="">
 											</div>
 											<div class="desc">
 												<p class="comment">

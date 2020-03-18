@@ -41,6 +41,7 @@ class User
     return false;
   }
 
+  // ユーザーの基本情報
   public function getUserInfo($user_id)
   {
     $table = 'users';
@@ -50,4 +51,75 @@ class User
     $user = $this->db->select($table, $column, $where, $arrVal);
     return $user;
   }
+
+  // ユーザーの投稿一覧
+  public function getUserPosts($user_id)
+  {
+    $query = "SELECT u.user_name, p.title, p.body, p.liked_count, p.created_date, p.update_date, g.game_title, g.rate_score FROM posts p LEFT JOIN users u ON p.user_id = u.user_id LEFT JOIN games g ON p.target_game_id = g.game_id WHERE p.user_id = ?";
+    
+    $res = $this->db->exeQuery($query, [$user_id]);
+
+    return ($res !== false && count($res) !== 0) ? $res : false;
+  }
+
+  // ユーザーのいいね一覧
+  public function getUserLikes($user_id)
+  {
+    $query = "SELECT u.user_name, p.title, p.body, p.liked_count, p.created_date, g.game_title FROM liked l LEFT JOIN posts p ON l.post_id = p.post_id LEFT JOIN users u ON p.user_id = u.user_id LEFT JOIN games g ON p.target_game_id = g.game_id WHERE l.user_id = ?";
+
+    $res = $this->db->exeQuery($query, [$user_id]);
+
+    return ($res !== false && count($res) !== 0) ? $res : false;
+  }
+
+  // そのページのユーザーのフォロー状況
+  public function getUserFollowings($user_id)
+  {
+    $table = 'user_relations';
+    $column = 'followed_id';
+    $where = 'following_id = ?';
+    $arrVal = [$user_id];
+    $res = $this->db->select($table, $column, $where, $arrVal);
+    return $res;
+  }
+
+  // そのページのユーザーのフォロワー状況
+  public function getUserFollowers($user_id)
+  {
+    $table = 'user_relations';
+    $column = 'following_id';
+    $where = 'followed_id = ?';
+    $arrVal = [$user_id];
+    $res = $this->db->select($table, $column, $where, $arrVal);
+    return $res;
+  }
+
+  // そのユーザーをフォローしているかどうか
+  public function judgeFollowing($login_user_id, $user_id)
+  {
+    $table = 'user_relations';
+    $column = '';
+    $where = 'following_id = ? AND followed_id = ?';
+    $arrVal = [$login_user_id, $user_id];
+    $res = $this->db->select($table, $column, $where, $arrVal);
+    return $res;
+  }
+
+  // フォローしたとき
+  public function followUser($dataArr)
+  {
+    $table = 'user_relations';
+    $res = $this->db->insert($table, $dataArr);
+    return $res;
+  }
+
+  // フォローを外したとき
+  public function unfollowUser($dataArr)
+  {
+    $table = 'user_relations';
+    $where = 'following_id = ? AND followed_id = ?';
+    $arrVal = $dataArr;
+    $this->db->delete($table, $where, $arrVal);
+  }
+  
 }

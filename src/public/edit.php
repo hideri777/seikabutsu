@@ -35,6 +35,7 @@ $body = isset($_POST['body']) ? $_POST['body'] : '';
 $isUpdate = isset($_POST['isUpdate']) ? $_POST['isUpdate'] : false;
 $post_id = isset($_POST['post_id']) ? $_POST['post_id'] : '';
 $target_game_id = isset($_POST['target_game_id']) ? $_POST['target_game_id'] : '';
+$rating = isset($_POST['rating']) ? $_POST['rating'] : '';
 $isComplete = false;
 
 // gameが存在するか確認

@@ -33,7 +33,7 @@ class Game
   // 対象ゲームの詳細取得
   public function getGameDetail($game_id)
   {
-    $res = $this->db->select('games', 'game_id, game_title', 'game_id = ?', [$game_id]);
+    $res = $this->db->select('games', 'game_id, game_title, rate_score', 'game_id = ?', [$game_id]);
     return $res;
   }
   

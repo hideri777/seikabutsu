@@ -54,7 +54,7 @@
 								<div class="rating">
 								{% set rateNums = [5, 4, 3, 2, 1] %}
 									{% for rateNum in rateNums %}
-										<input class="rating__input hidden--visually" type="radio" id="{{rateNum}}-star" name="rate" value="{{rateNum}}" disabled="disabled" {% if gameData.rate_score == rateNum %} checked {% endif %}/>
+										<input class="rating__input hidden--visually" type="radio" id="{{rateNum}}-star" name="rate" value="{{rateNum}}" disabled="disabled" {% if rate == rateNum %} checked {% endif %}/>
 										<label class="rating__label" for="{{rateNum}}-star" title="{{rateNum}} out of {{rateNum}} rating">
 											<span class="rating__icon"></span>
 											<span class="hidden--visually">{{rateNum}}

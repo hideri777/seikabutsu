@@ -24,6 +24,7 @@
 		<link rel="stylesheet" href="css/animate.css">
 		<link rel="stylesheet" href="css/slicknav.css">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/self.css">
 		<script src="https://kit.fontawesome.com/0252130ac9.js" crossorigin="anonymous"></script>
 
 		<!-- <link rel="stylesheet" href="css/responsive.css"> -->
@@ -50,6 +51,20 @@
 							<div class="blog_details">
 								<h2>{{gameData.game_title}}
 								</h2>
+								<div class="rating">
+								{% set rateNums = [5, 4, 3, 2, 1] %}
+									{% for rateNum in rateNums %}
+										<input class="rating__input hidden--visually" type="radio" id="{{rateNum}}-star" name="rate" value="{{rateNum}}" disabled="disabled" {% if rate == rateNum %} checked {% endif %}/>
+										<label class="rating__label" for="{{rateNum}}-star" title="{{rateNum}} out of {{rateNum}} rating">
+											<span class="rating__icon"></span>
+											<span class="hidden--visually">{{rateNum}}
+												out of
+												{{rateNum}}
+												rating</span>
+										</label>
+									{% endfor %}
+									<span class="small mr-2">平均評価{{gameData.rate_score}}点</span>
+									</div>
 								<p class="excert">
 									Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, ipsam excepturi! Autem optio porro itaque provident blanditiis, exercitationem vero nesciunt magni quasi nostrum totam numquam nulla dolores consectetur soluta esse?
 								</p>
@@ -75,9 +90,11 @@
 											</div>
 											<div class="desc">
 												<p class="comment">
+													{# <div class="row"> #}
 													<a href="post.php?post_id={{postData.post_id}}">
 														<h4>{{postData.title}}</h4>
 													</a>
+													{# </div> #}
 													{{postData.body | nl2br}}
 												</p>
 												<div class="d-flex justify-content-between">
@@ -111,9 +128,6 @@
 														<input type="hidden" id="get_post_id" value="{{postData.post_id}}">
 														<input type="button" value="編集する" name="edit" class="btn-primary edit_start">
 													{% endif %}
-													{# <div class="reply-btn">
-																											<a href="post.php?post_id={{postData.post_id}}#comment_tag" class="btn-reply text-uppercase">コメントする</a>
-																										</div> #}
 												</div>
 											</div>
 										</div>

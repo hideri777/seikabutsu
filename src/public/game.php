@@ -58,13 +58,15 @@ if ($postDatas) {
     $postDatasWithLiked[] = $postData;
   }
 }
-  
+
+
 $context = [];
 $context['isLogin'] = $isLogin;
 if ($isLogin['isLogin']) {
   $context['login_user_id'] = $_SESSION['user_id'];
 }
 $context['gameData'] = $gameData[0];
+$context['rate'] = floor($gameData[0]['rate_score']);
 $context['postDatas'] = $postDatasWithLiked;
 // $context['comments'] = $comments;
 echo $twig->render('game.twig', $context);

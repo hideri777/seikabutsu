@@ -102,9 +102,3 @@
 .rating__input:checked ~ .rating__label {
   color: goldenrod;
 }
-/* 
-body {
-  text-align: center;
-  font-size: 4rem;
-  padding: 4rem 2rem;
-} */

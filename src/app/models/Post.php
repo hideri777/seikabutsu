@@ -19,7 +19,7 @@ class Post
   // 最近の投稿を取得する
   public function getRecentPost()
   {
-    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.target_game_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id ORDER BY p.created_date DESC LIMIT 5";
+    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.target_game_id, p.rate, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id ORDER BY p.created_date DESC LIMIT 5";
 
     $res = $this->db->exeQuery($query);
 
@@ -30,7 +30,7 @@ class Post
   // 投稿に関する詳細取得
   public function getPostDetail($post_id)
   {
-    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.liked_count, p.target_game_id, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = ?";
+    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.rate, p.liked_count, p.target_game_id, u.user_id, u.user_name FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE post_id = ?";
 
     $res = $this->db->exeQuery($query, [$post_id]);
 
@@ -41,7 +41,7 @@ class Post
   // 投稿日で降順
   public function getPostsInfo($game_id)
   {
-    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.liked_count, u.user_id, u.user_name, u.image FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE target_game_id = ? ORDER BY p.created_date DESC";
+    $query = "SELECT p.post_id, p.title, p.body, p.created_date, p.rate, p.liked_count, u.user_id, u.user_name, u.image FROM posts p LEFT JOIN users u ON p.user_id = u.user_id WHERE target_game_id = ? ORDER BY p.created_date DESC";
 
     $res = $this->db->exeQuery($query, [$game_id]);
 

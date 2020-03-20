@@ -35,7 +35,7 @@ $body = isset($_POST['body']) ? $_POST['body'] : '';
 $isUpdate = isset($_POST['isUpdate']) ? $_POST['isUpdate'] : false;
 $post_id = isset($_POST['post_id']) ? $_POST['post_id'] : '';
 $target_game_id = isset($_POST['target_game_id']) ? $_POST['target_game_id'] : '';
-$rating = isset($_POST['rating']) ? $_POST['rating'] : '';
+$rate = isset($_POST['rate']) ? $_POST['rate'] : 0;
 $isComplete = false;
 
 // gameが存在するか確認
@@ -57,6 +57,7 @@ if (isset($_GET['post_id']) === true && preg_match('/^\d+$/', $_GET['post_id']) 
   $title = $res[0]['title'];
   $body = $res[0]['body'];
   $post_id = $res[0]['post_id'];
+  $rate = $res[0]['rate'];
   $isUpdate = true;
 }
 
@@ -64,6 +65,7 @@ if (isset($_GET['post_id']) === true && preg_match('/^\d+$/', $_GET['post_id']) 
 $insertData = [
   'title' => $title,
   'body' => $body,
+  'rate' => $rate,
   'user_id' => $_SESSION['user_id'],
   'created_date' => date('Y-m-d H:i:s'),
   'target_game_id' => $target_game_id
@@ -73,6 +75,7 @@ $insertData = [
 $updateData = [
   'title' => $title,
   'body' => $body,
+  'rate' => $rate,
   'update_date' => date('Y-m-d H:i:s')
 ];
 
@@ -97,6 +100,8 @@ $context = [];
 $context['insData'] = $isUpdate ? $updateData : $insertData;
 $context['isUpdate'] = $isUpdate;
 $context['post_id'] = $post_id;
+$context['rateNums'] = [5, 4, 3, 2, 1];
+$context['rate'] = $rate;
 $context['target_game_id'] = $target_game_id;
 $context['isLogin'] = $isLogin;
 

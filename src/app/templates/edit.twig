@@ -71,35 +71,17 @@
 											<div class="form-group">
 												<p>評価する</p>
 												<div class="rating">
-													<input class="rating__input hidden--visually" type="radio" id="5-star" name="rating" value="5"/>
-													<label class="rating__label" for="5-star" title="5 out of 5 rating">
-														<span class="rating__icon"></span>
-														<span class="hidden--visually">5 out of 5 rating</span>
-													</label>
 
-													<input class="rating__input hidden--visually" type="radio" id="4-star" name="rating" value="4"/>
-													<label class="rating__label" for="4-star" title="4 out of 5 rating">
-														<span class="rating__icon"></span>
-														<span class="hidden--visually">4 out of 5 rating</span>
-													</label>
-
-													<input class="rating__input hidden--visually" type="radio" id="3-star" name="rating" value="3"/>
-													<label class="rating__label" for="3-star" title="3 out of 5 rating">
-														<span class="rating__icon"></span>
-														<span class="hidden--visually">3 out of 5 rating</span>
-													</label>
-
-													<input class="rating__input hidden--visually" type="radio" id="2-star" name="rating" value="2"/>
-													<label class="rating__label" for="2-star" title="2 out of 5 rating">
-														<span class="rating__icon"></span>
-														<span class="hidden--visually">2 out of 5 rating</span>
-													</label>
-
-													<input class="rating__input hidden--visually" type="radio" id="1-star" name="rating" value="1"/>
-													<label class="rating__label" for="1-star" title="1 out of 5 rating">
-														<span class="rating__icon"></span>
-														<span class="hidden--visually">1 out of 5 rating</span>
-													</label>
+													{% for rateNum in rateNums %}
+														<input class="rating__input hidden--visually" type="radio" id="{{rateNum}}-star" name="rate" value="{{rateNum}}" {% if rate == rateNum %} checked {% endif %}/>
+														<label class="rating__label" for="{{rateNum}}-star" title="{{rateNum}} out of {{rateNum}} rating">
+															<span class="rating__icon"></span>
+															<span class="hidden--visually">{{rateNum}}
+																out of
+																{{rateNum}}
+																rating</span>
+														</label>
+													{% endfor %}
 												</div>
 											</div>
 										</div>

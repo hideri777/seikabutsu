@@ -16,6 +16,32 @@ class Post
     $this->db = $db;
   }
 
+  // レビューを投稿する
+  public function makePost($insertData, $game_id)
+  {
+    // 投稿を新規で、ゲームのrate_scoreを更新する
+    $this->db->insert('posts', $insertData);
+    $game_rates = $this->db->select('posts', 'rate', 'target_game_id = ? AND rate > ?', [$game_id, 0]);
+    foreach ($game_rates as $game_rate) {
+      $score += $game_rate['rate'];
+    }
+    $rate_score = $score / count($game_rates);
+    $this->db->update('games', ['rate_score' => $rate_score], 'game_id = ?', [$game_id]);
+  }
+
+  // レビューを編集する
+  public function editPost($updateData, $post_id, $game_id)
+  {
+    // 投稿を編集、ゲームのrate_scoreを更新
+    $this->db->update('posts', $updateData, 'post_id = ?', [$post_id]);
+    $game_rates = $this->db->select('posts', 'rate', 'target_game_id = ? AND rate > ?', [$game_id, 0]);
+    foreach ($game_rates as $game_rate) {
+      $score += $game_rate['rate'];
+    }
+    $rate_score = $score / count($game_rates);
+    $this->db->update('games', ['rate_score' => $rate_score], 'game_id = ?', [$game_id]);
+  }
+
   // 最近の投稿を取得する
   public function getRecentPost()
   {

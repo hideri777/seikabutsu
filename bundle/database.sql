@@ -13,7 +13,7 @@ CREATE TABLE games (
   game_title varchar(255) not null,
   primary key (game_id)
 );
-ALTER TABLE games ADD rate_score decimal DEFAULT 0.0;
+ALTER TABLE games ADD rate_score float DEFAULT 0.0;
 
 -- https://qiita.com/nanaco/items/78680e241a2202bb00ab
 -- ↑一旦これでローカルのcsvをdockerのmysqlにコピー

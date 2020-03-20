@@ -82,13 +82,15 @@ $updateData = [
 // 投稿ボタンが押されたら
 if (isset($_POST['send'])) {
   if ($isUpdate) {
-    $db->update($table, $updateData, 'post_id = ?', [$post_id]);
+    $post->editPost($updateData, $post_id, $target_game_id);
   } else {
-    $db->insert($table, $insertData);
+    $post->makePost($insertData, $target_game_id);
   }
   $isComplete = true;
 }
 
+// $rate_score = $post->makePost($insertData, $target_game_id);
+// var_dump($rate_score);
 // その記事のページに遷移
 // アップロード完了時の処理
 if ($isComplete) {
@@ -100,8 +102,6 @@ $context = [];
 $context['insData'] = $isUpdate ? $updateData : $insertData;
 $context['isUpdate'] = $isUpdate;
 $context['post_id'] = $post_id;
-$context['rateNums'] = [5, 4, 3, 2, 1];
-$context['rate'] = $rate;
 $context['target_game_id'] = $target_game_id;
 $context['isLogin'] = $isLogin;
 

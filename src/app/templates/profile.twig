@@ -104,7 +104,7 @@
 										<div
 											class="user-shelf-des-area">
 											{# TODO 自己紹介文 #}
-											<p class="user-shelf-des">ここに自己紹介文</p>
+											<p class="user-shelf-des">自己紹介文</p>
 										</div>
 									</div>
 
@@ -113,7 +113,7 @@
 											<dl>
 												<dt>評価したゲーム</dt>
 												<dd>
-													<a href="">0</a>
+													<a href="">{{userRates | length}}</a>
 												</dd>
 											</dl>
 										</li>
@@ -159,6 +159,18 @@
 								</div>
 							</div>
 							{# ユーザーの情報欄------------------------ #}
+
+							{# 評価など #}
+							<div>
+								{% for userRate in userRates %}
+									ゲーム名:
+									{{userRate.game_title}}
+									<br>
+									評価:
+									{{userRate.rate}}
+									<br>
+								{% endfor %}
+							</div>
 
 							{# レビューなど----------------- #}
 							<div>

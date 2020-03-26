@@ -52,6 +52,16 @@ class User
     return $user;
   }
 
+  // ユーザーが評価したゲーム一覧
+  public function getUserRates($user_id)
+  {
+    $query = "SELECT p.title, p.body, p.liked_count, p.rate, p.created_date, g.game_id, g.game_title, g.rate_score FROM posts p LEFT JOIN games g ON p.target_game_id = g.game_id WHERE p.user_id = ? AND p.rate > ?";
+
+    $res = $this->db->exeQuery($query, [$user_id, 0]);
+
+    return ($res !== false && count($res) !== 0) ? $res : false;
+  }
+
   // ユーザーの投稿一覧
   public function getUserPosts($user_id)
   {

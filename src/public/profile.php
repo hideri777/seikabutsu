@@ -29,6 +29,7 @@ if ($user_id === '') {
 }
 
 $userInfo = $user->getUserInfo($user_id);
+$userRates = $user->getUserRates($user_id);
 $userPosts = $user->getUserPosts($user_id);
 $userLikes = $user->getUserLikes($user_id);
 $followings = $user->getUserFollowings($user_id);
@@ -39,6 +40,7 @@ $isFollow = empty($user->judgeFollowing($isLogin['user_id'], $user_id)) ? false 
 $context = [];
 $context['isLogin'] = $isLogin;
 $context['userInfo'] = $userInfo[0];
+$context['userRates'] = $userRates;
 $context['userPosts'] = $userPosts;
 $context['userLikes'] = $userLikes;
 $context['followings'] = $followings;

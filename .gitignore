@@ -2,3 +2,4 @@ bundle/参考資料.txt
 bundle/steam_api.json
 src/app/logs/seikabutsu.log
 src/app/logs/templates_c/*
+src/vendor
